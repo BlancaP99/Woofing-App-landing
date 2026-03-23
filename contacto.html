@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8" />
@@ -29,6 +29,11 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
         }
 
         /* ── HEADER ── */
@@ -67,9 +72,9 @@
             transition: opacity 0.2s;
         }
 
-            .nav__link:hover {
-                opacity: 0.55;
-            }
+        .nav__link:hover {
+            opacity: 0.55;
+        }
 
         /* ── MAIN ── */
         main {
@@ -148,17 +153,17 @@
             -webkit-appearance: none;
         }
 
-            .form__input::placeholder,
-            .form__textarea::placeholder {
-                color: rgba(92, 50, 119, 0.3);
-            }
+        .form__input::placeholder,
+        .form__textarea::placeholder {
+            color: rgba(92, 50, 119, 0.3);
+        }
 
-            .form__input:focus,
-            .form__select:focus,
-            .form__textarea:focus {
-                border-color: var(--brand);
-                box-shadow: 0 0 0 3px rgba(92, 50, 119, 0.08);
-            }
+        .form__input:focus,
+        .form__select:focus,
+        .form__textarea:focus {
+            border-color: var(--brand);
+            box-shadow: 0 0 0 3px rgba(92, 50, 119, 0.08);
+        }
 
         .form__select {
             cursor: pointer;
@@ -168,14 +173,41 @@
             padding-right: 40px;
         }
 
-            .form__select option {
-                color: #333;
-            }
+        .form__select option {
+            color: #333;
+        }
 
         .form__textarea {
             resize: vertical;
             min-height: 140px;
             line-height: 1.5;
+        }
+
+        .form__checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: -4px;
+        }
+
+        .form__checkbox {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--brand);
+            flex-shrink: 0;
+        }
+
+        .form__checkbox-label {
+            font-family: var(--font);
+            font-size: 14px;
+            line-height: 1.5;
+            color: var(--brand);
+            opacity: 0.9;
+        }
+
+        .form__checkbox-label a {
+            text-decoration: underline;
         }
 
         .form__submit {
@@ -193,17 +225,17 @@
             transition: opacity 0.2s, transform 0.15s;
         }
 
-            .form__submit:hover {
-                opacity: 0.85;
-                transform: translateY(-1px);
-            }
+        .form__submit:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
 
-            .form__submit:disabled,
-            .footer__submit:disabled {
-                opacity: 0.6;
-                cursor: not-allowed;
-                transform: none;
-            }
+        .form__submit:disabled,
+        .footer__submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
 
         .form__message {
             font-family: var(--font);
@@ -253,13 +285,13 @@
             flex: 1;
         }
 
-            .footer__input::placeholder {
-                color: rgba(92, 50, 119, 0.35);
-            }
+        .footer__input::placeholder {
+            color: rgba(92, 50, 119, 0.35);
+        }
 
-            .footer__input:focus {
-                border-color: var(--brand);
-            }
+        .footer__input:focus {
+            border-color: var(--brand);
+        }
 
         .footer__submit {
             font-family: var(--font);
@@ -276,16 +308,37 @@
             transition: opacity 0.2s, transform 0.15s;
         }
 
-            .footer__submit:hover {
-                opacity: 0.85;
-                transform: translateY(-1px);
-            }
+        .footer__submit:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
 
         .footer__message {
             font-family: var(--font);
             font-size: 13px;
             min-height: 18px;
             font-weight: 500;
+        }
+
+        .footer__links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+
+        .footer__link {
+            font-family: var(--font);
+            font-size: 14px;
+            color: var(--brand);
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+
+        .footer__link:hover {
+            opacity: 1;
         }
 
         .footer__copy {
@@ -333,14 +386,15 @@
                 </a>
             </div>
             <div class="nav__menu">
-                <a href="#footer" class="nav__link">Contacto</a>
+                <a href="contacto.html" class="nav__link">Contacto</a>
             </div>
         </nav>
     </header>
 
     <!-- MAIN -->
     <main>
-       
+        <h1 class="contact__heading">Contáctanos</h1>
+        <p class="contact__sub">Estamos aquí para ayudarte. Rellena el formulario y te respondemos pronto.</p>
 
         <form class="contact__form" id="contactForm">
             <div class="form__row">
@@ -383,6 +437,13 @@
                 <textarea class="form__textarea" id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
             </div>
 
+            <div class="form__checkbox-group">
+                <input class="form__checkbox" type="checkbox" id="privacyAccepted" name="privacyAccepted" />
+                <label class="form__checkbox-label" for="privacyAccepted">
+                    Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a>.
+                </label>
+            </div>
+
             <input type="hidden" name="_subject" value="Nuevo mensaje desde la web de Woofing" />
             <input type="hidden" name="form_type" value="contacto" />
 
@@ -408,133 +469,147 @@
         </form>
 
         <p class="footer__message" id="footerMessage"></p>
+
+        <div class="footer__links">
+            <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
+            <a class="footer__link" href="politica-privacidad.html">Política de privacidad</a>
+        </div>
+
         <p class="footer__copy">© 2025 Woofing App. Todos los derechos reservados.</p>
     </footer>
 
     <script>
-    const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
+        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
 
-    function isValidEmail(email) {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
 
-    async function sendToFormspree(data) {
-      const response = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      });
+        async function sendToFormspree(data) {
+            const response = await fetch(FORMSPREE_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
 
-      return response;
-    }
+            return response;
+        }
 
-    // ── FORMULARIO DE CONTACTO ──
-    const contactForm = document.getElementById("contactForm");
-    const formMessage = document.getElementById("formMessage");
-    const formSubmit = document.getElementById("formSubmit");
+        // ── FORMULARIO DE CONTACTO ──
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("formMessage");
+        const formSubmit = document.getElementById("formSubmit");
+        const privacyAccepted = document.getElementById("privacyAccepted");
 
-    contactForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+        contactForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-      const nombre = document.getElementById("nombre").value.trim();
-      const apellido = document.getElementById("apellido").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const telefono = document.getElementById("telefono").value.trim();
-      const asunto = document.getElementById("asunto").value;
-      const mensaje = document.getElementById("mensaje").value.trim();
+            const nombre = document.getElementById("nombre").value.trim();
+            const apellido = document.getElementById("apellido").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const telefono = document.getElementById("telefono").value.trim();
+            const asunto = document.getElementById("asunto").value;
+            const mensaje = document.getElementById("mensaje").value.trim();
 
-      if (!nombre || !apellido || !email || !asunto || !mensaje) {
-        formMessage.textContent = "Por favor, rellena todos los campos obligatorios.";
-        formMessage.style.color = "#c00";
-        return;
-      }
+            if (!nombre || !apellido || !email || !asunto || !mensaje) {
+                formMessage.textContent = "Por favor, rellena todos los campos obligatorios.";
+                formMessage.style.color = "#c00";
+                return;
+            }
 
-      if (!isValidEmail(email)) {
-        formMessage.textContent = "Por favor, introduce un email válido.";
-        formMessage.style.color = "#c00";
-        return;
-      }
+            if (!isValidEmail(email)) {
+                formMessage.textContent = "Por favor, introduce un email válido.";
+                formMessage.style.color = "#c00";
+                return;
+            }
 
-      formSubmit.disabled = true;
-      formSubmit.textContent = "Enviando...";
-      formMessage.textContent = "";
+            if (!privacyAccepted.checked) {
+                formMessage.textContent = "Debes aceptar la Política de privacidad para continuar.";
+                formMessage.style.color = "#c00";
+                return;
+            }
 
-      try {
-        const response = await sendToFormspree({
-          nombre,
-          apellido,
-          email,
-          telefono,
-          asunto,
-          mensaje,
-          _subject: "Nuevo mensaje desde la web de Woofing",
-          form_type: "contacto"
+            formSubmit.disabled = true;
+            formSubmit.textContent = "Enviando...";
+            formMessage.textContent = "";
+
+            try {
+                const response = await sendToFormspree({
+                    nombre,
+                    apellido,
+                    email,
+                    telefono,
+                    asunto,
+                    mensaje,
+                    privacyAccepted: true,
+                    _subject: "Nuevo mensaje desde la web de Woofing",
+                    form_type: "contacto"
+                });
+
+                if (response.ok) {
+                    formMessage.textContent = "¡Mensaje enviado! Te responderemos pronto.";
+                    formMessage.style.color = "#5c3277";
+                    contactForm.reset();
+                } else {
+                    formMessage.textContent = "No se pudo enviar el mensaje. Inténtalo de nuevo.";
+                    formMessage.style.color = "#c00";
+                }
+            } catch (error) {
+                formMessage.textContent = "Ha ocurrido un error al enviar el formulario.";
+                formMessage.style.color = "#c00";
+            } finally {
+                formSubmit.disabled = false;
+                formSubmit.textContent = "Enviar mensaje";
+            }
         });
 
-        if (response.ok) {
-          formMessage.textContent = "¡Mensaje enviado! Te responderemos pronto.";
-          formMessage.style.color = "#5c3277";
-          contactForm.reset();
-        } else {
-          formMessage.textContent = "No se pudo enviar el mensaje. Inténtalo de nuevo.";
-          formMessage.style.color = "#c00";
-        }
-      } catch (error) {
-        formMessage.textContent = "Ha ocurrido un error al enviar el formulario.";
-        formMessage.style.color = "#c00";
-      } finally {
-        formSubmit.disabled = false;
-        formSubmit.textContent = "Enviar mensaje";
-      }
-    });
+        // ── FORMULARIO FOOTER ──
+        const footerForm = document.getElementById("footerForm");
+        const footerEmail = document.getElementById("footerEmail");
+        const footerMessage = document.getElementById("footerMessage");
+        const footerSubmit = document.getElementById("footerSubmit");
 
-    // ── FORMULARIO FOOTER ──
-    const footerForm = document.getElementById("footerForm");
-    const footerEmail = document.getElementById("footerEmail");
-    const footerMessage = document.getElementById("footerMessage");
-    const footerSubmit = document.getElementById("footerSubmit");
+        footerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
 
-    footerForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
+            const email = footerEmail.value.trim();
 
-      const email = footerEmail.value.trim();
+            if (!email || !isValidEmail(email)) {
+                footerMessage.textContent = "Por favor, introduce un email válido.";
+                footerMessage.style.color = "#c00";
+                return;
+            }
 
-      if (!email || !isValidEmail(email)) {
-        footerMessage.textContent = "Por favor, introduce un email válido.";
-        footerMessage.style.color = "#c00";
-        return;
-      }
+            footerSubmit.disabled = true;
+            footerSubmit.textContent = "Enviando...";
+            footerMessage.textContent = "";
 
-      footerSubmit.disabled = true;
-      footerSubmit.textContent = "Enviando...";
-      footerMessage.textContent = "";
+            try {
+                const response = await sendToFormspree({
+                    email,
+                    _subject: "Nueva suscripción desde la web de Woofing",
+                    form_type: "newsletter"
+                });
 
-      try {
-        const response = await sendToFormspree({
-          email,
-          _subject: "Nueva suscripción desde la web de Woofing",
-          form_type: "newsletter"
+                if (response.ok) {
+                    footerMessage.textContent = "¡Gracias! Te mantendremos al tanto.";
+                    footerMessage.style.color = "#5c3277";
+                    footerForm.reset();
+                } else {
+                    footerMessage.textContent = "No se pudo completar la suscripción. Inténtalo de nuevo.";
+                    footerMessage.style.color = "#c00";
+                }
+            } catch (error) {
+                footerMessage.textContent = "Ha ocurrido un error al enviar la suscripción.";
+                footerMessage.style.color = "#c00";
+            } finally {
+                footerSubmit.disabled = false;
+                footerSubmit.textContent = "Suscribirme";
+            }
         });
-
-        if (response.ok) {
-          footerMessage.textContent = "¡Gracias! Te mantendremos al tanto.";
-          footerMessage.style.color = "#5c3277";
-          footerForm.reset();
-        } else {
-          footerMessage.textContent = "No se pudo completar la suscripción. Inténtalo de nuevo.";
-          footerMessage.style.color = "#c00";
-        }
-      } catch (error) {
-        footerMessage.textContent = "Ha ocurrido un error al enviar la suscripción.";
-        footerMessage.style.color = "#c00";
-      } finally {
-        footerSubmit.disabled = false;
-        footerSubmit.textContent = "Suscribirme";
-      }
-    });
     </script>
 </body>
 </html>
