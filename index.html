@@ -13,33 +13,33 @@
             margin: 0;
             padding: 0;
         }
-
+ 
         :root {
             --brand: #5c3277;
             --bg: #F8F9FA;
             --font: 'Instrument Sans', sans-serif;
             --font-display: 'Playfair Display', Georgia, serif;
         }
-
+ 
         html, body {
             font-family: var(--font);
             background-color: var(--bg);
             color: var(--brand);
             -webkit-font-smoothing: antialiased;
         }
-
+ 
         a {
             color: inherit;
             text-decoration: none;
         }
-
+ 
         /* ── HEADER ── */
         .header {
             width: 100%;
             padding: 28px 56px;
             background-color: var(--bg);
         }
-
+ 
         .nav {
             display: flex;
             flex-direction: column;
@@ -48,14 +48,14 @@
             position: relative;
             gap: 18px;
         }
-
+ 
         .logo-img {
             height: 56px;
             width: auto;
             object-fit: contain;
             display: block;
         }
-
+ 
         .nav__controls {
             position: absolute;
             right: 0;
@@ -65,12 +65,12 @@
             align-items: center;
             gap: 18px;
         }
-
+ 
         .nav__menu {
             display: flex;
             align-items: center;
         }
-
+ 
         .nav__link {
             font-family: var(--font);
             font-weight: 400;
@@ -80,11 +80,11 @@
             text-transform: uppercase;
             transition: opacity 0.2s;
         }
-
+ 
         .nav__link:hover {
             opacity: 0.55;
         }
-
+ 
         .lang-switch {
             display: flex;
             align-items: center;
@@ -94,7 +94,7 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
-
+ 
         .lang-switch__btn {
             background: none;
             border: none;
@@ -104,20 +104,20 @@
             opacity: 0.45;
             transition: opacity 0.2s;
         }
-
+ 
         .lang-switch__btn.active {
             opacity: 1;
             font-weight: 600;
         }
-
+ 
         .lang-switch__btn:hover {
             opacity: 0.75;
         }
-
+ 
         .lang-switch__divider {
             opacity: 0.35;
         }
-
+ 
         /* ── HERO ── */
         .hero {
             display: flex;
@@ -125,21 +125,21 @@
             min-height: calc(100vh - 112px);
             padding: 32px 0 56px;
         }
-
+ 
         .hero__half {
             flex: 1;
             display: flex;
             align-items: center;
             justify-content: center;
         }
-
+ 
         .mockup-img {
             height: 880px;
             width: auto;
             object-fit: contain;
             display: block;
         }
-
+ 
         .hero__content {
             display: flex;
             flex-direction: column;
@@ -148,13 +148,13 @@
             gap: 32px;
             max-width: 460px;
         }
-
+ 
         .icon-img {
             height: 250px;
             width: 100%;
             object-fit: contain;
         }
-
+ 
         .hero__tagline {
             font-family: var(--font-display);
             font-weight: 400;
@@ -162,7 +162,7 @@
             line-height: 1.2;
             color: var(--brand);
         }
-
+ 
         /* ── CTA BUTTON ── */
         .btn-cta {
             font-family: var(--font);
@@ -177,12 +177,12 @@
             letter-spacing: 0.03em;
             transition: opacity 0.2s, transform 0.15s;
         }
-
+ 
         .btn-cta:hover {
             opacity: 0.85;
             transform: translateY(-1px);
         }
-
+ 
         /* ── FOOTER ── */
         .footer {
             background-color: var(--bg);
@@ -194,7 +194,7 @@
             gap: 24px;
             text-align: center;
         }
-
+ 
         .footer__title {
             font-family: var(--font-display);
             font-weight: 400;
@@ -202,14 +202,20 @@
             color: var(--brand);
             line-height: 1.3;
         }
-
+ 
         .footer__form {
             display: flex;
+            flex-direction: column;
             gap: 12px;
             width: 100%;
             max-width: 480px;
         }
-
+ 
+        .footer__form-row {
+            display: flex;
+            gap: 12px;
+        }
+ 
         .footer__input {
             font-family: var(--font);
             font-size: 15px;
@@ -222,15 +228,15 @@
             transition: border-color 0.2s;
             flex: 1;
         }
-
+ 
         .footer__input::placeholder {
             color: rgba(92, 50, 119, 0.35);
         }
-
+ 
         .footer__input:focus {
             border-color: var(--brand);
         }
-
+ 
         .footer__submit {
             font-family: var(--font);
             font-weight: 500;
@@ -245,19 +251,19 @@
             white-space: nowrap;
             transition: opacity 0.2s, transform 0.15s;
         }
-
+ 
         .footer__submit:hover {
             opacity: 0.85;
             transform: translateY(-1px);
         }
-
+ 
         .footer__message {
             font-family: var(--font);
             font-size: 13px;
             min-height: 18px;
             font-weight: 500;
         }
-
+ 
         .footer__links {
             display: flex;
             align-items: center;
@@ -266,7 +272,7 @@
             flex-wrap: wrap;
             margin-top: 6px;
         }
-
+ 
         .footer__link {
             font-family: var(--font);
             font-size: 14px;
@@ -274,11 +280,11 @@
             opacity: 0.8;
             transition: opacity 0.2s;
         }
-
+ 
         .footer__link:hover {
             opacity: 1;
         }
-
+ 
         .footer__copy {
             font-family: var(--font);
             font-size: 12px;
@@ -287,8 +293,68 @@
             margin-top: 12px;
             letter-spacing: 0.02em;
         }
-
-        /* ── POPUP ACCESO ANTICIPADO ── */
+ 
+        /* ── CHECKBOX PRIVACY ── */
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            text-align: left;
+        }
+ 
+        .checkbox-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 1.5px solid rgba(92, 50, 119, 0.35);
+            border-radius: 5px;
+            background: #fff;
+            cursor: pointer;
+            margin-top: 1px;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+ 
+        .checkbox-label input[type="checkbox"]:checked {
+            background: var(--brand);
+            border-color: var(--brand);
+        }
+ 
+        .checkbox-label input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 1px;
+            width: 6px;
+            height: 10px;
+            border: 2px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+        }
+ 
+        .checkbox-label input[type="checkbox"]:focus {
+            outline: 2px solid rgba(92, 50, 119, 0.3);
+            outline-offset: 2px;
+        }
+ 
+        .checkbox-text {
+            font-family: var(--font);
+            font-size: 13px;
+            color: var(--brand);
+            opacity: 0.75;
+            line-height: 1.5;
+        }
+ 
+        .checkbox-text a {
+            text-decoration: underline;
+            opacity: 1;
+        }
+ 
+        /* ── POPUP ── */
         .popup-overlay {
             position: fixed;
             inset: 0;
@@ -302,28 +368,30 @@
             transition: opacity 0.25s ease;
             z-index: 100;
         }
-
+ 
         .popup-overlay.active {
             opacity: 1;
             pointer-events: all;
         }
-
+ 
         .popup {
             background: #fff;
             border-radius: 20px;
             padding: 44px 40px 40px;
             width: 100%;
-            max-width: 420px;
+            max-width: 440px;
             position: relative;
             transform: translateY(20px) scale(0.97);
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
             box-shadow: 0 24px 64px rgba(92, 50, 119, 0.15);
+            max-height: 90vh;
+            overflow-y: auto;
         }
-
+ 
         .popup-overlay.active .popup {
             transform: translateY(0) scale(1);
         }
-
+ 
         .popup__close {
             position: absolute;
             top: 16px;
@@ -337,11 +405,11 @@
             line-height: 1;
             transition: opacity 0.2s;
         }
-
+ 
         .popup__close:hover {
             opacity: 1;
         }
-
+ 
         .popup__title {
             font-family: var(--font-display);
             font-weight: 400;
@@ -349,7 +417,7 @@
             color: var(--brand);
             margin-bottom: 8px;
         }
-
+ 
         .popup__subtitle {
             font-family: var(--font);
             font-weight: 400;
@@ -359,13 +427,13 @@
             margin-bottom: 28px;
             line-height: 1.5;
         }
-
+ 
         .popup__form {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-
+ 
         .popup__input {
             font-family: var(--font);
             font-size: 15px;
@@ -378,15 +446,135 @@
             transition: border-color 0.2s;
             width: 100%;
         }
-
+ 
         .popup__input::placeholder {
             color: rgba(92, 50, 119, 0.35);
         }
-
+ 
         .popup__input:focus {
             border-color: var(--brand);
         }
-
+ 
+        /* ── PET QUESTION ── */
+        .popup__field-label {
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--brand);
+            margin-bottom: 8px;
+            display: block;
+        }
+ 
+        .radio-group {
+            display: flex;
+            gap: 10px;
+        }
+ 
+        .radio-option {
+            flex: 1;
+            position: relative;
+        }
+ 
+        .radio-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+ 
+        .radio-option__label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 11px 16px;
+            border: 1.5px solid rgba(92, 50, 119, 0.2);
+            border-radius: 10px;
+            background: var(--bg);
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--brand);
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+        }
+ 
+        .radio-option input[type="radio"]:checked + .radio-option__label {
+            border-color: var(--brand);
+            background: rgba(92, 50, 119, 0.07);
+        }
+ 
+        .radio-option__label:hover {
+            border-color: rgba(92, 50, 119, 0.5);
+        }
+ 
+        /* ── PET EXTRA FIELDS ── */
+        .pet-extra-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.35s ease, opacity 0.3s ease;
+        }
+ 
+        .pet-extra-fields.visible {
+            max-height: 400px;
+            opacity: 1;
+        }
+ 
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+ 
+        .checkbox-group-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+ 
+        .checkbox-pill {
+            position: relative;
+        }
+ 
+        .checkbox-pill input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+ 
+        .checkbox-pill__label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 12px;
+            border: 1.5px solid rgba(92, 50, 119, 0.2);
+            border-radius: 8px;
+            background: var(--bg);
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--brand);
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+            text-align: center;
+        }
+ 
+        .checkbox-pill input[type="checkbox"]:checked + .checkbox-pill__label {
+            border-color: var(--brand);
+            background: rgba(92, 50, 119, 0.07);
+        }
+ 
+        .checkbox-pill__label:hover {
+            border-color: rgba(92, 50, 119, 0.5);
+        }
+ 
         .popup__submit {
             font-family: var(--font);
             font-weight: 500;
@@ -400,20 +588,20 @@
             transition: opacity 0.2s, transform 0.15s;
             letter-spacing: 0.02em;
         }
-
+ 
         .popup__submit:hover {
             opacity: 0.85;
             transform: translateY(-1px);
         }
-
+ 
         .popup__message {
             font-family: var(--font);
             font-size: 13px;
-            margin-top: 12px;
+            margin-top: 4px;
             min-height: 20px;
             font-weight: 500;
         }
-
+ 
         .popup__submit:disabled,
         .footer__submit:disabled,
         .privacy-banner__button:disabled {
@@ -421,7 +609,13 @@
             cursor: not-allowed;
             transform: none;
         }
-
+ 
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+ 
         /* ── BANNER PRIVACIDAD ── */
         .privacy-banner {
             position: fixed;
@@ -439,11 +633,11 @@
             gap: 18px;
             z-index: 120;
         }
-
+ 
         .privacy-banner.hidden {
             display: none;
         }
-
+ 
         .privacy-banner__text {
             font-family: var(--font);
             font-size: 14px;
@@ -451,18 +645,18 @@
             color: var(--brand);
             text-align: left;
         }
-
+ 
         .privacy-banner__text a {
             text-decoration: underline;
         }
-
+ 
         .privacy-banner__actions {
             display: flex;
             align-items: center;
             gap: 12px;
             flex-shrink: 0;
         }
-
+ 
         .privacy-banner__button {
             font-family: var(--font);
             font-weight: 500;
@@ -475,21 +669,21 @@
             cursor: pointer;
             transition: opacity 0.2s;
         }
-
+ 
         .privacy-banner__button:hover {
             opacity: 0.88;
         }
-
+ 
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             .header {
                 padding: 20px 24px;
             }
-
+ 
             .nav {
                 gap: 14px;
             }
-
+ 
             .nav__controls {
                 position: static;
                 transform: none;
@@ -499,39 +693,39 @@
                 gap: 10px;
                 width: 100%;
             }
-
+ 
             .nav__menu,
             .lang-switch {
                 justify-content: center;
             }
-
+ 
             .hero {
                 flex-direction: column;
                 padding: 32px 24px 48px;
                 min-height: auto;
             }
-
+ 
             .hero__half {
                 width: 100%;
             }
-
+ 
             .mockup-img {
                 height: 400px;
             }
-
+ 
             .footer {
                 padding: 48px 24px 40px;
             }
-
-            .footer__form {
+ 
+            .footer__form-row {
                 flex-direction: column;
             }
-
+ 
             .popup {
                 margin: 24px;
                 padding: 36px 28px 32px;
             }
-
+ 
             .privacy-banner {
                 left: 16px;
                 right: 16px;
@@ -539,19 +733,23 @@
                 flex-direction: column;
                 align-items: stretch;
             }
-
+ 
             .privacy-banner__actions {
                 width: 100%;
             }
-
+ 
             .privacy-banner__button {
                 width: 100%;
+            }
+ 
+            .checkbox-group-inline {
+                grid-template-columns: 1fr 1fr;
             }
         }
     </style>
 </head>
 <body>
-
+ 
     <!-- HEADER -->
     <header class="header">
         <nav class="nav">
@@ -560,12 +758,12 @@
                     <img src="IMAGES/LOGO_.png" alt="Logo" class="logo-img" />
                 </a>
             </div>
-
+ 
             <div class="nav__controls">
                 <div class="nav__menu">
                     <a href="contacto.html" class="nav__link" data-i18n="contact_link">Contacto</a>
                 </div>
-
+ 
                 <div class="lang-switch" aria-label="Selector de idioma">
                     <button class="lang-switch__btn active" id="langEs" type="button">ES</button>
                     <span class="lang-switch__divider">|</span>
@@ -574,7 +772,7 @@
             </div>
         </nav>
     </header>
-
+ 
     <!-- HERO -->
     <main class="hero">
         <div class="hero__half">
@@ -588,40 +786,50 @@
             </div>
         </div>
     </main>
-
+ 
     <!-- FOOTER -->
     <footer class="footer" id="footer">
         <p class="footer__title" data-i18n="footer_title">Regístrate para recibir noticias y actualizaciones.</p>
-
+ 
         <form class="footer__form" id="footerForm">
-            <input
-                type="email"
-                class="footer__input"
-                placeholder="tu@email.com"
-                id="footerEmail"
-                name="email"
-            />
-            <button class="footer__submit" id="footerSubmit" type="submit" data-i18n="footer_submit">Suscribirme</button>
+            <div class="footer__form-row">
+                <input
+                    type="email"
+                    class="footer__input"
+                    placeholder="tu@email.com"
+                    id="footerEmail"
+                    name="email"
+                />
+                <button class="footer__submit" id="footerSubmit" type="submit" data-i18n="footer_submit">Suscribirme</button>
+            </div>
+ 
+            <label class="checkbox-label">
+                <input type="checkbox" id="footerPrivacy" name="privacy" />
+                <span class="checkbox-text" data-i18n="footer_privacy_label">
+                    Acepto la <a href="politica-privacidad.html" target="_blank" data-i18n="privacy_link">Política de privacidad</a> de Woofing App.
+                </span>
+            </label>
         </form>
-
+ 
         <p class="footer__message" id="footerMessage"></p>
-
+ 
         <div class="footer__links">
             <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
             <a class="footer__link" href="politica-privacidad.html" data-i18n="privacy_link">Política de privacidad</a>
         </div>
-
-        <p class="footer__copy" data-i18n="footer_copy">© 2025 Woofing App. Todos los derechos reservados.</p>
+ 
+        <p class="footer__copy" data-i18n="footer_copy">© 2026 Woofing App. Todos los derechos reservados.</p>
     </footer>
-
+ 
     <!-- POPUP -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup">
             <button class="popup__close" id="closePopup" type="button">&times;</button>
             <h2 class="popup__title" data-i18n="popup_title">Acceso Anticipado</h2>
             <p class="popup__subtitle" data-i18n="popup_subtitle">Déjanos tu email y te avisamos cuando estemos listos.</p>
-
+ 
             <form class="popup__form" id="popupForm">
+                <!-- EMAIL -->
                 <input
                     type="email"
                     class="popup__input"
@@ -629,13 +837,77 @@
                     id="emailInput"
                     name="email"
                 />
+ 
+                <!-- ¿TIENES MASCOTA? -->
+                <div class="field-group">
+                    <span class="popup__field-label" data-i18n="popup_has_pet">¿Tienes mascota?</span>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" name="has_pet" id="petYes" value="yes" />
+                            <label class="radio-option__label" for="petYes" data-i18n="popup_yes">Sí</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" name="has_pet" id="petNo" value="no" />
+                            <label class="radio-option__label" for="petNo" data-i18n="popup_no">No</label>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- CAMPOS EXTRA (visibles solo si SÍ) -->
+                <div class="pet-extra-fields" id="petExtraFields">
+                    <!-- Cuántas mascotas -->
+                    <div class="field-group">
+                        <span class="popup__field-label" data-i18n="popup_how_many">¿Cuántas mascotas tienes?</span>
+                        <input
+                            type="number"
+                            class="popup__input"
+                            id="petCount"
+                            name="pet_count"
+                            min="1"
+                            max="99"
+                            placeholder="1"
+                        />
+                    </div>
+ 
+                    <!-- Tipo de mascota -->
+                    <div class="field-group">
+                        <span class="popup__field-label" data-i18n="popup_pet_type">¿Qué tipo de mascota tienes?</span>
+                        <div class="checkbox-group-inline">
+                            <div class="checkbox-pill">
+                                <input type="checkbox" id="petDog" name="pet_type[]" value="dog" />
+                                <label class="checkbox-pill__label" for="petDog" data-i18n="popup_pet_dog">🐶 Perro</label>
+                            </div>
+                            <div class="checkbox-pill">
+                                <input type="checkbox" id="petCat" name="pet_type[]" value="cat" />
+                                <label class="checkbox-pill__label" for="petCat" data-i18n="popup_pet_cat">🐱 Gato</label>
+                            </div>
+                            <div class="checkbox-pill">
+                                <input type="checkbox" id="petRabbit" name="pet_type[]" value="rabbit" />
+                                <label class="checkbox-pill__label" for="petRabbit" data-i18n="popup_pet_rabbit">🐰 Conejo</label>
+                            </div>
+                            <div class="checkbox-pill">
+                                <input type="checkbox" id="petOther" name="pet_type[]" value="other" />
+                                <label class="checkbox-pill__label" for="petOther" data-i18n="popup_pet_other">🐾 Otro</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+ 
+                <!-- PRIVACIDAD -->
+                <label class="checkbox-label">
+                    <input type="checkbox" id="popupPrivacy" name="privacy" />
+                    <span class="checkbox-text" data-i18n="popup_privacy_label">
+                        Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.
+                    </span>
+                </label>
+ 
                 <button class="popup__submit" id="submitEmail" type="submit" data-i18n="popup_submit">Apuntarme</button>
             </form>
-
+ 
             <p class="popup__message" id="popupMessage"></p>
         </div>
     </div>
-
+ 
     <!-- BANNER PRIVACIDAD -->
     <div class="privacy-banner" id="privacyBanner">
         <p class="privacy-banner__text">
@@ -647,11 +919,11 @@
             <button class="privacy-banner__button" id="acceptPrivacy" type="button" data-i18n="privacy_accept">Aceptar</button>
         </div>
     </div>
-
+ 
     <script>
         const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
         const LANG_KEY = "woofing_language";
-
+ 
         const translations = {
             es: {
                 contact_link: "Contacto",
@@ -659,17 +931,29 @@
                 cta_button: "Acceso Anticipado",
                 footer_title: "Regístrate para recibir noticias y actualizaciones.",
                 footer_submit: "Suscribirme",
+                footer_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
                 privacy_link: "Política de privacidad",
                 footer_copy: "© 2026 Woofing App. Todos los derechos reservados.",
                 popup_title: "Acceso Anticipado",
                 popup_subtitle: "Déjanos tu email y te avisamos cuando estemos listos.",
                 popup_submit: "Apuntarme",
+                popup_has_pet: "¿Tienes mascota?",
+                popup_yes: "Sí",
+                popup_no: "No",
+                popup_how_many: "¿Cuántas mascotas tienes?",
+                popup_pet_type: "¿Qué tipo de mascota tienes?",
+                popup_pet_dog: "🐶 Perro",
+                popup_pet_cat: "🐱 Gato",
+                popup_pet_rabbit: "🐰 Conejo",
+                popup_pet_other: "🐾 Otro",
+                popup_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
                 privacy_banner_text_prefix: "Acepto la ",
                 privacy_banner_link: "Política de privacidad",
                 privacy_banner_text_suffix: " de Woofing App.",
                 privacy_accept: "Aceptar",
-
+ 
                 invalid_email: "Por favor, introduce un email válido.",
+                privacy_required: "Debes aceptar la Política de privacidad.",
                 sending: "Enviando...",
                 popup_success: "¡Genial! Te avisaremos pronto.",
                 popup_error: "No se pudo enviar. Inténtalo de nuevo.",
@@ -677,7 +961,7 @@
                 footer_success: "¡Gracias! Te mantendremos al tanto.",
                 footer_error: "No se pudo completar la suscripción. Inténtalo de nuevo.",
                 footer_error_general: "Ha ocurrido un error al enviar la suscripción.",
-
+ 
                 popup_subject: "Nuevo acceso anticipado desde la web de Woofing",
                 footer_subject: "Nueva suscripción desde la web de Woofing"
             },
@@ -687,36 +971,48 @@
                 cta_button: "Early Access",
                 footer_title: "Sign up to receive news and updates.",
                 footer_submit: "Subscribe",
+                footer_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
                 privacy_link: "Privacy Policy",
                 footer_copy: "© 2026 Woofing App. All rights reserved.",
                 popup_title: "Early Access",
-                popup_subtitle: "Leave us your email and we’ll let you know when we’re ready.",
+                popup_subtitle: "Leave us your email and we'll let you know when we're ready.",
                 popup_submit: "Join the List",
+                popup_has_pet: "Do you have a pet?",
+                popup_yes: "Yes",
+                popup_no: "No",
+                popup_how_many: "How many pets do you have?",
+                popup_pet_type: "What type of pet do you have?",
+                popup_pet_dog: "🐶 Dog",
+                popup_pet_cat: "🐱 Cat",
+                popup_pet_rabbit: "🐰 Rabbit",
+                popup_pet_other: "🐾 Other",
+                popup_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
                 privacy_banner_text_prefix: "I accept the ",
                 privacy_banner_link: "Privacy Policy",
                 privacy_banner_text_suffix: " of Woofing App.",
                 privacy_accept: "Accept",
-
+ 
                 invalid_email: "Please enter a valid email address.",
+                privacy_required: "You must accept the Privacy Policy.",
                 sending: "Sending...",
-                popup_success: "Great! We’ll let you know soon.",
+                popup_success: "Great! We'll let you know soon.",
                 popup_error: "Could not send. Please try again.",
                 popup_error_general: "An error occurred while submitting the form.",
-                footer_success: "Thank you! We’ll keep you updated.",
+                footer_success: "Thank you! We'll keep you updated.",
                 footer_error: "Could not complete the subscription. Please try again.",
                 footer_error_general: "An error occurred while submitting the subscription.",
-
+ 
                 popup_subject: "New early access signup from the Woofing website",
                 footer_subject: "New newsletter signup from the Woofing website"
             }
         };
-
+ 
         let currentLang = localStorage.getItem(LANG_KEY) || "es";
-
+ 
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
-
+ 
         async function sendToFormspree(data) {
             const response = await fetch(FORMSPREE_ENDPOINT, {
                 method: "POST",
@@ -726,96 +1022,126 @@
                 },
                 body: JSON.stringify(data)
             });
-
             return response;
         }
-
+ 
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem(LANG_KEY, lang);
             document.documentElement.lang = lang;
-
+ 
             document.querySelectorAll("[data-i18n]").forEach((el) => {
                 const key = el.getAttribute("data-i18n");
-                if (translations[lang][key]) {
+                if (translations[lang][key] !== undefined) {
                     el.innerHTML = translations[lang][key];
                 }
             });
-
+ 
             document.getElementById("langEs").classList.toggle("active", lang === "es");
             document.getElementById("langEn").classList.toggle("active", lang === "en");
-
-            if (submitEmailBtn) {
-                submitEmailBtn.textContent = translations[lang].popup_submit;
-            }
-
-            if (footerSubmit) {
-                footerSubmit.textContent = translations[lang].footer_submit;
-            }
+ 
+            if (submitEmailBtn) submitEmailBtn.textContent = translations[lang].popup_submit;
+            if (footerSubmit) footerSubmit.textContent = translations[lang].footer_submit;
         }
-
+ 
         document.getElementById("langEs").addEventListener("click", () => setLanguage("es"));
         document.getElementById("langEn").addEventListener("click", () => setLanguage("en"));
-
+ 
+        // ── PET RADIO LOGIC ──
+        const petExtraFields = document.getElementById("petExtraFields");
+        const petYes = document.getElementById("petYes");
+        const petNo = document.getElementById("petNo");
+ 
+        function updatePetFields() {
+            if (petYes.checked) {
+                petExtraFields.classList.add("visible");
+            } else {
+                petExtraFields.classList.remove("visible");
+                document.getElementById("petCount").value = "";
+                document.querySelectorAll("input[name='pet_type[]']").forEach(cb => cb.checked = false);
+            }
+        }
+ 
+        petYes.addEventListener("change", updatePetFields);
+        petNo.addEventListener("change", updatePetFields);
+ 
         // ── POPUP ──
         const overlay = document.getElementById("popupOverlay");
         const popupForm = document.getElementById("popupForm");
         const emailInput = document.getElementById("emailInput");
         const popupMsg = document.getElementById("popupMessage");
         const submitEmailBtn = document.getElementById("submitEmail");
-
+        const popupPrivacy = document.getElementById("popupPrivacy");
+ 
         document.getElementById("openPopup").addEventListener("click", () => {
             overlay.classList.add("active");
             emailInput.focus();
         });
-
+ 
         function closePopup() {
             overlay.classList.remove("active");
             popupMsg.textContent = "";
             emailInput.value = "";
             submitEmailBtn.disabled = false;
             submitEmailBtn.textContent = translations[currentLang].popup_submit;
+            popupForm.reset();
+            petExtraFields.classList.remove("visible");
         }
-
+ 
         document.getElementById("closePopup").addEventListener("click", closePopup);
-
+ 
         overlay.addEventListener("click", (e) => {
-            if (e.target === overlay) {
-                closePopup();
-            }
+            if (e.target === overlay) closePopup();
         });
-
+ 
         popupForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-
+ 
             const email = emailInput.value.trim();
-
+ 
             if (!email || !isValidEmail(email)) {
                 popupMsg.textContent = translations[currentLang].invalid_email;
                 popupMsg.style.color = "#c00";
                 return;
             }
-
+ 
+            if (!popupPrivacy.checked) {
+                popupMsg.textContent = translations[currentLang].privacy_required;
+                popupMsg.style.color = "#c00";
+                return;
+            }
+ 
+            // Gather pet data
+            const hasPet = petYes.checked ? "yes" : petNo.checked ? "no" : "";
+            const petCount = petYes.checked ? document.getElementById("petCount").value : "";
+            const petTypes = petYes.checked
+                ? Array.from(document.querySelectorAll("input[name='pet_type[]']:checked")).map(cb => cb.value).join(", ")
+                : "";
+ 
             submitEmailBtn.disabled = true;
             submitEmailBtn.textContent = translations[currentLang].sending;
             popupMsg.textContent = "";
-
+ 
             try {
-                const response = await sendToFormspree({
+                const payload = {
                     email,
                     _subject: translations[currentLang].popup_subject,
                     form_type: "popup_acceso_anticipado",
-                    language: currentLang
-                });
-
+                    language: currentLang,
+                    has_pet: hasPet
+                };
+ 
+                if (hasPet === "yes") {
+                    payload.pet_count = petCount;
+                    payload.pet_types = petTypes;
+                }
+ 
+                const response = await sendToFormspree(payload);
+ 
                 if (response.ok) {
                     popupMsg.textContent = translations[currentLang].popup_success;
                     popupMsg.style.color = "#5c3277";
-                    popupForm.reset();
-
-                    setTimeout(() => {
-                        closePopup();
-                    }, 1800);
+                    setTimeout(() => closePopup(), 1800);
                 } else {
                     popupMsg.textContent = translations[currentLang].popup_error;
                     popupMsg.style.color = "#c00";
@@ -828,28 +1154,35 @@
                 submitEmailBtn.textContent = translations[currentLang].popup_submit;
             }
         });
-
+ 
         // ── FOOTER FORM ──
         const footerForm = document.getElementById("footerForm");
         const footerEmail = document.getElementById("footerEmail");
         const footerMsg = document.getElementById("footerMessage");
         const footerSubmit = document.getElementById("footerSubmit");
-
+        const footerPrivacy = document.getElementById("footerPrivacy");
+ 
         footerForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-
+ 
             const email = footerEmail.value.trim();
-
+ 
             if (!email || !isValidEmail(email)) {
                 footerMsg.textContent = translations[currentLang].invalid_email;
                 footerMsg.style.color = "#c00";
                 return;
             }
-
+ 
+            if (!footerPrivacy.checked) {
+                footerMsg.textContent = translations[currentLang].privacy_required;
+                footerMsg.style.color = "#c00";
+                return;
+            }
+ 
             footerSubmit.disabled = true;
             footerSubmit.textContent = translations[currentLang].sending;
             footerMsg.textContent = "";
-
+ 
             try {
                 const response = await sendToFormspree({
                     email,
@@ -857,7 +1190,7 @@
                     form_type: "newsletter_footer",
                     language: currentLang
                 });
-
+ 
                 if (response.ok) {
                     footerMsg.textContent = translations[currentLang].footer_success;
                     footerMsg.style.color = "#5c3277";
@@ -874,21 +1207,21 @@
                 footerSubmit.textContent = translations[currentLang].footer_submit;
             }
         });
-
+ 
         // ── BANNER PRIVACIDAD ──
         const privacyBanner = document.getElementById("privacyBanner");
         const acceptPrivacyBtn = document.getElementById("acceptPrivacy");
         const PRIVACY_KEY = "woofing_privacy_accepted";
-
+ 
         if (localStorage.getItem(PRIVACY_KEY) === "true") {
             privacyBanner.classList.add("hidden");
         }
-
+ 
         acceptPrivacyBtn.addEventListener("click", () => {
             localStorage.setItem(PRIVACY_KEY, "true");
             privacyBanner.classList.add("hidden");
         });
-
+ 
         // Inicializar idioma
         setLanguage(currentLang);
     </script>
