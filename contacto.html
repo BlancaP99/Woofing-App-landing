@@ -45,20 +45,33 @@
 
         .nav {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            gap: 18px;
         }
 
         .logo-img {
             height: 56px;
             width: auto;
             object-fit: contain;
+            display: block;
+        }
+
+        .nav__controls {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 18px;
         }
 
         .nav__menu {
-            position: absolute;
-            right: 0;
+            display: flex;
+            align-items: center;
         }
 
         .nav__link {
@@ -66,7 +79,6 @@
             font-weight: 400;
             font-size: 14px;
             color: var(--brand);
-            text-decoration: none;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             transition: opacity 0.2s;
@@ -74,6 +86,39 @@
 
         .nav__link:hover {
             opacity: 0.55;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .lang-switch__btn {
+            background: none;
+            border: none;
+            color: var(--brand);
+            cursor: pointer;
+            font: inherit;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+        }
+
+        .lang-switch__btn.active {
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .lang-switch__btn:hover {
+            opacity: 0.75;
+        }
+
+        .lang-switch__divider {
+            opacity: 0.35;
         }
 
         /* ── MAIN ── */
@@ -351,11 +396,32 @@
         }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 600px) {
+        @media (max-width: 768px) {
             .header {
                 padding: 20px 24px;
             }
 
+            .nav {
+                gap: 14px;
+            }
+
+            .nav__controls {
+                position: static;
+                transform: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .nav__menu,
+            .lang-switch {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 600px) {
             .form__row {
                 flex-direction: column;
             }
@@ -385,62 +451,73 @@
                     <img src="IMAGES/LOGO_.png" alt="Logo" class="logo-img" />
                 </a>
             </div>
-            <div class="nav__menu">
-                <a href="contacto.html" class="nav__link">Contacto</a>
+
+            <div class="nav__controls">
+                <div class="nav__menu">
+                    <a href="contacto.html" class="nav__link" data-i18n="contact_link">Contacto</a>
+                </div>
+
+                <div class="lang-switch" aria-label="Language selector">
+                    <button class="lang-switch__btn active" id="langEs" type="button">ES</button>
+                    <span class="lang-switch__divider">|</span>
+                    <button class="lang-switch__btn" id="langEn" type="button">EN</button>
+                </div>
             </div>
         </nav>
     </header>
 
     <!-- MAIN -->
     <main>
-        <h1 class="contact__heading">Contáctanos</h1>
-        <p class="contact__sub">Estamos aquí para ayudarte. Rellena el formulario y te respondemos pronto.</p>
+        <h1 class="contact__heading" data-i18n="contact_heading">Contáctanos</h1>
+        <p class="contact__sub" data-i18n="contact_sub">Estamos aquí para ayudarte. Rellena el formulario y te respondemos pronto.</p>
 
         <form class="contact__form" id="contactForm">
             <div class="form__row">
                 <div class="form__group">
-                    <label class="form__label" for="nombre">Nombre</label>
-                    <input class="form__input" type="text" id="nombre" name="nombre" placeholder="Tu nombre" />
+                    <label class="form__label" for="nombre" data-i18n="label_name">Nombre</label>
+                    <input class="form__input" type="text" id="nombre" name="nombre" />
                 </div>
                 <div class="form__group">
-                    <label class="form__label" for="apellido">Apellido</label>
-                    <input class="form__input" type="text" id="apellido" name="apellido" placeholder="Tu apellido" />
+                    <label class="form__label" for="apellido" data-i18n="label_surname">Apellido</label>
+                    <input class="form__input" type="text" id="apellido" name="apellido" />
                 </div>
             </div>
 
             <div class="form__row">
                 <div class="form__group">
-                    <label class="form__label" for="email">Email</label>
-                    <input class="form__input" type="email" id="email" name="email" placeholder="tu@email.com" />
+                    <label class="form__label" for="email" data-i18n="label_email">Email</label>
+                    <input class="form__input" type="email" id="email" name="email" />
                 </div>
                 <div class="form__group">
-                    <label class="form__label" for="telefono">Teléfono</label>
-                    <input class="form__input" type="tel" id="telefono" name="telefono" placeholder="+34 600 000 000" />
+                    <label class="form__label" for="telefono" data-i18n="label_phone">Teléfono</label>
+                    <input class="form__input" type="tel" id="telefono" name="telefono" />
                 </div>
             </div>
 
             <div class="form__group">
-                <label class="form__label" for="asunto">Asunto</label>
+                <label class="form__label" for="asunto" data-i18n="label_subject">Asunto</label>
                 <select class="form__select" id="asunto" name="asunto">
-                    <option value="" disabled selected>Selecciona un asunto</option>
-                    <option value="Información general">Información general</option>
-                    <option value="Acceso anticipado">Acceso anticipado</option>
-                    <option value="Prensa y medios">Prensa y medios</option>
-                    <option value="Colaboraciones">Colaboraciones</option>
-                    <option value="Soporte técnico">Soporte técnico</option>
-                    <option value="Otro">Otro</option>
+                    <option value="" disabled selected data-i18n="subject_placeholder">Selecciona un asunto</option>
+                    <option value="Información general" data-i18n="subject_general">Información general</option>
+                    <option value="Acceso anticipado" data-i18n="subject_early_access">Acceso anticipado</option>
+                    <option value="Prensa y medios" data-i18n="subject_press">Prensa y medios</option>
+                    <option value="Colaboraciones" data-i18n="subject_collabs">Colaboraciones</option>
+                    <option value="Soporte técnico" data-i18n="subject_support">Soporte técnico</option>
+                    <option value="Otro" data-i18n="subject_other">Otro</option>
                 </select>
             </div>
 
             <div class="form__group">
-                <label class="form__label" for="mensaje">Mensaje</label>
-                <textarea class="form__textarea" id="mensaje" name="mensaje" placeholder="Cuéntanos en qué podemos ayudarte..."></textarea>
+                <label class="form__label" for="mensaje" data-i18n="label_message">Mensaje</label>
+                <textarea class="form__textarea" id="mensaje" name="mensaje"></textarea>
             </div>
 
             <div class="form__checkbox-group">
                 <input class="form__checkbox" type="checkbox" id="privacyAccepted" name="privacyAccepted" />
                 <label class="form__checkbox-label" for="privacyAccepted">
-                    Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a>.
+                    <span data-i18n="privacy_checkbox_prefix">Acepto la </span>
+                    <a href="politica-privacidad.html" target="_blank" data-i18n="privacy_checkbox_link">Política de privacidad</a>
+                    <span data-i18n="privacy_checkbox_suffix">.</span>
                 </label>
             </div>
 
@@ -449,37 +526,146 @@
 
             <p class="form__message" id="formMessage"></p>
 
-            <button class="form__submit" id="formSubmit" type="submit">Enviar mensaje</button>
+            <button class="form__submit" id="formSubmit" type="submit" data-i18n="form_submit">Enviar mensaje</button>
         </form>
     </main>
 
     <!-- FOOTER -->
     <footer class="footer" id="footer">
-        <p class="footer__title">Regístrate para recibir noticias y actualizaciones.</p>
+        <p class="footer__title" data-i18n="footer_title">Regístrate para recibir noticias y actualizaciones.</p>
 
         <form class="footer__form" id="footerForm">
-            <input type="email"
-                   class="footer__input"
-                   placeholder="tu@email.com"
-                   id="footerEmail"
-                   name="email" />
+            <input
+                type="email"
+                class="footer__input"
+                id="footerEmail"
+                name="email"
+            />
             <input type="hidden" name="_subject" value="Nueva suscripción desde la web de Woofing" />
             <input type="hidden" name="form_type" value="newsletter" />
-            <button class="footer__submit" id="footerSubmit" type="submit">Suscribirme</button>
+            <button class="footer__submit" id="footerSubmit" type="submit" data-i18n="footer_submit">Suscribirme</button>
         </form>
 
         <p class="footer__message" id="footerMessage"></p>
 
         <div class="footer__links">
             <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
-            <a class="footer__link" href="politica-privacidad.html">Política de privacidad</a>
+            <a class="footer__link" href="politica-privacidad.html" data-i18n="privacy_link">Política de privacidad</a>
         </div>
 
-        <p class="footer__copy">© 2025 Woofing App. Todos los derechos reservados.</p>
+        <p class="footer__copy" data-i18n="footer_copy">© 2025 Woofing App. Todos los derechos reservados.</p>
     </footer>
 
     <script>
         const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
+        const LANG_KEY = "woofing_language";
+
+        const translations = {
+            es: {
+                contact_link: "Contacto",
+                contact_heading: "Contáctanos",
+                contact_sub: "Estamos aquí para ayudarte. Rellena el formulario y te respondemos pronto.",
+
+                label_name: "Nombre",
+                label_surname: "Apellido",
+                label_email: "Email",
+                label_phone: "Teléfono",
+                label_subject: "Asunto",
+                label_message: "Mensaje",
+
+                subject_placeholder: "Selecciona un asunto",
+                subject_general: "Información general",
+                subject_early_access: "Acceso anticipado",
+                subject_press: "Prensa y medios",
+                subject_collabs: "Colaboraciones",
+                subject_support: "Soporte técnico",
+                subject_other: "Otro",
+
+                privacy_checkbox_prefix: "Acepto la ",
+                privacy_checkbox_link: "Política de privacidad",
+                privacy_checkbox_suffix: ".",
+
+                form_submit: "Enviar mensaje",
+
+                footer_title: "Regístrate para recibir noticias y actualizaciones.",
+                footer_submit: "Suscribirme",
+                privacy_link: "Política de privacidad",
+                footer_copy: "© 2025 Woofing App. Todos los derechos reservados.",
+
+                placeholder_name: "Tu nombre",
+                placeholder_surname: "Tu apellido",
+                placeholder_email: "tu@email.com",
+                placeholder_phone: "+34 600 000 000",
+                placeholder_message: "Cuéntanos en qué podemos ayudarte...",
+
+                required_fields: "Por favor, rellena todos los campos obligatorios.",
+                invalid_email: "Por favor, introduce un email válido.",
+                privacy_required: "Debes aceptar la Política de privacidad para continuar.",
+                sending: "Enviando...",
+                form_success: "¡Mensaje enviado! Te responderemos pronto.",
+                form_error: "No se pudo enviar el mensaje. Inténtalo de nuevo.",
+                form_error_general: "Ha ocurrido un error al enviar el formulario.",
+                footer_success: "¡Gracias! Te mantendremos al tanto.",
+                footer_error: "No se pudo completar la suscripción. Inténtalo de nuevo.",
+                footer_error_general: "Ha ocurrido un error al enviar la suscripción.",
+
+                contact_subject_line: "Nuevo mensaje desde la web de Woofing",
+                newsletter_subject_line: "Nueva suscripción desde la web de Woofing"
+            },
+            en: {
+                contact_link: "Contact",
+                contact_heading: "Contact Us",
+                contact_sub: "We’re here to help. Fill out the form and we’ll get back to you soon.",
+
+                label_name: "First Name",
+                label_surname: "Last Name",
+                label_email: "Email",
+                label_phone: "Phone",
+                label_subject: "Subject",
+                label_message: "Message",
+
+                subject_placeholder: "Select a subject",
+                subject_general: "General information",
+                subject_early_access: "Early access",
+                subject_press: "Press & media",
+                subject_collabs: "Collaborations",
+                subject_support: "Technical support",
+                subject_other: "Other",
+
+                privacy_checkbox_prefix: "I accept the ",
+                privacy_checkbox_link: "Privacy Policy",
+                privacy_checkbox_suffix: ".",
+
+                form_submit: "Send Message",
+
+                footer_title: "Sign up to receive news and updates.",
+                footer_submit: "Subscribe",
+                privacy_link: "Privacy Policy",
+                footer_copy: "© 2025 Woofing App. All rights reserved.",
+
+                placeholder_name: "Your first name",
+                placeholder_surname: "Your last name",
+                placeholder_email: "your@email.com",
+                placeholder_phone: "+34 600 000 000",
+                placeholder_message: "Tell us how we can help you...",
+
+                required_fields: "Please fill in all required fields.",
+                invalid_email: "Please enter a valid email address.",
+                privacy_required: "You must accept the Privacy Policy to continue.",
+                sending: "Sending...",
+                form_success: "Message sent! We’ll get back to you soon.",
+                form_error: "Could not send the message. Please try again.",
+                form_error_general: "An error occurred while submitting the form.",
+                footer_success: "Thank you! We’ll keep you updated.",
+                footer_error: "Could not complete the subscription. Please try again.",
+                footer_error_general: "An error occurred while submitting the subscription.",
+
+                contact_subject_line: "New message from the Woofing website",
+                newsletter_subject_line: "New newsletter signup from the Woofing website"
+            }
+        };
+
+        let currentLang = localStorage.getItem(LANG_KEY) || "es";
 
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -498,6 +684,62 @@
             return response;
         }
 
+        function updatePlaceholders(lang) {
+            document.getElementById("nombre").placeholder = translations[lang].placeholder_name;
+            document.getElementById("apellido").placeholder = translations[lang].placeholder_surname;
+            document.getElementById("email").placeholder = translations[lang].placeholder_email;
+            document.getElementById("telefono").placeholder = translations[lang].placeholder_phone;
+            document.getElementById("mensaje").placeholder = translations[lang].placeholder_message;
+            document.getElementById("footerEmail").placeholder = translations[lang].placeholder_email;
+        }
+
+        function updateSelectOptions(lang) {
+            const asunto = document.getElementById("asunto");
+            asunto.options[0].text = translations[lang].subject_placeholder;
+            asunto.options[1].text = translations[lang].subject_general;
+            asunto.options[2].text = translations[lang].subject_early_access;
+            asunto.options[3].text = translations[lang].subject_press;
+            asunto.options[4].text = translations[lang].subject_collabs;
+            asunto.options[5].text = translations[lang].subject_support;
+            asunto.options[6].text = translations[lang].subject_other;
+        }
+
+        function updateSelectValues(lang) {
+            const asunto = document.getElementById("asunto");
+            asunto.options[1].value = translations[lang].subject_general;
+            asunto.options[2].value = translations[lang].subject_early_access;
+            asunto.options[3].value = translations[lang].subject_press;
+            asunto.options[4].value = translations[lang].subject_collabs;
+            asunto.options[5].value = translations[lang].subject_support;
+            asunto.options[6].value = translations[lang].subject_other;
+        }
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem(LANG_KEY, lang);
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            updatePlaceholders(lang);
+            updateSelectOptions(lang);
+            updateSelectValues(lang);
+
+            document.getElementById("langEs").classList.toggle("active", lang === "es");
+            document.getElementById("langEn").classList.toggle("active", lang === "en");
+
+            formSubmit.textContent = translations[lang].form_submit;
+            footerSubmit.textContent = translations[lang].footer_submit;
+        }
+
+        document.getElementById("langEs").addEventListener("click", () => setLanguage("es"));
+        document.getElementById("langEn").addEventListener("click", () => setLanguage("en"));
+
         // ── FORMULARIO DE CONTACTO ──
         const contactForm = document.getElementById("contactForm");
         const formMessage = document.getElementById("formMessage");
@@ -515,25 +757,25 @@
             const mensaje = document.getElementById("mensaje").value.trim();
 
             if (!nombre || !apellido || !email || !asunto || !mensaje) {
-                formMessage.textContent = "Por favor, rellena todos los campos obligatorios.";
+                formMessage.textContent = translations[currentLang].required_fields;
                 formMessage.style.color = "#c00";
                 return;
             }
 
             if (!isValidEmail(email)) {
-                formMessage.textContent = "Por favor, introduce un email válido.";
+                formMessage.textContent = translations[currentLang].invalid_email;
                 formMessage.style.color = "#c00";
                 return;
             }
 
             if (!privacyAccepted.checked) {
-                formMessage.textContent = "Debes aceptar la Política de privacidad para continuar.";
+                formMessage.textContent = translations[currentLang].privacy_required;
                 formMessage.style.color = "#c00";
                 return;
             }
 
             formSubmit.disabled = true;
-            formSubmit.textContent = "Enviando...";
+            formSubmit.textContent = translations[currentLang].sending;
             formMessage.textContent = "";
 
             try {
@@ -545,24 +787,25 @@
                     asunto,
                     mensaje,
                     privacyAccepted: true,
-                    _subject: "Nuevo mensaje desde la web de Woofing",
-                    form_type: "contacto"
+                    _subject: translations[currentLang].contact_subject_line,
+                    form_type: "contacto",
+                    language: currentLang
                 });
 
                 if (response.ok) {
-                    formMessage.textContent = "¡Mensaje enviado! Te responderemos pronto.";
+                    formMessage.textContent = translations[currentLang].form_success;
                     formMessage.style.color = "#5c3277";
                     contactForm.reset();
                 } else {
-                    formMessage.textContent = "No se pudo enviar el mensaje. Inténtalo de nuevo.";
+                    formMessage.textContent = translations[currentLang].form_error;
                     formMessage.style.color = "#c00";
                 }
             } catch (error) {
-                formMessage.textContent = "Ha ocurrido un error al enviar el formulario.";
+                formMessage.textContent = translations[currentLang].form_error_general;
                 formMessage.style.color = "#c00";
             } finally {
                 formSubmit.disabled = false;
-                formSubmit.textContent = "Enviar mensaje";
+                formSubmit.textContent = translations[currentLang].form_submit;
             }
         });
 
@@ -578,38 +821,42 @@
             const email = footerEmail.value.trim();
 
             if (!email || !isValidEmail(email)) {
-                footerMessage.textContent = "Por favor, introduce un email válido.";
+                footerMessage.textContent = translations[currentLang].invalid_email;
                 footerMessage.style.color = "#c00";
                 return;
             }
 
             footerSubmit.disabled = true;
-            footerSubmit.textContent = "Enviando...";
+            footerSubmit.textContent = translations[currentLang].sending;
             footerMessage.textContent = "";
 
             try {
                 const response = await sendToFormspree({
                     email,
-                    _subject: "Nueva suscripción desde la web de Woofing",
-                    form_type: "newsletter"
+                    _subject: translations[currentLang].newsletter_subject_line,
+                    form_type: "newsletter",
+                    language: currentLang
                 });
 
                 if (response.ok) {
-                    footerMessage.textContent = "¡Gracias! Te mantendremos al tanto.";
+                    footerMessage.textContent = translations[currentLang].footer_success;
                     footerMessage.style.color = "#5c3277";
                     footerForm.reset();
                 } else {
-                    footerMessage.textContent = "No se pudo completar la suscripción. Inténtalo de nuevo.";
+                    footerMessage.textContent = translations[currentLang].footer_error;
                     footerMessage.style.color = "#c00";
                 }
             } catch (error) {
-                footerMessage.textContent = "Ha ocurrido un error al enviar la suscripción.";
+                footerMessage.textContent = translations[currentLang].footer_error_general;
                 footerMessage.style.color = "#c00";
             } finally {
                 footerSubmit.disabled = false;
-                footerSubmit.textContent = "Suscribirme";
+                footerSubmit.textContent = translations[currentLang].footer_submit;
             }
         });
+
+        // Inicializar idioma
+        setLanguage(currentLang);
     </script>
 </body>
 </html>
