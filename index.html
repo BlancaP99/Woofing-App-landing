@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
     <style>
-
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -43,20 +42,33 @@
 
         .nav {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
+            gap: 18px;
         }
 
         .logo-img {
             height: 56px;
             width: auto;
             object-fit: contain;
+            display: block;
+        }
+
+        .nav__controls {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            display: flex;
+            align-items: center;
+            gap: 18px;
         }
 
         .nav__menu {
-            position: absolute;
-            right: 0;
+            display: flex;
+            align-items: center;
         }
 
         .nav__link {
@@ -64,7 +76,6 @@
             font-weight: 400;
             font-size: 14px;
             color: var(--brand);
-            text-decoration: none;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             transition: opacity 0.2s;
@@ -72,6 +83,39 @@
 
         .nav__link:hover {
             opacity: 0.55;
+        }
+
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .lang-switch__btn {
+            background: none;
+            border: none;
+            color: var(--brand);
+            cursor: pointer;
+            font: inherit;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+        }
+
+        .lang-switch__btn.active {
+            opacity: 1;
+            font-weight: 600;
+        }
+
+        .lang-switch__btn:hover {
+            opacity: 0.75;
+        }
+
+        .lang-switch__divider {
+            opacity: 0.35;
         }
 
         /* ── HERO ── */
@@ -442,6 +486,25 @@
                 padding: 20px 24px;
             }
 
+            .nav {
+                gap: 14px;
+            }
+
+            .nav__controls {
+                position: static;
+                transform: none;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .nav__menu,
+            .lang-switch {
+                justify-content: center;
+            }
+
             .hero {
                 flex-direction: column;
                 padding: 32px 24px 48px;
@@ -497,8 +560,17 @@
                     <img src="IMAGES/LOGO_.png" alt="Logo" class="logo-img" />
                 </a>
             </div>
-            <div class="nav__menu">
-                <a href="contacto.html" class="nav__link">Contacto</a>
+
+            <div class="nav__controls">
+                <div class="nav__menu">
+                    <a href="contacto.html" class="nav__link" data-i18n="contact_link">Contacto</a>
+                </div>
+
+                <div class="lang-switch" aria-label="Selector de idioma">
+                    <button class="lang-switch__btn active" id="langEs" type="button">ES</button>
+                    <span class="lang-switch__divider">|</span>
+                    <button class="lang-switch__btn" id="langEn" type="button">EN</button>
+                </div>
             </div>
         </nav>
     </header>
@@ -511,49 +583,53 @@
         <div class="hero__half">
             <div class="hero__content">
                 <img src="IMAGES/ICONO.png" alt="Icono" class="icon-img" />
-                <p class="hero__tagline">Todo lo que tu mascota necesita,<br />en un solo lugar.</p>
-                <button class="btn-cta" id="openPopup" type="button">Acceso Anticipado</button>
+                <p class="hero__tagline" data-i18n="hero_tagline">Todo lo que tu mascota necesita,<br />en un solo lugar.</p>
+                <button class="btn-cta" id="openPopup" type="button" data-i18n="cta_button">Acceso Anticipado</button>
             </div>
         </div>
     </main>
 
     <!-- FOOTER -->
     <footer class="footer" id="footer">
-        <p class="footer__title">Regístrate para recibir noticias y actualizaciones.</p>
+        <p class="footer__title" data-i18n="footer_title">Regístrate para recibir noticias y actualizaciones.</p>
 
         <form class="footer__form" id="footerForm">
-            <input type="email"
-                   class="footer__input"
-                   placeholder="tu@email.com"
-                   id="footerEmail"
-                   name="email" />
-            <button class="footer__submit" id="footerSubmit" type="submit">Suscribirme</button>
+            <input
+                type="email"
+                class="footer__input"
+                placeholder="tu@email.com"
+                id="footerEmail"
+                name="email"
+            />
+            <button class="footer__submit" id="footerSubmit" type="submit" data-i18n="footer_submit">Suscribirme</button>
         </form>
 
         <p class="footer__message" id="footerMessage"></p>
 
         <div class="footer__links">
             <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
-            <a class="footer__link" href="politica-privacidad.html">Política de privacidad</a>
+            <a class="footer__link" href="politica-privacidad.html" data-i18n="privacy_link">Política de privacidad</a>
         </div>
 
-        <p class="footer__copy">© 2025 Woofing App. Todos los derechos reservados.</p>
+        <p class="footer__copy" data-i18n="footer_copy">© 2025 Woofing App. Todos los derechos reservados.</p>
     </footer>
 
     <!-- POPUP -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup">
             <button class="popup__close" id="closePopup" type="button">&times;</button>
-            <h2 class="popup__title">Acceso Anticipado</h2>
-            <p class="popup__subtitle">Déjanos tu email y te avisamos cuando estemos listos.</p>
+            <h2 class="popup__title" data-i18n="popup_title">Acceso Anticipado</h2>
+            <p class="popup__subtitle" data-i18n="popup_subtitle">Déjanos tu email y te avisamos cuando estemos listos.</p>
 
             <form class="popup__form" id="popupForm">
-                <input type="email"
-                       class="popup__input"
-                       placeholder="tu@email.com"
-                       id="emailInput"
-                       name="email" />
-                <button class="popup__submit" id="submitEmail" type="submit">Apuntarme</button>
+                <input
+                    type="email"
+                    class="popup__input"
+                    placeholder="tu@email.com"
+                    id="emailInput"
+                    name="email"
+                />
+                <button class="popup__submit" id="submitEmail" type="submit" data-i18n="popup_submit">Apuntarme</button>
             </form>
 
             <p class="popup__message" id="popupMessage"></p>
@@ -563,15 +639,79 @@
     <!-- BANNER PRIVACIDAD -->
     <div class="privacy-banner" id="privacyBanner">
         <p class="privacy-banner__text">
-            Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.
+            <span data-i18n="privacy_banner_text_prefix">Acepto la </span>
+            <a href="politica-privacidad.html" target="_blank" data-i18n="privacy_banner_link">Política de privacidad</a>
+            <span data-i18n="privacy_banner_text_suffix"> de Woofing App.</span>
         </p>
         <div class="privacy-banner__actions">
-            <button class="privacy-banner__button" id="acceptPrivacy" type="button">Aceptar</button>
+            <button class="privacy-banner__button" id="acceptPrivacy" type="button" data-i18n="privacy_accept">Aceptar</button>
         </div>
     </div>
 
     <script>
         const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
+        const LANG_KEY = "woofing_language";
+
+        const translations = {
+            es: {
+                contact_link: "Contacto",
+                hero_tagline: "Todo lo que tu mascota necesita,<br />en un solo lugar.",
+                cta_button: "Acceso Anticipado",
+                footer_title: "Regístrate para recibir noticias y actualizaciones.",
+                footer_submit: "Suscribirme",
+                privacy_link: "Política de privacidad",
+                footer_copy: "© 2025 Woofing App. Todos los derechos reservados.",
+                popup_title: "Acceso Anticipado",
+                popup_subtitle: "Déjanos tu email y te avisamos cuando estemos listos.",
+                popup_submit: "Apuntarme",
+                privacy_banner_text_prefix: "Acepto la ",
+                privacy_banner_link: "Política de privacidad",
+                privacy_banner_text_suffix: " de Woofing App.",
+                privacy_accept: "Aceptar",
+
+                invalid_email: "Por favor, introduce un email válido.",
+                sending: "Enviando...",
+                popup_success: "¡Genial! Te avisaremos pronto.",
+                popup_error: "No se pudo enviar. Inténtalo de nuevo.",
+                popup_error_general: "Ha ocurrido un error al enviar el formulario.",
+                footer_success: "¡Gracias! Te mantendremos al tanto.",
+                footer_error: "No se pudo completar la suscripción. Inténtalo de nuevo.",
+                footer_error_general: "Ha ocurrido un error al enviar la suscripción.",
+
+                popup_subject: "Nuevo acceso anticipado desde la web de Woofing",
+                footer_subject: "Nueva suscripción desde la web de Woofing"
+            },
+            en: {
+                contact_link: "Contact",
+                hero_tagline: "Everything your pet needs,<br />in one place.",
+                cta_button: "Early Access",
+                footer_title: "Sign up to receive news and updates.",
+                footer_submit: "Subscribe",
+                privacy_link: "Privacy Policy",
+                footer_copy: "© 2025 Woofing App. All rights reserved.",
+                popup_title: "Early Access",
+                popup_subtitle: "Leave us your email and we’ll let you know when we’re ready.",
+                popup_submit: "Join the List",
+                privacy_banner_text_prefix: "I accept the ",
+                privacy_banner_link: "Privacy Policy",
+                privacy_banner_text_suffix: " of Woofing App.",
+                privacy_accept: "Accept",
+
+                invalid_email: "Please enter a valid email address.",
+                sending: "Sending...",
+                popup_success: "Great! We’ll let you know soon.",
+                popup_error: "Could not send. Please try again.",
+                popup_error_general: "An error occurred while submitting the form.",
+                footer_success: "Thank you! We’ll keep you updated.",
+                footer_error: "Could not complete the subscription. Please try again.",
+                footer_error_general: "An error occurred while submitting the subscription.",
+
+                popup_subject: "New early access signup from the Woofing website",
+                footer_subject: "New newsletter signup from the Woofing website"
+            }
+        };
+
+        let currentLang = localStorage.getItem(LANG_KEY) || "es";
 
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -590,6 +730,33 @@
             return response;
         }
 
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem(LANG_KEY, lang);
+            document.documentElement.lang = lang;
+
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            document.getElementById("langEs").classList.toggle("active", lang === "es");
+            document.getElementById("langEn").classList.toggle("active", lang === "en");
+
+            if (submitEmailBtn) {
+                submitEmailBtn.textContent = translations[lang].popup_submit;
+            }
+
+            if (footerSubmit) {
+                footerSubmit.textContent = translations[lang].footer_submit;
+            }
+        }
+
+        document.getElementById("langEs").addEventListener("click", () => setLanguage("es"));
+        document.getElementById("langEn").addEventListener("click", () => setLanguage("en"));
+
         // ── POPUP ──
         const overlay = document.getElementById("popupOverlay");
         const popupForm = document.getElementById("popupForm");
@@ -607,7 +774,7 @@
             popupMsg.textContent = "";
             emailInput.value = "";
             submitEmailBtn.disabled = false;
-            submitEmailBtn.textContent = "Apuntarme";
+            submitEmailBtn.textContent = translations[currentLang].popup_submit;
         }
 
         document.getElementById("closePopup").addEventListener("click", closePopup);
@@ -624,24 +791,25 @@
             const email = emailInput.value.trim();
 
             if (!email || !isValidEmail(email)) {
-                popupMsg.textContent = "Por favor, introduce un email válido.";
+                popupMsg.textContent = translations[currentLang].invalid_email;
                 popupMsg.style.color = "#c00";
                 return;
             }
 
             submitEmailBtn.disabled = true;
-            submitEmailBtn.textContent = "Enviando...";
+            submitEmailBtn.textContent = translations[currentLang].sending;
             popupMsg.textContent = "";
 
             try {
                 const response = await sendToFormspree({
                     email,
-                    _subject: "Nuevo acceso anticipado desde la web de Woofing",
-                    form_type: "popup_acceso_anticipado"
+                    _subject: translations[currentLang].popup_subject,
+                    form_type: "popup_acceso_anticipado",
+                    language: currentLang
                 });
 
                 if (response.ok) {
-                    popupMsg.textContent = "¡Genial! Te avisaremos pronto.";
+                    popupMsg.textContent = translations[currentLang].popup_success;
                     popupMsg.style.color = "#5c3277";
                     popupForm.reset();
 
@@ -649,15 +817,15 @@
                         closePopup();
                     }, 1800);
                 } else {
-                    popupMsg.textContent = "No se pudo enviar. Inténtalo de nuevo.";
+                    popupMsg.textContent = translations[currentLang].popup_error;
                     popupMsg.style.color = "#c00";
                 }
             } catch (error) {
-                popupMsg.textContent = "Ha ocurrido un error al enviar el formulario.";
+                popupMsg.textContent = translations[currentLang].popup_error_general;
                 popupMsg.style.color = "#c00";
             } finally {
                 submitEmailBtn.disabled = false;
-                submitEmailBtn.textContent = "Apuntarme";
+                submitEmailBtn.textContent = translations[currentLang].popup_submit;
             }
         });
 
@@ -673,36 +841,37 @@
             const email = footerEmail.value.trim();
 
             if (!email || !isValidEmail(email)) {
-                footerMsg.textContent = "Por favor, introduce un email válido.";
+                footerMsg.textContent = translations[currentLang].invalid_email;
                 footerMsg.style.color = "#c00";
                 return;
             }
 
             footerSubmit.disabled = true;
-            footerSubmit.textContent = "Enviando...";
+            footerSubmit.textContent = translations[currentLang].sending;
             footerMsg.textContent = "";
 
             try {
                 const response = await sendToFormspree({
                     email,
-                    _subject: "Nueva suscripción desde la web de Woofing",
-                    form_type: "newsletter_footer"
+                    _subject: translations[currentLang].footer_subject,
+                    form_type: "newsletter_footer",
+                    language: currentLang
                 });
 
                 if (response.ok) {
-                    footerMsg.textContent = "¡Gracias! Te mantendremos al tanto.";
+                    footerMsg.textContent = translations[currentLang].footer_success;
                     footerMsg.style.color = "#5c3277";
                     footerForm.reset();
                 } else {
-                    footerMsg.textContent = "No se pudo completar la suscripción. Inténtalo de nuevo.";
+                    footerMsg.textContent = translations[currentLang].footer_error;
                     footerMsg.style.color = "#c00";
                 }
             } catch (error) {
-                footerMsg.textContent = "Ha ocurrido un error al enviar la suscripción.";
+                footerMsg.textContent = translations[currentLang].footer_error_general;
                 footerMsg.style.color = "#c00";
             } finally {
                 footerSubmit.disabled = false;
-                footerSubmit.textContent = "Suscribirme";
+                footerSubmit.textContent = translations[currentLang].footer_submit;
             }
         });
 
@@ -719,6 +888,9 @@
             localStorage.setItem(PRIVACY_KEY, "true");
             privacyBanner.classList.add("hidden");
         });
+
+        // Inicializar idioma
+        setLanguage(currentLang);
     </script>
 </body>
 </html>
