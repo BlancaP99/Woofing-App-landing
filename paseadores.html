@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Woofing — Paseadores Pet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+:root {
+  --purple: #5c3277;
+  --purple-light: #7b45a0;
+  --purple-pale: #f0e8f8;
+  --purple-soft: rgba(92,50,119,0.08);
+  --accent: #b388d4;
+  --bg: #faf8fc;
+  --white: #ffffff;
+  --ink: #1a0d2e;
+  --muted: rgba(92,50,119,0.45);
+  --serif: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', sans-serif;
+  --radius: 20px;
+  --radius-sm: 12px;
+}
+ 
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0; opacity: 0.4;
+}
+ 
+/* ── NAV ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 14px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,248,252,0.88);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(92,50,119,0.08);
+  transition: all 0.3s ease;
+}
+.nav__logo img { height: 40px; width: auto; object-fit: contain; display: block; }
+.nav__right { display: flex; align-items: center; gap: 20px; }
+ 
+.lang-switch { display: flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; }
+.lang-switch__btn { background: none; border: none; color: var(--purple); cursor: pointer; font: inherit; opacity: 0.4; transition: opacity 0.2s; }
+.lang-switch__btn.active { opacity: 1; font-weight: 600; }
+.lang-switch__btn:hover { opacity: 0.75; }
+.lang-switch__divider { opacity: 0.3; color: var(--purple); }
+ 
+.nav__pill {
+  background: var(--purple); color: #fff;
+  font-family: var(--sans); font-size: 13px; font-weight: 500;
+  letter-spacing: 0.05em; text-transform: uppercase;
+  padding: 9px 22px; border-radius: 100px; border: none; cursor: pointer;
+  text-decoration: none; transition: opacity 0.2s, transform 0.15s;
+}
+.nav__pill:hover { opacity: 0.82; transform: translateY(-1px); }
+ 
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; text-align: center;
+  padding: 120px 24px 80px; position: relative; overflow: hidden;
+}
+.hero__bg-blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+.hero__bg-blob--1 { width:600px;height:600px;background:radial-gradient(circle,rgba(180,130,210,0.18)0%,transparent 70%);top:-100px;left:-150px;animation:blobFloat1 12s ease-in-out infinite; }
+.hero__bg-blob--2 { width:500px;height:500px;background:radial-gradient(circle,rgba(92,50,119,0.12)0%,transparent 70%);bottom:-50px;right:-100px;animation:blobFloat2 14s ease-in-out infinite; }
+.hero__bg-blob--3 { width:300px;height:300px;background:radial-gradient(circle,rgba(179,136,212,0.15)0%,transparent 70%);top:40%;left:50%;transform:translateX(-50%);animation:blobFloat3 10s ease-in-out infinite; }
+@keyframes blobFloat1{0%,100%{transform:translate(0,0)scale(1)}50%{transform:translate(40px,30px)scale(1.05)}}
+@keyframes blobFloat2{0%,100%{transform:translate(0,0)scale(1)}50%{transform:translate(-30px,-40px)scale(1.08)}}
+@keyframes blobFloat3{0%,100%{transform:translateX(-50%)scale(1)}50%{transform:translateX(-50%)scale(1.12)}}
+ 
+.hero__eyebrow {
+  position:relative;z-index:1;display:inline-flex;align-items:center;gap:8px;
+  background:var(--purple-soft);border:1px solid rgba(92,50,119,0.15);
+  color:var(--purple);font-size:12px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;
+  padding:7px 16px;border-radius:100px;margin-bottom:32px;
+  opacity:0;animation:fadeUp 0.7s 0.2s ease forwards;
+}
+.hero__eyebrow-dot { width:6px;height:6px;border-radius:50%;background:var(--purple);animation:pulse 2s ease-in-out infinite; }
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+ 
+.hero__title {
+  position:relative;z-index:1;font-family:var(--serif);
+  font-size:clamp(42px,6vw,88px);line-height:1.04;color:var(--purple);
+  letter-spacing:-0.02em;max-width:800px;margin-bottom:24px;
+  opacity:0;animation:fadeUp 0.8s 0.35s ease forwards;
+}
+.hero__title em { font-style:italic;color:var(--purple-light); }
+.hero__subtitle {
+  position:relative;z-index:1;font-size:clamp(16px,2vw,20px);font-weight:300;
+  color:var(--muted);max-width:540px;line-height:1.6;margin-bottom:48px;
+  opacity:0;animation:fadeUp 0.8s 0.5s ease forwards;
+}
+.hero__cta-group {
+  position:relative;z-index:1;display:flex;gap:14px;align-items:center;flex-wrap:wrap;justify-content:center;
+  opacity:0;animation:fadeUp 0.8s 0.65s ease forwards;
+}
+ 
+.btn-primary {
+  background:var(--purple);color:#fff;font-family:var(--sans);font-weight:500;font-size:15px;
+  padding:16px 36px;border-radius:100px;border:none;cursor:pointer;text-decoration:none;
+  transition:opacity 0.2s,transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 8px 32px rgba(92,50,119,0.25);display:inline-block;
+}
+.btn-primary:hover{opacity:0.88;transform:translateY(-2px);box-shadow:0 16px 40px rgba(92,50,119,0.3);}
+.btn-secondary {
+  color:var(--purple);font-family:var(--sans);font-weight:500;font-size:15px;
+  padding:16px 24px;border-radius:100px;border:1.5px solid rgba(92,50,119,0.2);
+  background:transparent;cursor:pointer;text-decoration:none;
+  transition:border-color 0.2s,background 0.2s;display:inline-block;
+}
+.btn-secondary:hover{border-color:var(--purple);background:var(--purple-soft);}
+ 
+.hero__scroll-hint {
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  color:var(--muted);font-size:11px;letter-spacing:0.1em;text-transform:uppercase;
+  animation:fadeIn 1s 1.2s ease forwards;opacity:0;
+}
+.hero__scroll-line { width:1px;height:40px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollLine 1.8s ease-in-out infinite; }
+@keyframes scrollLine{0%,100%{opacity:0.4;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+ 
+/* ── SECTIONS ── */
+.section { padding:100px 24px;position:relative;z-index:1; }
+.section-inner { max-width:1100px;margin:0 auto; }
+.section__label {
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--purple);opacity:0.55;margin-bottom:20px;
+}
+.section__label::before { content:'';width:24px;height:1px;background:currentColor;display:inline-block; }
+ 
+/* ── PROBLEM ── */
+.problem-layout { display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center; }
+.problem__heading { font-family:var(--serif);font-size:clamp(32px,4vw,54px);line-height:1.1;color:var(--purple);letter-spacing:-0.02em;margin-bottom:24px; }
+.problem__heading em { font-style:italic;color:var(--purple-light); }
+.problem__body { font-size:17px;font-weight:300;line-height:1.7;color:var(--muted);max-width:460px; }
+.problem__visual { position:relative;display:flex;flex-direction:column;gap:16px; }
+.problem-card {
+  background:var(--white);border:1px solid rgba(92,50,119,0.1);border-radius:var(--radius);
+  padding:24px 28px;display:flex;align-items:flex-start;gap:16px;
+  box-shadow:0 4px 24px rgba(92,50,119,0.06);
+  transition:transform 0.3s ease,box-shadow 0.3s ease;
+  opacity:0;transform:translateX(30px);
+}
+.problem-card:hover{transform:translateX(4px) !important;box-shadow:0 8px 32px rgba(92,50,119,0.12);}
+.problem-card.visible{opacity:1;transform:translateX(0);transition:opacity 0.6s ease,transform 0.6s ease,box-shadow 0.3s ease;}
+.problem-card:nth-child(2){transition-delay:0.12s !important;}
+.problem-card:nth-child(3){transition-delay:0.24s !important;}
+.problem-card__icon { width:44px;height:44px;min-width:44px;border-radius:12px;background:var(--purple-soft);display:flex;align-items:center;justify-content:center; }
+.problem-card__icon svg { width:22px;height:22px; }
+.problem-card__text strong { display:block;font-size:15px;font-weight:600;color:var(--purple);margin-bottom:4px; }
+.problem-card__text span { font-size:13px;font-weight:300;color:var(--muted);line-height:1.5; }
+ 
+/* ── SOLUTION ── */
+.solution-section { background:var(--purple);color:#fff;position:relative;overflow:hidden; }
+.solution-section::before {
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.07'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+.solution-section .section__label{color:rgba(255,255,255,0.5);}
+.solution-section .section__label::before{background:rgba(255,255,255,0.4);}
+.solution__grid { display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start; }
+.solution__col-title { font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);line-height:1.12;letter-spacing:-0.02em;color:#fff;margin-bottom:40px; }
+.solution__col-title em { font-style:italic;color:var(--accent); }
+.solution-block { padding:28px 0;border-top:1px solid rgba(255,255,255,0.12); }
+.solution-block:last-child { border-bottom:1px solid rgba(255,255,255,0.12); }
+.solution-block__eyebrow { font-size:11px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px; }
+.solution-block__title { font-family:var(--serif);font-size:22px;color:#fff;margin-bottom:10px; }
+.solution-block__body { font-size:15px;font-weight:300;line-height:1.65;color:rgba(255,255,255,0.65); }
+ 
+/* ── BENEFITS ── */
+.benefits-section { background:var(--bg); }
+.benefits__title { font-family:var(--serif);font-size:clamp(32px,4vw,56px);color:var(--purple);text-align:center;margin-bottom:64px;letter-spacing:-0.02em; }
+.benefits__title em { font-style:italic;color:var(--purple-light); }
+.benefits-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:20px; }
+.benefit-card {
+  background:var(--white);border:1px solid rgba(92,50,119,0.08);border-radius:var(--radius);
+  padding:36px 32px;position:relative;overflow:hidden;
+  transition:transform 0.3s ease,box-shadow 0.3s ease,border-color 0.3s ease;
+  opacity:0;transform:translateY(20px);cursor:default;
+}
+.benefit-card.visible{opacity:1;transform:translateY(0);transition:opacity 0.6s ease,transform 0.6s ease,box-shadow 0.3s ease,border-color 0.3s ease;}
+.benefit-card:nth-child(2){transition-delay:0.1s !important;}
+.benefit-card:nth-child(3){transition-delay:0.2s !important;}
+.benefit-card:nth-child(4){transition-delay:0.1s !important;}
+.benefit-card:nth-child(5){transition-delay:0.2s !important;}
+.benefit-card:nth-child(6){transition-delay:0.3s !important;}
+.benefit-card:hover{transform:translateY(-4px) !important;box-shadow:0 16px 48px rgba(92,50,119,0.12);border-color:rgba(92,50,119,0.2);}
+.benefit-card__bg-icon { position:absolute;top:-10px;right:-10px;opacity:0.04;pointer-events:none; }
+.benefit-card__bg-icon svg { width:90px;height:90px; }
+.benefit-card__num { font-family:var(--serif);font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;display:block; }
+.benefit-card__icon { width:44px;height:44px;border-radius:12px;background:var(--purple-soft);display:flex;align-items:center;justify-content:center;margin-bottom:20px; }
+.benefit-card__icon svg { width:22px;height:22px; }
+.benefit-card__title { font-family:var(--serif);font-size:22px;color:var(--purple);margin-bottom:12px;line-height:1.2; }
+.benefit-card__body { font-size:14px;font-weight:300;line-height:1.65;color:var(--muted); }
+ 
+/* ── RISK ── */
+.risk-section { background:linear-gradient(135deg,#f5eeff 0%,#ede4f8 50%,#f0e6fb 100%);position:relative;overflow:hidden; }
+.risk-section::after { content:'';position:absolute;bottom:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:rgba(92,50,119,0.06);pointer-events:none; }
+.risk-layout { display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:center; }
+.risk__heading { font-family:var(--serif);font-size:clamp(32px,4vw,54px);line-height:1.08;color:var(--purple);letter-spacing:-0.02em;margin-bottom:24px; }
+.risk__body { font-size:17px;font-weight:300;line-height:1.7;color:var(--muted);margin-bottom:40px; }
+.risk__checklist { list-style:none;display:flex;flex-direction:column;gap:14px; }
+.risk__checklist li { display:flex;align-items:center;gap:12px;font-size:15px;font-weight:400;color:var(--purple); }
+.risk__check { width:24px;height:24px;min-width:24px;border-radius:50%;background:var(--purple);display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px; }
+.risk-visual { background:var(--white);border-radius:var(--radius);padding:40px;box-shadow:0 8px 48px rgba(92,50,119,0.1);border:1px solid rgba(92,50,119,0.08); }
+.risk-visual__title { font-family:var(--serif);font-size:20px;color:var(--purple);margin-bottom:28px;text-align:center; }
+.commission-visual { display:flex;flex-direction:column;gap:20px; }
+.commission-row { display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-radius:var(--radius-sm);background:var(--bg); }
+.commission-row--highlighted { background:var(--purple);color:#fff; }
+.commission-row__label { font-size:14px;font-weight:500;color:var(--purple); }
+.commission-row--highlighted .commission-row__label { color:rgba(255,255,255,0.8); }
+.commission-row__value { font-family:var(--serif);font-size:22px;color:var(--purple);font-style:italic; }
+.commission-row--highlighted .commission-row__value { color:#fff; }
+.commission-row__badge { font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;background:rgba(255,255,255,0.2);padding:4px 10px;border-radius:100px;color:#fff; }
+.commission-divider { text-align:center;font-size:12px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);position:relative; }
+.commission-divider::before,.commission-divider::after { content:'';position:absolute;top:50%;width:35%;height:1px;background:rgba(92,50,119,0.1); }
+.commission-divider::before{left:0;} .commission-divider::after{right:0;}
+ 
+/* ── CTA ── */
+.cta-section { background:var(--purple);text-align:center;position:relative;overflow:hidden; }
+.cta-section__logo-bg { position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:0;opacity:0.06;width:min(600px,80vw); }
+.cta-section__logo-bg img { width:100%;height:auto;filter:brightness(0) invert(1); }
+.cta__label{color:rgba(255,255,255,0.45);}
+.cta__label::before{background:rgba(255,255,255,0.4);}
+.cta__title { font-family:var(--serif);font-size:clamp(36px,5vw,68px);color:#fff;letter-spacing:-0.02em;line-height:1.08;margin-bottom:24px;position:relative;z-index:1; }
+.cta__title em { font-style:italic;color:var(--accent); }
+.cta__subtitle { font-size:17px;font-weight:300;color:rgba(255,255,255,0.65);max-width:460px;margin:0 auto 48px;line-height:1.6;position:relative;z-index:1; }
+.cta__btns { display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1; }
+.btn-white { background:#fff;color:var(--purple);font-family:var(--sans);font-weight:600;font-size:15px;padding:16px 40px;border-radius:100px;border:none;cursor:pointer;text-decoration:none;transition:opacity 0.2s,transform 0.2s;box-shadow:0 8px 32px rgba(0,0,0,0.2);display:inline-block; }
+.btn-white:hover{opacity:0.9;transform:translateY(-2px);}
+.btn-ghost { background:transparent;color:rgba(255,255,255,0.8);font-family:var(--sans);font-weight:500;font-size:15px;padding:16px 28px;border-radius:100px;border:1.5px solid rgba(255,255,255,0.25);cursor:pointer;text-decoration:none;transition:border-color 0.2s,background 0.2s;display:inline-block; }
+.btn-ghost:hover{border-color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.08);}
+ 
+/* ── STATS ── */
+.stats-strip { border-top:1px solid rgba(92,50,119,0.08);border-bottom:1px solid rgba(92,50,119,0.08);background:var(--white);overflow:hidden; }
+.stats-inner { max-width:1100px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:repeat(3,1fr); }
+.stat-item { padding:48px 32px;text-align:center;border-right:1px solid rgba(92,50,119,0.08); }
+.stat-item:last-child{border-right:none;}
+.stat-item__num { font-family:var(--serif);font-size:clamp(36px,5vw,60px);color:var(--purple);font-style:italic;display:block;margin-bottom:8px;letter-spacing:-0.02em; }
+.stat-item__label { font-size:13px;font-weight:400;color:var(--muted);letter-spacing:0.04em; }
+ 
+/* ── FOOTER ── */
+.footer { background:var(--ink);padding:48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap; }
+.footer__brand { font-family:var(--serif);font-size:22px;color:rgba(255,255,255,0.8);letter-spacing:-0.01em; }
+.footer__copy { font-size:13px;color:rgba(255,255,255,0.3); }
+.footer__link { font-size:13px;color:rgba(255,255,255,0.45);text-decoration:none;transition:color 0.2s; }
+.footer__link:hover{color:rgba(255,255,255,0.8);}
+ 
+/* ── REVEAL ── */
+.reveal { opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease; }
+.reveal.visible { opacity:1;transform:translateY(0); }
+ 
+/* ── MODAL ── */
+.modal-overlay {
+  position:fixed;inset:0;background:rgba(26,13,46,0.55);
+  backdrop-filter:blur(6px);z-index:200;
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  opacity:0;pointer-events:none;transition:opacity 0.3s ease;
+}
+.modal-overlay.active { opacity:1;pointer-events:all; }
+.modal {
+  background:var(--white);border-radius:24px;padding:48px 44px 44px;
+  width:100%;max-width:580px;max-height:90vh;overflow-y:auto;
+  position:relative;
+  transform:translateY(24px) scale(0.97);
+  transition:transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  box-shadow:0 32px 80px rgba(26,13,46,0.2);
+}
+.modal-overlay.active .modal { transform:translateY(0) scale(1); }
+.modal__close { position:absolute;top:18px;right:22px;background:none;border:none;font-size:26px;color:var(--purple);cursor:pointer;opacity:0.35;line-height:1;transition:opacity 0.2s; }
+.modal__close:hover{opacity:0.9;}
+.modal__title { font-family:var(--serif);font-size:30px;color:var(--purple);margin-bottom:8px;letter-spacing:-0.01em; }
+.modal__subtitle { font-size:15px;font-weight:300;color:var(--muted);line-height:1.5;margin-bottom:32px; }
+ 
+.form__grid { display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px; }
+.form__group { display:flex;flex-direction:column;gap:6px; }
+.form__group--full { grid-column:1/-1; }
+.form__label { font-size:11px;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:var(--purple);opacity:0.6; }
+.form__input,.form__select,.form__textarea {
+  font-family:var(--sans);font-size:15px;color:var(--purple);
+  background:var(--bg);border:1.5px solid rgba(92,50,119,0.15);border-radius:10px;
+  padding:13px 16px;outline:none;transition:border-color 0.2s,box-shadow 0.2s;
+  width:100%;appearance:none;-webkit-appearance:none;
+}
+.form__input::placeholder,.form__textarea::placeholder{color:rgba(92,50,119,0.3);}
+.form__input:focus,.form__select:focus,.form__textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(92,50,119,0.08);}
+.form__select {
+  cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c3277' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 16px center;background-color:var(--bg);padding-right:40px;
+}
+.form__select option{color:#333;}
+.form__textarea{resize:vertical;min-height:120px;line-height:1.5;}
+.form__privacy { display:flex;align-items:flex-start;gap:10px;margin:16px 0;cursor:pointer; }
+.form__privacy input[type="checkbox"] {
+  appearance:none;-webkit-appearance:none;width:18px;height:18px;min-width:18px;
+  border:1.5px solid rgba(92,50,119,0.3);border-radius:5px;background:#fff;
+  cursor:pointer;margin-top:1px;transition:border-color 0.2s,background 0.2s;position:relative;
+}
+.form__privacy input[type="checkbox"]:checked{background:var(--purple);border-color:var(--purple);}
+.form__privacy input[type="checkbox"]:checked::after{content:'';position:absolute;left:4px;top:1px;width:6px;height:10px;border:2px solid #fff;border-top:none;border-left:none;transform:rotate(45deg);}
+.form__privacy-text{font-size:13px;color:var(--purple);opacity:0.75;line-height:1.5;}
+.form__privacy-text a{text-decoration:underline;color:inherit;}
+.form__submit {
+  width:100%;background:var(--purple);color:#fff;font-family:var(--sans);font-weight:500;font-size:15px;
+  padding:16px;border-radius:12px;border:none;cursor:pointer;letter-spacing:0.02em;
+  transition:opacity 0.2s,transform 0.15s;margin-top:4px;
+}
+.form__submit:hover{opacity:0.85;transform:translateY(-1px);}
+.form__submit:disabled{opacity:0.6;cursor:not-allowed;transform:none;}
+.form__message{font-size:13px;font-weight:500;min-height:20px;margin-top:8px;text-align:center;}
+ 
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav{padding:14px 24px;}
+  .problem-layout,.solution__grid,.risk-layout{grid-template-columns:1fr;gap:48px;}
+  .benefits-grid{grid-template-columns:1fr 1fr;}
+  .stats-inner{grid-template-columns:1fr;}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(92,50,119,0.08);padding:32px;}
+  .stat-item:last-child{border-bottom:none;}
+  .footer{padding:32px 24px;flex-direction:column;align-items:flex-start;}
+  .modal{padding:36px 28px 32px;}
+  .form__grid{grid-template-columns:1fr;}
+  .form__group--full{grid-column:1;}
+}
+@media(max-width:580px){
+  .benefits-grid{grid-template-columns:1fr;}
+  .hero__cta-group{flex-direction:column;width:100%;}
+  .btn-primary,.btn-secondary{width:100%;text-align:center;}
+  .cta__btns{flex-direction:column;align-items:center;}
+  .btn-white,.btn-ghost{width:100%;max-width:320px;text-align:center;}
+  .nav__logo img{height:32px;}
+}
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <a href="index.html" class="nav__logo">
+    <img src="IMAGES/LOGO_HORIZONTAL_PNG.png" alt="Woofing" />
+  </a>
+  <div class="nav__right">
+    <div class="lang-switch" aria-label="Selector de idioma">
+      <button class="lang-switch__btn active" id="langEs" type="button">ES</button>
+      <span class="lang-switch__divider">|</span>
+      <button class="lang-switch__btn" id="langEn" type="button">EN</button>
+    </div>
+    <button class="nav__pill" id="openContactModal" data-i18n="nav_contact">Colaborar</button>
+  </div>
+</nav>
+ 
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg-blob hero__bg-blob--1"></div>
+  <div class="hero__bg-blob hero__bg-blob--2"></div>
+  <div class="hero__bg-blob hero__bg-blob--3"></div>
+  <div class="hero__eyebrow"><span class="hero__eyebrow-dot"></span><span data-i18n="hero_eyebrow">Paseadores Pet · Dosier 2026</span></div>
+  <h1 class="hero__title" data-i18n="hero_title">Conoce a cada perro<br /><em>antes de salir a pasear</em></h1>
+  <p class="hero__subtitle" data-i18n="hero_subtitle">La app que te da todo el contexto que necesitas sobre cada mascota antes del primer paseo: carácter, energía, sociabilidad y mucho más.</p>
+  <div class="hero__cta-group">
+    <button class="btn-primary" id="heroOpenContact" data-i18n="hero_cta_primary">Empezar colaboración</button>
+    <a href="#beneficios" class="btn-secondary" data-i18n="hero_cta_secondary">Ver cómo funciona</a>
+  </div>
+  <div class="hero__scroll-hint"><div class="hero__scroll-line"></div><span>scroll</span></div>
+</section>
+ 
+<!-- STATS -->
+<div class="stats-strip">
+  <div class="stats-inner">
+    <div class="stat-item reveal"><span class="stat-item__num">0€</span><span class="stat-item__label" data-i18n="stat1">Pago inicial</span></div>
+    <div class="stat-item reveal" style="transition-delay:0.1s"><span class="stat-item__num">100%</span><span class="stat-item__label" data-i18n="stat2">Basado en servicios reales</span></div>
+    <div class="stat-item reveal" style="transition-delay:0.2s"><span class="stat-item__num" data-i18n="stat3_num">Sin riesgo</span><span class="stat-item__label" data-i18n="stat3">Solo activo cuando hay servicios</span></div>
+  </div>
+</div>
+ 
+<!-- PROBLEMA -->
+<section class="section" id="problema">
+  <div class="section-inner">
+    <div class="problem-layout">
+      <div>
+        <div class="section__label reveal" data-i18n="problem_label">El problema</div>
+        <h2 class="problem__heading reveal" style="transition-delay:0.1s" data-i18n="problem_heading">El paseo empieza<br /><em>antes de salir.</em></h2>
+        <p class="problem__body reveal" style="transition-delay:0.2s" data-i18n="problem_body">Gran parte de la dificultad del servicio de paseo no está en el paseo en sí, sino en toda la información previa necesaria para hacerlo bien. Muchas veces no sabes qué tipo de perro vas a recoger, cómo se comporta en la calle, si tira, si tiene miedos o si necesita paseo individual. Esa información depende de mensajes y llamadas que pueden llegar incompletos o tarde.</p>
+      </div>
+      <div class="problem__visual">
+        <div class="problem-card">
+          <div class="problem-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <div class="problem-card__text">
+            <strong data-i18n="prob1_title">Preguntas repetidas antes de cada servicio</strong>
+            <span data-i18n="prob1_body">Mensajes, audios y llamadas al propietario para recopilar información básica que debería estar disponible desde el inicio.</span>
+          </div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <div class="problem-card__text">
+            <strong data-i18n="prob2_title">Contexto insuficiente sobre el perro</strong>
+            <span data-i18n="prob2_body">No sabes si tira, si es reactivo, si tiene miedos, si se lleva bien con otros perros o qué necesidades especiales tiene.</span>
+          </div>
+        </div>
+        <div class="problem-card">
+          <div class="problem-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="problem-card__text">
+            <strong data-i18n="prob3_title">Riesgos por falta de información</strong>
+            <span data-i18n="prob3_body">Desconocer la sociabilidad, reactividad o necesidades especiales puede generar situaciones difíciles durante el servicio.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- QUÉ ES WOOFING -->
+<section class="section solution-section">
+  <div class="section-inner">
+    <div class="section__label reveal" data-i18n="solution_label">Qué es Woofing</div>
+    <div class="solution__grid">
+      <div>
+        <h2 class="solution__col-title reveal" data-i18n="solution_title">El perfil del perro,<br /><em>disponible antes</em><br />del primer paseo.</h2>
+      </div>
+      <div>
+        <div class="solution-block reveal">
+          <div class="solution-block__eyebrow" data-i18n="sol_block1_eyebrow">Para el dueño</div>
+          <div class="solution-block__title" data-i18n="sol_block1_title">Perfil real de su mascota</div>
+          <p class="solution-block__body" data-i18n="sol_block1_body">El propietario registra en la app tamaño, edad, carácter, nivel de energía, sociabilidad, alergias, necesidades y otra información relevante para el cuidado diario. Una vez en la app, ese perfil acompaña al perro en cada servicio.</p>
+        </div>
+        <div class="solution-block reveal" style="transition-delay:0.15s">
+          <div class="solution-block__eyebrow" data-i18n="sol_block2_eyebrow">Para el paseador</div>
+          <div class="solution-block__title" data-i18n="sol_block2_title">Conoce al perro antes de recogerlo</div>
+          <p class="solution-block__body" data-i18n="sol_block2_body">Sabes qué perro vas a pasear antes del primer encuentro: cómo se comporta, si encaja en paseo grupal o individual, y qué aspectos debes tener en cuenta. Menos preguntas, más seguridad y mejor servicio desde el primer día.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- BENEFICIOS -->
+<section class="section benefits-section" id="beneficios">
+  <div class="section-inner">
+    <div class="section__label reveal" style="justify-content:center;display:flex;" data-i18n="benefits_label">Qué ganas</div>
+    <h2 class="benefits__title reveal" data-i18n="benefits_title">Seis razones para<br /><em>colaborar con Woofing</em></h2>
+    <div class="benefits-grid">
+ 
+      <div class="benefit-card">
+        <div class="benefit-card__bg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <span class="benefit-card__num">01</span>
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="benefit-card__title" data-i18n="ben1_title">Más información antes del primer paseo</div>
+        <p class="benefit-card__body" data-i18n="ben1_body">Sabes qué perro vas a pasear, cómo se comporta y qué aspectos debes tener en cuenta desde el inicio.</p>
+      </div>
+ 
+      <div class="benefit-card">
+        <div class="benefit-card__bg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+        <span class="benefit-card__num">02</span>
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <div class="benefit-card__title" data-i18n="ben2_title">Más compatibilidad, menos incertidumbre</div>
+        <p class="benefit-card__body" data-i18n="ben2_body">Puedes valorar mejor si el perro encaja en paseo individual, paseo en grupo o en una dinámica concreta de trabajo.</p>
+      </div>
+ 
+      <div class="benefit-card">
+        <div class="benefit-card__bg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <span class="benefit-card__num">03</span>
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div class="benefit-card__title" data-i18n="ben3_title">Más seguridad en el servicio</div>
+        <p class="benefit-card__body" data-i18n="ben3_body">Conocer sociabilidad, reactividad, miedos o necesidades especiales ayuda a anticiparte y reducir riesgos durante el paseo.</p>
+      </div>
+ 
+      <div class="benefit-card">
+        <div class="benefit-card__bg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <span class="benefit-card__num">04</span>
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="9" y1="10" x2="15" y2="10"/><line x1="9" y1="13" x2="13" y2="13"/></svg>
+        </div>
+        <div class="benefit-card__title" data-i18n="ben4_title">Menos preguntas repetidas al cliente</div>
+        <p class="benefit-card__body" data-i18n="ben4_body">Se reduce el intercambio constante de mensajes, audios y aclaraciones previas antes de cada nuevo servicio.</p>
+      </div>
+ 
+      <div class="benefit-card">
+        <div class="benefit-card__bg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <span class="benefit-card__num">05</span>
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="benefit-card__title" data-i18n="ben5_title">Mejor atención para cada mascota</div>
+        <p class="benefit-card__body" data-i18n="ben5_body">Con más contexto, el servicio se adapta mejor a las rutinas, energía y necesidades reales de cada perro.</p>
+      </div>
+ 
+      <div class="benefit-card">
+        <div class="benefit-card__bg-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <span class="benefit-card__num">06</span>
+        <div class="benefit-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <div class="benefit-card__title" data-i18n="ben6_title">Operativa más ágil</div>
+        <p class="benefit-card__body" data-i18n="ben6_body">Menos tiempo recopilando información y más facilidad para organizar los servicios y rutas desde el principio.</p>
+      </div>
+ 
+    </div>
+  </div>
+</section>
+ 
+<!-- MODELO SIN RIESGO -->
+<section class="section risk-section" id="modelo">
+  <div class="section-inner">
+    <div class="risk-layout">
+      <div>
+        <div class="section__label reveal" data-i18n="risk_label">Propuesta de colaboración</div>
+        <h2 class="risk__heading reveal" style="transition-delay:0.1s" data-i18n="risk_heading">Flexible y<br />sin riesgo</h2>
+        <p class="risk__body reveal" style="transition-delay:0.2s" data-i18n="risk_body">Trabajamos con un modelo de colaboración flexible, sin pago inicial y sin riesgo para el paseador. Nos basamos en demanda real: solo se genera colaboración económica cuando Woofing aporta servicios reales a través de la plataforma.</p>
+        <ul class="risk__checklist reveal" style="transition-delay:0.3s">
+          <li><span class="risk__check">✓</span><span data-i18n="risk_check1">Sin pago inicial</span></li>
+          <li><span class="risk__check">✓</span><span data-i18n="risk_check2">Sin cuotas fijas</span></li>
+          <li><span class="risk__check">✓</span><span data-i18n="risk_check3">Colaboración flexible</span></li>
+          <li><span class="risk__check">✓</span><span data-i18n="risk_check4">Solo activo cuando Woofing aporta servicios reales</span></li>
+        </ul>
+      </div>
+      <div class="risk-visual reveal" style="transition-delay:0.2s">
+        <div class="risk-visual__title" data-i18n="risk_visual_title">Así funciona el modelo</div>
+        <div class="commission-visual">
+          <div class="commission-row"><span class="commission-row__label" data-i18n="comm1">Pago inicial</span><span class="commission-row__value">0€</span></div>
+          <div class="commission-divider" data-i18n="comm_plus">más</div>
+          <div class="commission-row"><span class="commission-row__label" data-i18n="comm2">Cuota fija mensual</span><span class="commission-row__value">0€</span></div>
+          <div class="commission-divider" data-i18n="comm_only">solo</div>
+          <div class="commission-row commission-row--highlighted"><span class="commission-row__label" data-i18n="comm3">Por servicios reales aportados</span><span class="commission-row__badge" data-i18n="comm3_badge">Flexible</span></div>
+          <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px;font-weight:300;" data-i18n="comm_note">Los términos exactos se acuerdan según el perfil y zona de trabajo del paseador.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CTA FINAL -->
+<section class="section cta-section" id="contactar">
+  <div class="cta-section__logo-bg"><img src="IMAGES/LOGO_.png" alt="" aria-hidden="true" /></div>
+  <div class="section-inner">
+    <div class="section__label cta__label reveal" style="justify-content:center;display:flex;" data-i18n="cta_label">¿Hablamos?</div>
+    <h2 class="cta__title reveal" style="transition-delay:0.1s" data-i18n="cta_title">Únete a Woofing<br /><em>antes del lanzamiento</em></h2>
+    <p class="cta__subtitle reveal" style="transition-delay:0.2s" data-i18n="cta_subtitle">Estamos seleccionando los primeros paseadores colaboradores. Condiciones especiales para quienes se suman ahora.</p>
+    <div class="cta__btns reveal" style="transition-delay:0.3s">
+      <button class="btn-white" id="ctaOpenContact" data-i18n="cta_btn_primary">Contactar ahora</button>
+      <a href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener" class="btn-ghost">@woofingapp</a>
+    </div>
+  </div>
+</section>
+ 
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer__brand">Woofing</div>
+  <p class="footer__copy" data-i18n="footer_copy">© 2026 Woofing App. Todos los derechos reservados.</p>
+  <a href="politica-privacidad.html" class="footer__link" data-i18n="footer_privacy">Política de privacidad</a>
+</footer>
+ 
+<!-- MODAL CONTACTO -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal">
+    <button class="modal__close" id="closeModal" type="button">&times;</button>
+    <h2 class="modal__title" data-i18n="modal_title">Hablemos</h2>
+    <p class="modal__subtitle" data-i18n="modal_subtitle">Cuéntanos sobre tu actividad como paseador y nos ponemos en contacto contigo pronto.</p>
+    <form id="contactForm">
+      <div class="form__grid">
+        <div class="form__group">
+          <label class="form__label" for="nombre" data-i18n="form_name">Nombre</label>
+          <input class="form__input" type="text" id="nombre" name="nombre" />
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="apellido" data-i18n="form_surname">Apellido</label>
+          <input class="form__input" type="text" id="apellido" name="apellido" />
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="email" data-i18n="form_email">Email</label>
+          <input class="form__input" type="email" id="email" name="email" />
+        </div>
+        <div class="form__group">
+          <label class="form__label" for="telefono" data-i18n="form_phone">Teléfono</label>
+          <input class="form__input" type="tel" id="telefono" name="telefono" />
+        </div>
+        <div class="form__group form__group--full">
+          <label class="form__label" for="asunto" data-i18n="form_subject">Asunto</label>
+          <select class="form__select" id="asunto" name="asunto">
+            <option value="" disabled selected data-i18n="subject_placeholder">Selecciona un asunto</option>
+            <option value="Colaboración paseador" data-i18n="subject_collabs">Colaboración paseador</option>
+            <option value="Información general" data-i18n="subject_general">Información general</option>
+            <option value="Prensa y medios" data-i18n="subject_press">Prensa y medios</option>
+            <option value="Otro" data-i18n="subject_other">Otro</option>
+          </select>
+        </div>
+        <div class="form__group form__group--full">
+          <label class="form__label" for="mensaje" data-i18n="form_message">Mensaje</label>
+          <textarea class="form__textarea" id="mensaje" name="mensaje"></textarea>
+        </div>
+      </div>
+      <label class="form__privacy">
+        <input type="checkbox" id="privacyCheck" name="privacy" />
+        <span class="form__privacy-text" data-i18n="form_privacy">Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.</span>
+      </label>
+      <button class="form__submit" id="formSubmit" type="submit" data-i18n="form_submit">Enviar mensaje</button>
+      <p class="form__message" id="formMessage"></p>
+    </form>
+  </div>
+</div>
+ 
+<script>
+const FORMSPREE = "https://formspree.io/f/xojkooan";
+const LANG_KEY = "woofing_language";
+ 
+const tr = {
+  es: {
+    nav_contact:"Colaborar",
+    hero_eyebrow:"Paseadores Pet · Dosier 2026",
+    hero_title:"Conoce a cada perro<br /><em>antes de salir a pasear</em>",
+    hero_subtitle:"La app que te da todo el contexto que necesitas sobre cada mascota antes del primer paseo: carácter, energía, sociabilidad y mucho más.",
+    hero_cta_primary:"Empezar colaboración",hero_cta_secondary:"Ver cómo funciona",
+    stat1:"Pago inicial",stat2:"Basado en servicios reales",stat3_num:"Sin riesgo",stat3:"Solo activo cuando hay servicios",
+    problem_label:"El problema",
+    problem_heading:"El paseo empieza<br /><em>antes de salir.</em>",
+    problem_body:"Gran parte de la dificultad del servicio de paseo no está en el paseo en sí, sino en toda la información previa necesaria para hacerlo bien. Muchas veces no sabes qué tipo de perro vas a recoger, cómo se comporta en la calle, si tira, si tiene miedos o si necesita paseo individual. Esa información depende de mensajes y llamadas que pueden llegar incompletos o tarde.",
+    prob1_title:"Preguntas repetidas antes de cada servicio",prob1_body:"Mensajes, audios y llamadas al propietario para recopilar información básica que debería estar disponible desde el inicio.",
+    prob2_title:"Contexto insuficiente sobre el perro",prob2_body:"No sabes si tira, si es reactivo, si tiene miedos, si se lleva bien con otros perros o qué necesidades especiales tiene.",
+    prob3_title:"Riesgos por falta de información",prob3_body:"Desconocer la sociabilidad, reactividad o necesidades especiales puede generar situaciones difíciles durante el servicio.",
+    solution_label:"Qué es Woofing",
+    solution_title:"El perfil del perro,<br /><em>disponible antes</em><br />del primer paseo.",
+    sol_block1_eyebrow:"Para el dueño",sol_block1_title:"Perfil real de su mascota",
+    sol_block1_body:"El propietario registra en la app tamaño, edad, carácter, nivel de energía, sociabilidad, alergias, necesidades y otra información relevante para el cuidado diario. Una vez en la app, ese perfil acompaña al perro en cada servicio.",
+    sol_block2_eyebrow:"Para el paseador",sol_block2_title:"Conoce al perro antes de recogerlo",
+    sol_block2_body:"Sabes qué perro vas a pasear antes del primer encuentro: cómo se comporta, si encaja en paseo grupal o individual, y qué aspectos debes tener en cuenta. Menos preguntas, más seguridad y mejor servicio desde el primer día.",
+    benefits_label:"Qué ganas",benefits_title:"Seis razones para<br /><em>colaborar con Woofing</em>",
+    ben1_title:"Más información antes del primer paseo",ben1_body:"Sabes qué perro vas a pasear, cómo se comporta y qué aspectos debes tener en cuenta desde el inicio.",
+    ben2_title:"Más compatibilidad, menos incertidumbre",ben2_body:"Puedes valorar mejor si el perro encaja en paseo individual, paseo en grupo o en una dinámica concreta de trabajo.",
+    ben3_title:"Más seguridad en el servicio",ben3_body:"Conocer sociabilidad, reactividad, miedos o necesidades especiales ayuda a anticiparte y reducir riesgos durante el paseo.",
+    ben4_title:"Menos preguntas repetidas al cliente",ben4_body:"Se reduce el intercambio constante de mensajes, audios y aclaraciones previas antes de cada nuevo servicio.",
+    ben5_title:"Mejor atención para cada mascota",ben5_body:"Con más contexto, el servicio se adapta mejor a las rutinas, energía y necesidades reales de cada perro.",
+    ben6_title:"Operativa más ágil",ben6_body:"Menos tiempo recopilando información y más facilidad para organizar los servicios y rutas desde el principio.",
+    risk_label:"Propuesta de colaboración",risk_heading:"Flexible y<br />sin riesgo",
+    risk_body:"Trabajamos con un modelo de colaboración flexible, sin pago inicial y sin riesgo para el paseador. Nos basamos en demanda real: solo se genera colaboración económica cuando Woofing aporta servicios reales a través de la plataforma.",
+    risk_check1:"Sin pago inicial",risk_check2:"Sin cuotas fijas",risk_check3:"Colaboración flexible",risk_check4:"Solo activo cuando Woofing aporta servicios reales",
+    risk_visual_title:"Así funciona el modelo",
+    comm1:"Pago inicial",comm_plus:"más",comm2:"Cuota fija mensual",comm_only:"solo",
+    comm3:"Por servicios reales aportados",comm3_badge:"Flexible",
+    comm_note:"Los términos exactos se acuerdan según el perfil y zona de trabajo del paseador.",
+    cta_label:"¿Hablamos?",cta_title:"Únete a Woofing<br /><em>antes del lanzamiento</em>",
+    cta_subtitle:"Estamos seleccionando los primeros paseadores colaboradores. Condiciones especiales para quienes se suman ahora.",
+    cta_btn_primary:"Contactar ahora",
+    footer_copy:"© 2026 Woofing App. Todos los derechos reservados.",footer_privacy:"Política de privacidad",
+    modal_title:"Hablemos",modal_subtitle:"Cuéntanos sobre tu actividad como paseador y nos ponemos en contacto contigo pronto.",
+    form_name:"Nombre",form_surname:"Apellido",form_email:"Email",form_phone:"Teléfono",form_subject:"Asunto",
+    subject_placeholder:"Selecciona un asunto",subject_collabs:"Colaboración paseador",subject_general:"Información general",subject_press:"Prensa y medios",subject_other:"Otro",
+    form_message:"Mensaje",
+    form_privacy:'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
+    form_submit:"Enviar mensaje",
+    ph_name:"Tu nombre",ph_surname:"Tu apellido",ph_email:"hola@tuperfil.com",ph_phone:"+34 600 000 000",ph_message:"Cuéntanos sobre tu actividad como paseador y cómo podemos colaborar...",
+    err_required:"Por favor, rellena todos los campos obligatorios.",err_email:"Por favor, introduce un email válido.",err_privacy:"Debes aceptar la Política de privacidad.",
+    sending:"Enviando...",success:"¡Mensaje enviado! Te respondemos pronto.",error:"No se pudo enviar. Inténtalo de nuevo."
+  },
+  en: {
+    nav_contact:"Collaborate",
+    hero_eyebrow:"Dog Walkers · Pitch 2026",
+    hero_title:"Know every dog<br /><em>before you head out</em>",
+    hero_subtitle:"The app that gives you all the context you need about each pet before the first walk: temperament, energy, sociability and much more.",
+    hero_cta_primary:"Start collaboration",hero_cta_secondary:"See how it works",
+    stat1:"Upfront payment",stat2:"Based on real services",stat3_num:"No risk",stat3:"Only active when there are services",
+    problem_label:"The problem",
+    problem_heading:"The walk starts<br /><em>before you leave.</em>",
+    problem_body:"Much of the difficulty in dog walking isn't the walk itself, but all the prior information needed to do it well. You often don't know what kind of dog you're picking up, how it behaves on the street, whether it pulls, has fears or needs a solo walk. That information depends on messages and calls that can arrive incomplete or too late.",
+    prob1_title:"Repeated questions before every service",prob1_body:"Messages, voice notes and calls to the owner to gather basic information that should be available from the start.",
+    prob2_title:"Insufficient context about the dog",prob2_body:"You don't know if it pulls, is reactive, has fears, gets along with other dogs or has any special needs.",
+    prob3_title:"Risks from lack of information",prob3_body:"Not knowing about sociability, reactivity or special needs can lead to difficult situations during the service.",
+    solution_label:"What is Woofing",
+    solution_title:"The dog's profile,<br /><em>available before</em><br />the first walk.",
+    sol_block1_eyebrow:"For the owner",sol_block1_title:"Real pet profile",
+    sol_block1_body:"The owner registers in the app their dog's size, age, temperament, energy level, sociability, allergies, needs and other relevant information for daily care. Once in the app, that profile accompanies the dog for every service.",
+    sol_block2_eyebrow:"For the walker",sol_block2_title:"Know the dog before you pick it up",
+    sol_block2_body:"You know what dog you'll be walking before the first meeting: how it behaves, whether it fits a group or solo walk, and what to bear in mind. Fewer questions, more safety and a better service from day one.",
+    benefits_label:"What you gain",benefits_title:"Six reasons to<br /><em>collaborate with Woofing</em>",
+    ben1_title:"More information before the first walk",ben1_body:"You know what dog you'll be walking, how it behaves and what to keep in mind from the very start.",
+    ben2_title:"More compatibility, less uncertainty",ben2_body:"You can better assess whether the dog fits a solo walk, group walk or a specific working dynamic.",
+    ben3_title:"More safety in the service",ben3_body:"Knowing sociability, reactivity, fears or special needs helps you anticipate and reduce risks during the walk.",
+    ben4_title:"Fewer repeated questions to the client",ben4_body:"The constant back-and-forth of messages, voice notes and prior clarifications before each new service is reduced.",
+    ben5_title:"Better care for every pet",ben5_body:"With more context, the service adapts better to each dog's routines, energy and real needs.",
+    ben6_title:"More agile operations",ben6_body:"Less time gathering information and more ease in organizing services and routes from the beginning.",
+    risk_label:"Collaboration proposal",risk_heading:"Flexible and<br />risk-free",
+    risk_body:"We work with a flexible collaboration model, with no upfront payment and no risk for the walker. We're based on real demand: an economic collaboration only arises when Woofing provides real services through the platform.",
+    risk_check1:"No upfront payment",risk_check2:"No fixed fees",risk_check3:"Flexible collaboration",risk_check4:"Only active when Woofing provides real services",
+    risk_visual_title:"How the model works",
+    comm1:"Upfront payment",comm_plus:"plus",comm2:"Monthly fixed fee",comm_only:"only",
+    comm3:"Per real services provided",comm3_badge:"Flexible",
+    comm_note:"Exact terms are agreed based on the walker's profile and working area.",
+    cta_label:"Let's talk?",cta_title:"Join Woofing<br /><em>before launch</em>",
+    cta_subtitle:"We are selecting the first partner walkers. Special conditions for those who join now.",
+    cta_btn_primary:"Contact us now",
+    footer_copy:"© 2026 Woofing App. All rights reserved.",footer_privacy:"Privacy Policy",
+    modal_title:"Let's talk",modal_subtitle:"Tell us about your dog walking activity and we'll get in touch with you soon.",
+    form_name:"First Name",form_surname:"Last Name",form_email:"Email",form_phone:"Phone",form_subject:"Subject",
+    subject_placeholder:"Select a subject",subject_collabs:"Dog walker collaboration",subject_general:"General information",subject_press:"Press & media",subject_other:"Other",
+    form_message:"Message",
+    form_privacy:'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
+    form_submit:"Send message",
+    ph_name:"Your first name",ph_surname:"Your last name",ph_email:"hello@yourprofile.com",ph_phone:"+34 600 000 000",ph_message:"Tell us about your dog walking activity and how we can collaborate...",
+    err_required:"Please fill in all required fields.",err_email:"Please enter a valid email.",err_privacy:"You must accept the Privacy Policy.",
+    sending:"Sending...",success:"Message sent! We'll get back to you soon.",error:"Could not send. Please try again."
+  }
+};
+ 
+let lang = localStorage.getItem(LANG_KEY) || "es";
+ 
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem(LANG_KEY, l);
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const k = el.getAttribute("data-i18n");
+    if (tr[l][k] !== undefined) el.innerHTML = tr[l][k];
+  });
+  const nombre = document.getElementById("nombre");
+  if (nombre) {
+    nombre.placeholder = tr[l].ph_name;
+    document.getElementById("apellido").placeholder = tr[l].ph_surname;
+    document.getElementById("email").placeholder = tr[l].ph_email;
+    document.getElementById("telefono").placeholder = tr[l].ph_phone;
+    document.getElementById("mensaje").placeholder = tr[l].ph_message;
+  }
+  const sel = document.getElementById("asunto");
+  if (sel) {
+    sel.options[0].text = tr[l].subject_placeholder;
+    sel.options[1].text = tr[l].subject_collabs;
+    sel.options[2].text = tr[l].subject_general;
+    sel.options[3].text = tr[l].subject_press;
+    sel.options[4].text = tr[l].subject_other;
+  }
+  document.getElementById("langEs").classList.toggle("active", l === "es");
+  document.getElementById("langEn").classList.toggle("active", l === "en");
+}
+ 
+document.getElementById("langEs").addEventListener("click", () => applyLang("es"));
+document.getElementById("langEn").addEventListener("click", () => applyLang("en"));
+ 
+const modalEl = document.getElementById("contactModal");
+function openModal() { modalEl.classList.add("active"); document.body.style.overflow = "hidden"; }
+function closeModalFn() { modalEl.classList.remove("active"); document.body.style.overflow = ""; }
+document.getElementById("openContactModal").addEventListener("click", openModal);
+document.getElementById("heroOpenContact").addEventListener("click", openModal);
+document.getElementById("ctaOpenContact").addEventListener("click", openModal);
+document.getElementById("closeModal").addEventListener("click", closeModalFn);
+modalEl.addEventListener("click", e => { if (e.target === modalEl) closeModalFn(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModalFn(); });
+ 
+const form = document.getElementById("contactForm");
+const formMsg = document.getElementById("formMessage");
+const submitBtn = document.getElementById("formSubmit");
+function isValidEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
+ 
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const nombre = document.getElementById("nombre").value.trim();
+  const apellido = document.getElementById("apellido").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const telefono = document.getElementById("telefono").value.trim();
+  const asunto = document.getElementById("asunto").value;
+  const mensaje = document.getElementById("mensaje").value.trim();
+  const privacy = document.getElementById("privacyCheck").checked;
+  if (!nombre || !apellido || !email || !asunto || !mensaje) { formMsg.textContent = tr[lang].err_required; formMsg.style.color = "#c00"; return; }
+  if (!isValidEmail(email)) { formMsg.textContent = tr[lang].err_email; formMsg.style.color = "#c00"; return; }
+  if (!privacy) { formMsg.textContent = tr[lang].err_privacy; formMsg.style.color = "#c00"; return; }
+  submitBtn.disabled = true; submitBtn.textContent = tr[lang].sending; formMsg.textContent = "";
+  try {
+    const res = await fetch(FORMSPREE, {
+      method:"POST", headers:{"Accept":"application/json","Content-Type":"application/json"},
+      body: JSON.stringify({ nombre, apellido, email, telefono, asunto, mensaje, language:lang, form_type:"pitch_paseadores", _subject:"Nuevo contacto paseador - Woofing Pitch" })
+    });
+    if (res.ok) { formMsg.textContent = tr[lang].success; formMsg.style.color = "#5c3277"; form.reset(); setTimeout(closeModalFn, 2200); }
+    else { formMsg.textContent = tr[lang].error; formMsg.style.color = "#c00"; }
+  } catch { formMsg.textContent = tr[lang].error; formMsg.style.color = "#c00"; }
+  finally { submitBtn.disabled = false; submitBtn.textContent = tr[lang].form_submit; }
+});
+ 
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add("visible"); });
+}, { threshold: 0.12 });
+document.querySelectorAll(".reveal, .benefit-card, .problem-card").forEach(el => observer.observe(el));
+ 
+const navEl = document.getElementById("mainNav");
+window.addEventListener("scroll", () => {
+  navEl.style.boxShadow = window.scrollY > 40 ? "0 4px 32px rgba(92,50,119,0.08)" : "none";
+}, { passive: true });
+ 
+applyLang(lang);
+</script>
+</body>
+</html>
+ 
