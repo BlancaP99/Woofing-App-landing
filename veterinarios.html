@@ -350,7 +350,7 @@ body::before {
   to { opacity: 1; }
 }
 
-/* ── GENERAL SECTIONS ── */
+/* ── GENERAL ── */
 .section {
   padding: 100px 24px;
   position: relative;
@@ -652,19 +652,6 @@ body::before {
   50% { transform: translateY(-12px); }
 }
 
-.vet-notification-card::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border-radius: 28px;
-  padding: 1px;
-  background: linear-gradient(135deg, rgba(92,50,119,0.25), rgba(255,255,255,0.15), rgba(179,136,212,0.22));
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-}
-
 .vet-notification-top {
   display: grid;
   grid-template-columns: auto 1fr auto;
@@ -829,29 +816,14 @@ body::before {
   line-height: 1.3;
 }
 
-.vet-alert--green {
-  background: #ecf8ed;
-}
+.vet-alert--green { background: #ecf8ed; }
+.vet-alert--green > span { background: #62a96a; }
 
-.vet-alert--green > span {
-  background: #62a96a;
-}
+.vet-alert--orange { background: #fff4e6; }
+.vet-alert--orange > span { background: #d99a30; }
 
-.vet-alert--orange {
-  background: #fff4e6;
-}
-
-.vet-alert--orange > span {
-  background: #d99a30;
-}
-
-.vet-alert--purple {
-  background: var(--purple-soft);
-}
-
-.vet-alert--purple > span {
-  background: var(--purple);
-}
+.vet-alert--purple { background: var(--purple-soft); }
+.vet-alert--purple > span { background: var(--purple); }
 
 .vet-history-mini {
   border: 1px solid rgba(92,50,119,0.1);
@@ -941,9 +913,7 @@ body::before {
 }
 
 /* ── BENEFITS ── */
-.benefits-section {
-  background: var(--bg);
-}
+.benefits-section { background: var(--bg); }
 
 .benefits__title {
   font-family: var(--serif);
@@ -984,29 +954,10 @@ body::before {
   transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.benefit-card:nth-child(2) { transition-delay: 0.1s !important; }
-.benefit-card:nth-child(3) { transition-delay: 0.2s !important; }
-.benefit-card:nth-child(4) { transition-delay: 0.1s !important; }
-.benefit-card:nth-child(5) { transition-delay: 0.2s !important; }
-.benefit-card:nth-child(6) { transition-delay: 0.3s !important; }
-
 .benefit-card:hover {
   transform: translateY(-4px) !important;
   box-shadow: 0 16px 48px rgba(92,50,119,0.12);
   border-color: rgba(92,50,119,0.2);
-}
-
-.benefit-card__bg-icon {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  opacity: 0.04;
-  pointer-events: none;
-}
-
-.benefit-card__bg-icon svg {
-  width: 90px;
-  height: 90px;
 }
 
 .benefit-card__num {
@@ -1049,7 +1000,7 @@ body::before {
   color: var(--muted);
 }
 
-/* ── RISK ── */
+/* ── RISK / COLABORACIÓN ── */
 .risk-section {
   background: linear-gradient(135deg,#f5eeff 0%,#ede4f8 50%,#f0e6fb 100%);
   position: relative;
@@ -1164,7 +1115,7 @@ body::before {
 }
 
 .commission-row--highlighted .commission-row__label {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255,255,255,0.88);
 }
 
 .commission-row__value {
@@ -1187,6 +1138,7 @@ body::before {
   padding: 4px 10px;
   border-radius: 100px;
   color: #fff;
+  white-space: nowrap;
 }
 
 .commission-divider {
@@ -1409,7 +1361,7 @@ body::before {
   transform: translateY(0);
 }
 
-/* ── MODAL CONTACTO ── */
+/* ── MODAL ── */
 .modal-overlay {
   position: fixed;
   inset: 0;
@@ -1546,10 +1498,6 @@ body::before {
   padding-right: 40px;
 }
 
-.form__select option {
-  color: #333;
-}
-
 .form__textarea {
   resize: vertical;
   min-height: 120px;
@@ -1645,9 +1593,7 @@ body::before {
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px) {
-  .nav {
-    padding: 14px 24px;
-  }
+  .nav { padding: 14px 24px; }
 
   .problem-layout,
   .solution__grid,
@@ -1657,17 +1603,11 @@ body::before {
     gap: 48px;
   }
 
-  .appointment-demo-visual {
-    min-height: auto;
-  }
+  .appointment-demo-visual { min-height: auto; }
 
-  .benefits-grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  .benefits-grid { grid-template-columns: 1fr 1fr; }
 
-  .stats-inner {
-    grid-template-columns: 1fr;
-  }
+  .stats-inner { grid-template-columns: 1fr; }
 
   .stat-item {
     border-right: none;
@@ -1675,9 +1615,7 @@ body::before {
     padding: 32px;
   }
 
-  .stat-item:last-child {
-    border-bottom: none;
-  }
+  .stat-item:last-child { border-bottom: none; }
 
   .footer {
     padding: 32px 24px;
@@ -1685,23 +1623,15 @@ body::before {
     align-items: flex-start;
   }
 
-  .modal {
-    padding: 36px 28px 32px;
-  }
+  .modal { padding: 36px 28px 32px; }
 
-  .form__grid {
-    grid-template-columns: 1fr;
-  }
+  .form__grid { grid-template-columns: 1fr; }
 
-  .form__group--full {
-    grid-column: 1;
-  }
+  .form__group--full { grid-column: 1; }
 }
 
 @media(max-width:580px) {
-  .benefits-grid {
-    grid-template-columns: 1fr;
-  }
+  .benefits-grid { grid-template-columns: 1fr; }
 
   .hero__cta-group {
     flex-direction: column;
@@ -1726,13 +1656,9 @@ body::before {
     text-align: center;
   }
 
-  .nav__logo img {
-    height: 32px;
-  }
+  .nav__logo img { height: 32px; }
 
-  .nav__right {
-    gap: 12px;
-  }
+  .nav__right { gap: 12px; }
 
   .nav__pill {
     padding: 8px 14px;
@@ -1775,6 +1701,12 @@ body::before {
   .vet-notification-actions button,
   .vet-notification-actions a {
     width: 100%;
+  }
+
+  .commission-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }
 </style>
@@ -1834,12 +1766,12 @@ body::before {
       <span class="stat-item__label" data-i18n="stat1">Pago inicial</span>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.1s">
-      <span class="stat-item__num">100%</span>
-      <span class="stat-item__label" data-i18n="stat2">Basado en citas reales</span>
+      <span class="stat-item__num">0€</span>
+      <span class="stat-item__label" data-i18n="stat2">Cuota fija mensual</span>
     </div>
     <div class="stat-item reveal" style="transition-delay:0.2s">
-      <span class="stat-item__num" data-i18n="stat3_num">Sin riesgo</span>
-      <span class="stat-item__label" data-i18n="stat3">Solo activo cuando hay citas</span>
+      <span class="stat-item__num" data-i18n="stat3_num">Solo %</span>
+      <span class="stat-item__label" data-i18n="stat3">Cuando hay resultados reales</span>
     </div>
   </div>
 </div>
@@ -1860,11 +1792,7 @@ body::before {
 
       <div class="problem__visual">
         <div class="problem-card">
-          <div class="problem-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            </svg>
-          </div>
+          <div class="problem-card__icon">📄</div>
           <div class="problem-card__text">
             <strong data-i18n="prob1_title">Documentación dispersa</strong>
             <span data-i18n="prob1_body">Archivos sueltos, papeles, PDFs, fotos y documentos que no siempre están organizados ni disponibles cuando hacen falta.</span>
@@ -1872,13 +1800,7 @@ body::before {
         </div>
 
         <div class="problem-card">
-          <div class="problem-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <line x1="12" y1="8" x2="12" y2="12"/>
-              <line x1="12" y1="16" x2="12.01" y2="16"/>
-            </svg>
-          </div>
+          <div class="problem-card__icon">⚠️</div>
           <div class="problem-card__text">
             <strong data-i18n="prob2_title">Historial incompleto del paciente</strong>
             <span data-i18n="prob2_body">La clínica depende muchas veces de lo que el propietario recuerda contar o de información parcial de visitas anteriores.</span>
@@ -1886,13 +1808,7 @@ body::before {
         </div>
 
         <div class="problem-card">
-          <div class="problem-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
-              <line x1="12" y1="9" x2="12" y2="13"/>
-              <line x1="12" y1="17" x2="12.01" y2="17"/>
-            </svg>
-          </div>
+          <div class="problem-card__icon">⏱️</div>
           <div class="problem-card__text">
             <strong data-i18n="prob3_title">Más carga administrativa</strong>
             <span data-i18n="prob3_body">Buscar información, repetir preguntas y reconstruir el historial resta agilidad y aumenta la carga operativa del equipo.</span>
@@ -1940,7 +1856,6 @@ body::before {
 <section class="section appointment-demo-section" id="demo-cita">
   <div class="section-inner">
     <div class="appointment-demo-layout">
-
       <div class="appointment-demo-copy reveal">
         <div class="section__label" data-i18n="demo_label">Cómo se vería</div>
         <h2 class="appointment-demo-title" data-i18n="demo_title">
@@ -1954,22 +1869,12 @@ body::before {
 
       <div class="appointment-demo-visual reveal" style="transition-delay:0.15s">
         <div class="vet-notification-card">
-
           <div class="vet-notification-top">
-            <div class="vet-notification-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="3"></rect>
-                <line x1="16" y1="2" x2="16" y2="6"></line>
-                <line x1="8" y1="2" x2="8" y2="6"></line>
-                <line x1="3" y1="10" x2="21" y2="10"></line>
-              </svg>
-            </div>
-
+            <div class="vet-notification-icon">📅</div>
             <div>
               <p class="vet-notification-kicker" data-i18n="demo_popup_kicker">Nueva cita solicitada</p>
               <h3 class="vet-notification-title" data-i18n="demo_popup_title">Luna · Revisión anual</h3>
             </div>
-
             <span class="vet-notification-status" data-i18n="demo_popup_status">Pendiente</span>
           </div>
 
@@ -2028,12 +1933,10 @@ body::before {
 
           <div class="vet-history-mini">
             <p data-i18n="demo_history_recent">Historial reciente</p>
-
             <div>
               <span>14 feb 2025</span>
               <strong data-i18n="demo_history_item1">Revisión anual sin hallazgos relevantes.</strong>
             </div>
-
             <div>
               <span>3 ago 2023</span>
               <strong data-i18n="demo_history_item2">Reacción alérgica tratada sin secuelas.</strong>
@@ -2044,10 +1947,8 @@ body::before {
             <button type="button" data-i18n="demo_confirm">Confirmar cita</button>
             <a href="#contactar" data-i18n="demo_more">Ver perfil completo</a>
           </div>
-
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -2062,101 +1963,43 @@ body::before {
 
     <div class="benefits-grid">
       <div class="benefit-card">
-        <div class="benefit-card__bg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
-        </div>
         <span class="benefit-card__num">01</span>
-        <div class="benefit-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <path d="M12 6v6l4 2"/>
-          </svg>
-        </div>
+        <div class="benefit-card__icon">⏱️</div>
         <div class="benefit-card__title" data-i18n="ben1_title">Menos papeleo</div>
         <p class="benefit-card__body" data-i18n="ben1_body">Menos tiempo gestionando documentos, buscando información o repitiendo preguntas que ya deberían estar registradas.</p>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-card__bg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6-7 7H7v-2.3l7-7-1.7-1.6a1 1 0 0 0-1.4 0L4 12.3V20h7.7l6.9-6.9a1 1 0 0 0 0-1.4z"/>
-          </svg>
-        </div>
         <span class="benefit-card__num">02</span>
-        <div class="benefit-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6-7 7H7v-2.3l7-7-1.7-1.6a1 1 0 0 0-1.4 0L4 12.3V20h7.7l6.9-6.9a1 1 0 0 0 0-1.4z"/>
-          </svg>
-        </div>
+        <div class="benefit-card__icon">📁</div>
         <div class="benefit-card__title" data-i18n="ben2_title">Información más accesible</div>
         <p class="benefit-card__body" data-i18n="ben2_body">Los datos relevantes del paciente están mejor organizados y disponibles cuando hacen falta, agilizando consultas, seguimientos y revisiones.</p>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-card__bg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-          </svg>
-        </div>
         <span class="benefit-card__num">03</span>
-        <div class="benefit-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-            <line x1="9" y1="10" x2="15" y2="10"/>
-            <line x1="9" y1="13" x2="13" y2="13"/>
-          </svg>
-        </div>
+        <div class="benefit-card__icon">🐾</div>
         <div class="benefit-card__title" data-i18n="ben3_title">Visión más completa del animal</div>
         <p class="benefit-card__body" data-i18n="ben3_body">No solo ves lo que ha pasado dentro de tu clínica, sino una trazabilidad más amplia de la mascota a lo largo del tiempo.</p>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-card__bg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </div>
         <span class="benefit-card__num">04</span>
-        <div class="benefit-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
-          </svg>
-        </div>
+        <div class="benefit-card__icon">❤️</div>
         <div class="benefit-card__title" data-i18n="ben4_title">Mejor seguimiento clínico</div>
         <p class="benefit-card__body" data-i18n="ben4_body">Permite detectar patrones, recurrencias y evolución con más contexto, facilitando decisiones más informadas.</p>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-card__bg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
         <span class="benefit-card__num">05</span>
-        <div class="benefit-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
-        </div>
+        <div class="benefit-card__icon">💬</div>
         <div class="benefit-card__title" data-i18n="ben5_title">Menos fricción con el cliente</div>
         <p class="benefit-card__body" data-i18n="ben5_body">Se reduce la pérdida de información, los malentendidos y la dependencia de que el propietario recuerde todo.</p>
       </div>
 
       <div class="benefit-card">
-        <div class="benefit-card__bg-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="1">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
-        </div>
         <span class="benefit-card__num">06</span>
-        <div class="benefit-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="#5c3277" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
-        </div>
+        <div class="benefit-card__icon">⚡</div>
         <div class="benefit-card__title" data-i18n="ben6_title">Sin complicar tu operativa</div>
         <p class="benefit-card__body" data-i18n="ben6_body">Woofing está pensado para integrarse en el flujo de trabajo del profesional, no para añadir una herramienta más.</p>
       </div>
@@ -2171,14 +2014,14 @@ body::before {
         <div class="section__label reveal" data-i18n="risk_label">Propuesta de colaboración</div>
         <h2 class="risk__heading reveal" style="transition-delay:0.1s" data-i18n="risk_heading">Flexible y<br />sin riesgo</h2>
         <p class="risk__body reveal" style="transition-delay:0.2s" data-i18n="risk_body">
-          Nuestra propuesta se basa en una colaboración flexible, sin complejidad innecesaria para la clínica. Woofing actúa como una capa de conexión y organización de la información, ayudando a optimizar procesos, mejorar la experiencia del profesional y aportar una visión más completa del paciente a lo largo del tiempo.
+          Nuestra propuesta es sencilla: Woofing no cobra ningún pago inicial ni ninguna cuota fija mensual. La clínica solo paga un porcentaje cuando hay resultados reales: un lead consolidado, una cita confirmada o una venta generada a través de la plataforma.
         </p>
 
         <ul class="risk__checklist reveal" style="transition-delay:0.3s">
           <li><span class="risk__check">✓</span><span data-i18n="risk_check1">Sin pago inicial</span></li>
-          <li><span class="risk__check">✓</span><span data-i18n="risk_check2">Sin cuotas fijas</span></li>
-          <li><span class="risk__check">✓</span><span data-i18n="risk_check3">Colaboración flexible</span></li>
-          <li><span class="risk__check">✓</span><span data-i18n="risk_check4">Pensado para integrarse en el flujo de trabajo</span></li>
+          <li><span class="risk__check">✓</span><span data-i18n="risk_check2">Sin cuota fija mensual</span></li>
+          <li><span class="risk__check">✓</span><span data-i18n="risk_check3">Solo cobramos si hay resultados</span></li>
+          <li><span class="risk__check">✓</span><span data-i18n="risk_check4">Nos integramos en tu operativa: nada cambia, todo mejora</span></li>
         </ul>
       </div>
 
@@ -2201,12 +2044,12 @@ body::before {
           <div class="commission-divider" data-i18n="comm_only">solo</div>
 
           <div class="commission-row commission-row--highlighted">
-            <span class="commission-row__label" data-i18n="comm3">Por colaboración acordada con la clínica</span>
-            <span class="commission-row__badge" data-i18n="comm3_badge">Flexible</span>
+            <span class="commission-row__label" data-i18n="comm3">Porcentaje solo cuando hay resultado</span>
+            <span class="commission-row__badge" data-i18n="comm3_badge">% por lead / venta</span>
           </div>
 
-          <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:8px;font-weight:300;" data-i18n="comm_note">
-            Los términos exactos se acuerdan según el perfil, tamaño y flujo de trabajo de cada clínica.
+          <p style="font-size:13px;color:var(--muted);text-align:center;margin-top:8px;font-weight:400;line-height:1.5;" data-i18n="comm_note">
+            A la clínica le cuesta 0€ hasta que Woofing genera una oportunidad real: lead consolidado, cita confirmada o venta.
           </p>
         </div>
       </div>
@@ -2313,9 +2156,9 @@ const tr = {
     hero_cta_secondary:"Ver cómo funciona",
 
     stat1:"Pago inicial",
-    stat2:"Basado en citas reales",
-    stat3_num:"Sin riesgo",
-    stat3:"Solo activo cuando hay citas",
+    stat2:"Cuota fija mensual",
+    stat3_num:"Solo %",
+    stat3:"Cuando hay resultados reales",
 
     problem_label:"El problema",
     problem_heading:"La consulta empieza<br /><em>antes de entrar en consulta.</em>",
@@ -2377,19 +2220,19 @@ const tr = {
 
     risk_label:"Propuesta de colaboración",
     risk_heading:"Flexible y<br />sin riesgo",
-    risk_body:"Nuestra propuesta se basa en una colaboración flexible, sin complejidad innecesaria para la clínica. Woofing actúa como una capa de conexión y organización de la información, ayudando a optimizar procesos, mejorar la experiencia del profesional y aportar una visión más completa del paciente a lo largo del tiempo.",
+    risk_body:"Nuestra propuesta es sencilla: Woofing no cobra ningún pago inicial ni ninguna cuota fija mensual. La clínica solo paga un porcentaje cuando hay resultados reales: un lead consolidado, una cita confirmada o una venta generada a través de la plataforma.",
     risk_check1:"Sin pago inicial",
-    risk_check2:"Sin cuotas fijas",
-    risk_check3:"Colaboración flexible",
-    risk_check4:"Pensado para integrarse en el flujo de trabajo",
+    risk_check2:"Sin cuota fija mensual",
+    risk_check3:"Solo cobramos si hay resultados",
+    risk_check4:"Nos integramos en tu operativa: nada cambia, todo mejora",
     risk_visual_title:"Así funciona el modelo",
     comm1:"Pago inicial",
     comm_plus:"más",
     comm2:"Cuota fija mensual",
     comm_only:"solo",
-    comm3:"Por colaboración acordada con la clínica",
-    comm3_badge:"Flexible",
-    comm_note:"Los términos exactos se acuerdan según el perfil, tamaño y flujo de trabajo de cada clínica.",
+    comm3:"Porcentaje solo cuando hay resultado",
+    comm3_badge:"% por lead / venta",
+    comm_note:"A la clínica le cuesta 0€ hasta que Woofing genera una oportunidad real: lead consolidado, cita confirmada o venta.",
 
     cta_label:"¿Hablamos?",
     cta_title:"Únete a Woofing<br /><em>antes del lanzamiento</em>",
@@ -2435,9 +2278,9 @@ const tr = {
     hero_cta_secondary:"See how it works",
 
     stat1:"Upfront payment",
-    stat2:"Based on real appointments",
-    stat3_num:"No risk",
-    stat3:"Only active when there are appointments",
+    stat2:"Fixed monthly fee",
+    stat3_num:"Only %",
+    stat3:"When there are real results",
 
     problem_label:"The problem",
     problem_heading:"The appointment starts<br /><em>before the patient enters the room.</em>",
@@ -2499,19 +2342,19 @@ const tr = {
 
     risk_label:"Collaboration proposal",
     risk_heading:"Flexible and<br />risk-free",
-    risk_body:"Our proposal is based on a flexible collaboration model, without unnecessary complexity for the clinic. Woofing acts as a connection and information-organisation layer, helping optimise processes, improve the professional experience and provide a more complete view of the patient over time.",
+    risk_body:"Our proposal is simple: Woofing charges no upfront payment and no fixed monthly fee. The clinic only pays a percentage when there are real results: a qualified lead, a confirmed appointment or a sale generated through the platform.",
     risk_check1:"No upfront payment",
-    risk_check2:"No fixed fees",
-    risk_check3:"Flexible collaboration",
-    risk_check4:"Designed to integrate into the workflow",
+    risk_check2:"No fixed monthly fee",
+    risk_check3:"We only charge when there are results",
+    risk_check4:"We integrate into your workflow: nothing changes, everything improves",
     risk_visual_title:"How the model works",
     comm1:"Upfront payment",
     comm_plus:"plus",
     comm2:"Monthly fixed fee",
     comm_only:"only",
-    comm3:"Based on the collaboration agreed with the clinic",
-    comm3_badge:"Flexible",
-    comm_note:"Exact terms are agreed based on each clinic’s profile, size and workflow.",
+    comm3:"Percentage only when there is a result",
+    comm3_badge:"% per lead / sale",
+    comm_note:"The clinic pays 0€ until Woofing generates a real opportunity: qualified lead, confirmed appointment or sale.",
 
     cta_label:"Let's talk?",
     cta_title:"Join Woofing<br /><em>before launch</em>",
