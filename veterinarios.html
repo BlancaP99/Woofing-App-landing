@@ -671,11 +671,6 @@ body::before {
   justify-content: center;
 }
 
-.vet-notification-icon svg {
-  width: 23px;
-  height: 23px;
-}
-
 .vet-notification-kicker {
   font-size: 11px;
   font-weight: 600;
@@ -978,11 +973,6 @@ body::before {
   align-items: center;
   justify-content: center;
   margin-bottom: 20px;
-}
-
-.benefit-card__icon svg {
-  width: 22px;
-  height: 22px;
 }
 
 .benefit-card__title {
@@ -1763,15 +1753,17 @@ body::before {
   <div class="stats-inner">
     <div class="stat-item reveal">
       <span class="stat-item__num">0€</span>
-      <span class="stat-item__label" data-i18n="stat1">Pago inicial</span>
+      <span class="stat-item__label" data-i18n="stat1">Coste fijo de entrada</span>
     </div>
+
     <div class="stat-item reveal" style="transition-delay:0.1s">
-      <span class="stat-item__num">0€</span>
-      <span class="stat-item__label" data-i18n="stat2">Cuota fija mensual</span>
+      <span class="stat-item__num">100%</span>
+      <span class="stat-item__label" data-i18n="stat2">Basado en citas reales</span>
     </div>
+
     <div class="stat-item reveal" style="transition-delay:0.2s">
-      <span class="stat-item__num" data-i18n="stat3_num">Solo %</span>
-      <span class="stat-item__label" data-i18n="stat3">Cuando hay resultados reales</span>
+      <span class="stat-item__num" data-i18n="stat3_num">Sin riesgo</span>
+      <span class="stat-item__label" data-i18n="stat3">Solo pagas cuando hay citas</span>
     </div>
   </div>
 </div>
@@ -2155,10 +2147,10 @@ const tr = {
     hero_cta_primary:"Empezar colaboración",
     hero_cta_secondary:"Ver cómo funciona",
 
-    stat1:"Pago inicial",
-    stat2:"Cuota fija mensual",
-    stat3_num:"Solo %",
-    stat3:"Cuando hay resultados reales",
+    stat1:"Coste fijo de entrada",
+    stat2:"Basado en citas reales",
+    stat3_num:"Sin riesgo",
+    stat3:"Solo pagas cuando hay citas",
 
     problem_label:"El problema",
     problem_heading:"La consulta empieza<br /><em>antes de entrar en consulta.</em>",
@@ -2277,10 +2269,10 @@ const tr = {
     hero_cta_primary:"Start collaboration",
     hero_cta_secondary:"See how it works",
 
-    stat1:"Upfront payment",
-    stat2:"Fixed monthly fee",
-    stat3_num:"Only %",
-    stat3:"When there are real results",
+    stat1:"Fixed entry cost",
+    stat2:"Based on real appointments",
+    stat3_num:"No risk",
+    stat3:"You only pay when there are appointments",
 
     problem_label:"The problem",
     problem_heading:"The appointment starts<br /><em>before the patient enters the room.</em>",
