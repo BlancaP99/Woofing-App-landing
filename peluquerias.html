@@ -4,6 +4,28 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Woofing — Peluquerías Pet</title>
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+
+fbq('init', '2060550988146665');
+fbq('track', 'PageView');
+</script>
+
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=2060550988146665&ev=PageView&noscript=1" />
+</noscript>
+<!-- End Meta Pixel Code -->
+
 <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -2190,6 +2212,18 @@ body::before {
 const FORMSPREE = "https://formspree.io/f/xojkooan";
 const LANG_KEY = "woofing_language";
 
+function trackMetaEvent(eventName, params = {}) {
+  if (typeof fbq === "function") {
+    fbq("track", eventName, params);
+  }
+}
+
+function trackMetaCustomEvent(eventName, params = {}) {
+  if (typeof fbq === "function") {
+    fbq("trackCustom", eventName, params);
+  }
+}
+
 const tr = {
   es: {
     nav_contact:"Colaborar",
@@ -2498,6 +2532,13 @@ const modalEl = document.getElementById("contactModal");
 function openModal() {
   modalEl.classList.add("active");
   document.body.style.overflow = "hidden";
+
+  trackMetaEvent("ViewContent", {
+    content_name: "Popup contacto peluquerías",
+    content_category: "Peluquerías Pet",
+    page_type: "pitch_peluquerias",
+    language: lang
+  });
 }
 
 function closeModalFn() {
@@ -2580,6 +2621,14 @@ form.addEventListener("submit", async e => {
     });
 
     if (res.ok) {
+      trackMetaEvent("Lead", {
+        content_name: "Contacto peluquería",
+        content_category: "B2B Lead",
+        business_type: "peluqueria",
+        page_type: "pitch_peluquerias",
+        language: lang
+      });
+
       formMsg.textContent = tr[lang].success;
       formMsg.style.color = "#5c3277";
       form.reset();
