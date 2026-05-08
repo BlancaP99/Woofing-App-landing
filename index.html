@@ -5,31 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Woofing App</title>
 
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '2060550988146665');
+    fbq('track', 'PageView');
+    </script>
+
+    <noscript>
+        <img height="1" width="1" style="display:none"
+        src="https://www.facebook.com/tr?id=2060550988146665&ev=PageView&noscript=1" />
+    </noscript>
+    <!-- End Meta Pixel Code -->
+
     <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
-
-    <!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '2060550988146665');
-fbq('track', 'PageView');
-</script>
-
-<noscript>
-    <img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=2060550988146665&ev=PageView&noscript=1" />
-</noscript>
-<!-- End Meta Pixel Code -->
 
     <style>
         *, *::before, *::after {
@@ -1369,6 +1369,18 @@ fbq('track', 'PageView');
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
 
+        function trackMetaEvent(eventName, params = {}) {
+            if (typeof fbq === "function") {
+                fbq("track", eventName, params);
+            }
+        }
+
+        function trackMetaCustomEvent(eventName, params = {}) {
+            if (typeof fbq === "function") {
+                fbq("trackCustom", eventName, params);
+            }
+        }
+
         async function sendToFormspree(data) {
             return await fetch(FORMSPREE_ENDPOINT, {
                 method: "POST",
@@ -1418,6 +1430,11 @@ fbq('track', 'PageView');
             overlay.classList.add("active");
             document.body.classList.add("modal-open");
             showStep(stepAudience);
+
+            trackMetaEvent("ViewContent", {
+                content_name: "Popup segmentado Woofing",
+                content_category: "Landing CTA"
+            });
         });
 
         function closePopup() {
@@ -1454,11 +1471,21 @@ fbq('track', 'PageView');
         document.getElementById("chooseOwner").addEventListener("click", () => {
             showStep(stepOwner);
             setTimeout(() => emailInput.focus(), 80);
+
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "pet_owner",
+                language: currentLang
+            });
         });
 
         document.getElementById("chooseBusiness").addEventListener("click", () => {
             showStep(stepBusiness);
             setTimeout(() => businessType.focus(), 80);
+
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "business",
+                language: currentLang
+            });
         });
 
         // ── PET RADIO LOGIC ──
@@ -1531,6 +1558,14 @@ fbq('track', 'PageView');
                 const response = await sendToFormspree(payload);
 
                 if (response.ok) {
+                    trackMetaEvent("Lead", {
+                        content_name: "Acceso anticipado dueño",
+                        content_category: "Pet Owner Signup",
+                        has_pet: hasPet,
+                        pet_types: petTypes || "none",
+                        language: currentLang
+                    });
+
                     popupMsg.textContent = translations[currentLang].popup_success;
                     popupMsg.style.color = "#5c3277";
                     setTimeout(() => closePopup(), 1800);
@@ -1564,6 +1599,11 @@ fbq('track', 'PageView');
                 businessMessage.style.color = "#c00";
                 return;
             }
+
+            trackMetaCustomEvent("BusinessTypeSelected", {
+                business_type: selectedType,
+                language: currentLang
+            });
 
             businessSubmit.disabled = true;
             businessSubmit.textContent = translations[currentLang].redirecting;
@@ -1609,6 +1649,12 @@ fbq('track', 'PageView');
                 });
 
                 if (response.ok) {
+                    trackMetaEvent("Subscribe", {
+                        content_name: "Newsletter footer",
+                        content_category: "Newsletter",
+                        language: currentLang
+                    });
+
                     footerMsg.textContent = translations[currentLang].footer_success;
                     footerMsg.style.color = "#5c3277";
                     footerForm.reset();
