@@ -7,7 +7,8 @@
     <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet" />
+
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -17,9 +18,12 @@
 
         :root {
             --brand: #5c3277;
+            --brand-dark: #3f2055;
+            --brand-light: #7b45a0;
             --bg: #F8F9FA;
             --white: #ffffff;
             --soft: rgba(92, 50, 119, 0.07);
+            --soft-strong: rgba(92, 50, 119, 0.12);
             --line: rgba(92, 50, 119, 0.18);
             --font: 'Instrument Sans', sans-serif;
             --font-display: 'Playfair Display', Georgia, serif;
@@ -46,6 +50,8 @@
             width: 100%;
             padding: 28px 56px;
             background-color: var(--bg);
+            position: relative;
+            z-index: 10;
         }
 
         .nav {
@@ -131,7 +137,34 @@
             display: flex;
             align-items: center;
             min-height: calc(100vh - 112px);
-            padding: 32px 0 56px;
+            padding: 20px 5vw 56px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 720px;
+            height: 720px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(92, 50, 119, 0.13) 0%, rgba(92, 50, 119, 0.05) 38%, transparent 70%);
+            top: 50%;
+            left: 18%;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(179, 136, 212, 0.15) 0%, transparent 68%);
+            bottom: -180px;
+            right: -120px;
+            pointer-events: none;
         }
 
         .hero__half {
@@ -139,13 +172,73 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .mockup-stage {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .mockup-img {
-            height: 880px;
+            height: 820px;
             width: auto;
             object-fit: contain;
             display: block;
+            filter: drop-shadow(0 28px 38px rgba(92, 50, 119, 0.14));
+        }
+
+        .hero-card {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.88);
+            border: 1px solid rgba(92, 50, 119, 0.12);
+            box-shadow: 0 18px 45px rgba(92, 50, 119, 0.13);
+            backdrop-filter: blur(16px);
+            border-radius: 18px;
+            padding: 14px 16px;
+            color: var(--brand);
+            min-width: 190px;
+        }
+
+        .hero-card--top {
+            top: 18%;
+            right: -20px;
+            animation: floatCard 5.6s ease-in-out infinite;
+        }
+
+        .hero-card--bottom {
+            bottom: 18%;
+            left: -18px;
+            animation: floatCard 6.2s ease-in-out infinite reverse;
+        }
+
+        .hero-card__label {
+            display: block;
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.55;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .hero-card__text {
+            display: block;
+            font-size: 13px;
+            line-height: 1.35;
+            font-weight: 500;
+        }
+
+        @keyframes floatCard {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         .hero__content {
@@ -153,42 +246,138 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 32px;
-            max-width: 460px;
+            gap: 22px;
+            max-width: 620px;
+            position: relative;
+            z-index: 2;
         }
 
         .icon-img {
-            height: 250px;
+            height: 135px;
             width: 100%;
             object-fit: contain;
+            margin-bottom: 4px;
+        }
+
+        .hero__eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            border-radius: 999px;
+            background: rgba(92, 50, 119, 0.075);
+            border: 1px solid rgba(92, 50, 119, 0.12);
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--brand);
+        }
+
+        .hero__eyebrow-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--brand);
+            box-shadow: 0 0 0 6px rgba(92, 50, 119, 0.08);
         }
 
         .hero__tagline {
             font-family: var(--font-display);
-            font-weight: 400;
-            font-size: clamp(25px, 3vw, 43px);
-            line-height: 1.2;
+            font-weight: 500;
+            font-size: clamp(37px, 5.2vw, 76px);
+            line-height: 0.98;
             color: var(--brand);
+            letter-spacing: -0.045em;
+        }
+
+        .hero__tagline em {
+            font-style: italic;
+            color: var(--brand-light);
+        }
+
+        .hero__statement {
+            font-family: var(--font);
+            font-size: clamp(16px, 1.7vw, 20px);
+            line-height: 1.55;
+            color: rgba(92, 50, 119, 0.72);
+            max-width: 545px;
+        }
+
+        .hero__statement strong {
+            color: var(--brand);
+            font-weight: 600;
+        }
+
+        .hero__pill-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            flex-wrap: wrap;
+            margin-top: 2px;
+        }
+
+        .hero__pill {
+            padding: 8px 13px;
+            border-radius: 999px;
+            background: #fff;
+            border: 1px solid rgba(92, 50, 119, 0.13);
+            box-shadow: 0 8px 24px rgba(92, 50, 119, 0.055);
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(92, 50, 119, 0.78);
         }
 
         /* ── CTA BUTTON ── */
+        .hero__cta-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 11px;
+            margin-top: 6px;
+        }
+
         .btn-cta {
             font-family: var(--font);
-            font-weight: 500;
+            font-weight: 600;
             font-size: 15px;
             color: #fff;
-            background-color: var(--brand);
+            background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
             border: none;
-            border-radius: 5px;
-            padding: 15px 36px;
+            border-radius: 999px;
+            padding: 17px 34px;
             cursor: pointer;
-            letter-spacing: 0.03em;
-            transition: opacity 0.2s, transform 0.15s;
+            letter-spacing: 0.02em;
+            transition: opacity 0.2s, transform 0.18s, box-shadow 0.2s;
+            box-shadow: 0 16px 38px rgba(92, 50, 119, 0.28);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-width: 250px;
+        }
+
+        .btn-cta::after {
+            content: '→';
+            font-size: 17px;
+            transition: transform 0.2s;
         }
 
         .btn-cta:hover {
-            opacity: 0.85;
-            transform: translateY(-1px);
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 22px 48px rgba(92, 50, 119, 0.34);
+        }
+
+        .btn-cta:hover::after {
+            transform: translateX(4px);
+        }
+
+        .hero__cta-note {
+            font-size: 13px;
+            color: rgba(92, 50, 119, 0.52);
+            line-height: 1.4;
         }
 
         /* ── FOOTER ── */
@@ -709,6 +898,47 @@
         }
 
         /* ── RESPONSIVE ── */
+        @media (max-width: 980px) {
+            .hero {
+                flex-direction: column;
+                padding: 32px 24px 54px;
+                min-height: auto;
+                gap: 24px;
+            }
+
+            .hero__half {
+                width: 100%;
+            }
+
+            .hero__half:first-child {
+                order: 2;
+            }
+
+            .hero__half:last-child {
+                order: 1;
+            }
+
+            .mockup-img {
+                height: 470px;
+            }
+
+            .hero-card {
+                display: none;
+            }
+
+            .icon-img {
+                height: 105px;
+            }
+
+            .hero__tagline {
+                font-size: clamp(39px, 12vw, 58px);
+            }
+
+            .hero__statement {
+                font-size: 16px;
+            }
+        }
+
         @media (max-width: 768px) {
             .header {
                 padding: 20px 24px;
@@ -733,18 +963,8 @@
                 justify-content: center;
             }
 
-            .hero {
-                flex-direction: column;
-                padding: 32px 24px 48px;
-                min-height: auto;
-            }
-
-            .hero__half {
-                width: 100%;
-            }
-
             .mockup-img {
-                height: 400px;
+                height: 390px;
             }
 
             .footer {
@@ -783,8 +1003,29 @@
                 grid-template-columns: 1fr 1fr;
             }
         }
+
+        @media (max-width: 480px) {
+            .hero__tagline {
+                font-size: 41px;
+            }
+
+            .hero__pill-row {
+                gap: 7px;
+            }
+
+            .hero__pill {
+                font-size: 11.5px;
+                padding: 7px 10px;
+            }
+
+            .btn-cta {
+                width: 100%;
+                min-width: 0;
+            }
+        }
     </style>
 </head>
+
 <body>
 
     <!-- HEADER -->
@@ -813,13 +1054,52 @@
     <!-- HERO -->
     <main class="hero">
         <div class="hero__half">
-            <img src="IMAGES/MOCKUP_IPHONE_2.png" alt="App Mockup" class="mockup-img" />
+            <div class="mockup-stage">
+                <img src="IMAGES/MOCKUP_IPHONE_2.png" alt="App Mockup" class="mockup-img" />
+
+                <div class="hero-card hero-card--top">
+                    <span class="hero-card__label" data-i18n="card_owner_label">Para dueños</span>
+                    <span class="hero-card__text" data-i18n="card_owner_text">Perfil, historial y servicios de su mascota en un solo lugar.</span>
+                </div>
+
+                <div class="hero-card hero-card--bottom">
+                    <span class="hero-card__label" data-i18n="card_business_label">Para comercios</span>
+                    <span class="hero-card__text" data-i18n="card_business_text">Datos reales para vender mejor, fidelizar y anticiparse.</span>
+                </div>
+            </div>
         </div>
+
         <div class="hero__half">
             <div class="hero__content">
                 <img src="IMAGES/ICONO.png" alt="Icono" class="icon-img" />
-                <p class="hero__tagline" data-i18n="hero_tagline">Todo lo que tu mascota necesita,<br />en un solo lugar.</p>
-                <button class="btn-cta" id="openPopup" type="button" data-i18n="cta_button">Empezar</button>
+
+                <div class="hero__eyebrow">
+                    <span class="hero__eyebrow-dot"></span>
+                    <span data-i18n="hero_eyebrow">La app que faltaba en el mundo pet</span>
+                </div>
+
+                <h1 class="hero__tagline" data-i18n="hero_tagline">
+                    La infraestructura<br />
+                    que une el <em>cuidado</em><br />
+                    y el <em>negocio pet.</em>
+                </h1>
+
+                <p class="hero__statement" data-i18n="hero_statement">
+                    Woofing conecta a dueños, veterinarios, comercios y servicios para crear una industria más organizada, con más seguimiento, más datos y mejores decisiones.
+                </p>
+
+                <div class="hero__pill-row">
+                    <span class="hero__pill" data-i18n="pill_1">Dueños</span>
+                    <span class="hero__pill" data-i18n="pill_2">Veterinarios</span>
+                    <span class="hero__pill" data-i18n="pill_3">Tiendas</span>
+                    <span class="hero__pill" data-i18n="pill_4">Hoteles</span>
+                    <span class="hero__pill" data-i18n="pill_5">Peluquerías</span>
+                </div>
+
+                <div class="hero__cta-wrap">
+                    <button class="btn-cta" id="openPopup" type="button" data-i18n="cta_button">Entrar en Woofing</button>
+                    <span class="hero__cta-note" data-i18n="cta_note">Elige tu perfil y accede a la experiencia adecuada.</span>
+                </div>
             </div>
         </div>
     </main>
@@ -891,7 +1171,6 @@
                 <p class="popup__subtitle" data-i18n="owner_subtitle">Déjanos tu email y te avisamos cuando estemos listos.</p>
 
                 <form class="popup__form" id="popupForm">
-                    <!-- EMAIL -->
                     <input
                         type="email"
                         class="popup__input"
@@ -900,7 +1179,6 @@
                         name="email"
                     />
 
-                    <!-- ¿TIENES MASCOTA? -->
                     <div class="field-group">
                         <span class="popup__field-label" data-i18n="popup_has_pet">¿Tienes mascota?</span>
                         <div class="radio-group">
@@ -915,9 +1193,7 @@
                         </div>
                     </div>
 
-                    <!-- CAMPOS EXTRA (visibles solo si SÍ) -->
                     <div class="pet-extra-fields" id="petExtraFields">
-                        <!-- Cuántas mascotas -->
                         <div class="field-group">
                             <span class="popup__field-label" data-i18n="popup_how_many">¿Cuántas mascotas tienes?</span>
                             <input
@@ -931,7 +1207,6 @@
                             />
                         </div>
 
-                        <!-- Tipo de mascota -->
                         <div class="field-group">
                             <span class="popup__field-label" data-i18n="popup_pet_type">¿Qué tipo de mascota tienes?</span>
                             <div class="checkbox-group-inline">
@@ -955,7 +1230,6 @@
                         </div>
                     </div>
 
-                    <!-- PRIVACIDAD -->
                     <label class="checkbox-label">
                         <input type="checkbox" id="popupPrivacy" name="privacy" />
                         <span class="checkbox-text" data-i18n="popup_privacy_label">
@@ -1012,10 +1286,6 @@
         const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
         const LANG_KEY = "woofing_language";
 
-        /*
-            EDITA AQUÍ LAS URLS DE TUS LANDINGS DE COLABORACIÓN.
-            Si los archivos están en la misma carpeta, deja estos nombres.
-        */
         const BUSINESS_ROUTES = {
             tienda: "tiendas.html",
             hotel: "hoteles.html",
@@ -1027,8 +1297,22 @@
         const translations = {
             es: {
                 contact_link: "Contacto",
-                hero_tagline: "Todo lo que tu mascota necesita,<br />en un solo lugar.",
-                cta_button: "Empezar",
+
+                hero_eyebrow: "La app que faltaba en el mundo pet",
+                hero_tagline: "La infraestructura<br />que une el <em>cuidado</em><br />y el <em>negocio pet.</em>",
+                hero_statement: "Woofing conecta a dueños, veterinarios, comercios y servicios para crear una industria más organizada, con más seguimiento, más datos y mejores decisiones.",
+                pill_1: "Dueños",
+                pill_2: "Veterinarios",
+                pill_3: "Tiendas",
+                pill_4: "Hoteles",
+                pill_5: "Peluquerías",
+                cta_button: "Entrar en Woofing",
+                cta_note: "Elige tu perfil y accede a la experiencia adecuada.",
+                card_owner_label: "Para dueños",
+                card_owner_text: "Perfil, historial y servicios de su mascota en un solo lugar.",
+                card_business_label: "Para comercios",
+                card_business_text: "Datos reales para vender mejor, fidelizar y anticiparse.",
+
                 footer_title: "Regístrate para recibir noticias y actualizaciones.",
                 footer_submit: "Suscribirme",
                 footer_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
@@ -1088,10 +1372,25 @@
                 popup_subject: "Nuevo acceso anticipado desde la web de Woofing",
                 footer_subject: "Nueva suscripción desde la web de Woofing"
             },
+
             en: {
                 contact_link: "Contact",
-                hero_tagline: "Everything your pet needs,<br />in one place.",
-                cta_button: "Start",
+
+                hero_eyebrow: "The missing app for the pet industry",
+                hero_tagline: "The infrastructure<br />connecting <em>pet care</em><br />and <em>pet business.</em>",
+                hero_statement: "Woofing connects owners, vets, businesses and services to build a more organised industry, with better follow-up, better data and better decisions.",
+                pill_1: "Owners",
+                pill_2: "Vets",
+                pill_3: "Stores",
+                pill_4: "Hotels",
+                pill_5: "Groomers",
+                cta_button: "Enter Woofing",
+                cta_note: "Choose your profile and access the right experience.",
+                card_owner_label: "For owners",
+                card_owner_text: "Pet profile, history and services in one place.",
+                card_business_label: "For businesses",
+                card_business_text: "Real data to sell better, retain customers and anticipate demand.",
+
                 footer_title: "Sign up to receive news and updates.",
                 footer_submit: "Subscribe",
                 footer_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
@@ -1429,7 +1728,6 @@
             privacyBanner.classList.add("hidden");
         });
 
-        // Inicializar idioma
         setLanguage(currentLang);
     </script>
 </body>
