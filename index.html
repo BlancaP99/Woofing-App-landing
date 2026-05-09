@@ -5,40 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Woofing App</title>
     <meta name="facebook-domain-verification" content="vvmm4t24tcje7qn5q7zajcvw2ddh5j" />
-
-    <!-- Meta Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-
-    fbq('init', '2060550988146665');
-    fbq('track', 'PageView');
-    </script>
-
-    <noscript>
-        <img height="1" width="1" style="display:none"
-        src="https://www.facebook.com/tr?id=2060550988146665&ev=PageView&noscript=1" />
-    </noscript>
-    <!-- End Meta Pixel Code -->
-
+ 
+    <!-- ❌ PIXEL ELIMINADO DE AQUÍ — ahora lo gestiona cookies.js -->
+ 
     <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
-
+ 
+    <!-- ✅ COOKIE BANNER CSS -->
+    <link rel="stylesheet" href="cookies.css" />
+ 
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
-
+ 
         :root {
             --brand: #5c3277;
             --brand-light: #7b45a0;
@@ -51,7 +35,7 @@
             --font: 'Instrument Sans', sans-serif;
             --font-display: 'Playfair Display', Georgia, serif;
         }
-
+ 
         html, body {
             font-family: var(--font);
             background-color: var(--bg);
@@ -59,16 +43,16 @@
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
-
+ 
         body.modal-open {
             overflow: hidden;
         }
-
+ 
         a {
             color: inherit;
             text-decoration: none;
         }
-
+ 
         /* ── HEADER ── */
         .header {
             width: 100%;
@@ -78,7 +62,7 @@
             position: relative;
             z-index: 20;
         }
-
+ 
         .nav {
             width: 100%;
             display: flex;
@@ -86,25 +70,25 @@
             justify-content: space-between;
             gap: 24px;
         }
-
+ 
         .logo-img {
             height: 68px;
             width: auto;
             object-fit: contain;
             display: block;
         }
-
+ 
         .nav__controls {
             display: flex;
             align-items: center;
             gap: 22px;
         }
-
+ 
         .nav__menu {
             display: flex;
             align-items: center;
         }
-
+ 
         .nav__link {
             font-family: var(--font);
             font-weight: 500;
@@ -114,11 +98,11 @@
             text-transform: uppercase;
             transition: opacity 0.2s;
         }
-
+ 
         .nav__link:hover {
             opacity: 0.55;
         }
-
+ 
         .lang-switch {
             display: flex;
             align-items: center;
@@ -128,7 +112,7 @@
             letter-spacing: 0.08em;
             text-transform: uppercase;
         }
-
+ 
         .lang-switch__btn {
             background: none;
             border: none;
@@ -138,20 +122,20 @@
             opacity: 0.45;
             transition: opacity 0.2s;
         }
-
+ 
         .lang-switch__btn.active {
             opacity: 1;
             font-weight: 700;
         }
-
+ 
         .lang-switch__btn:hover {
             opacity: 0.75;
         }
-
+ 
         .lang-switch__divider {
             opacity: 0.35;
         }
-
+ 
         /* ── HERO ── */
         .hero {
             position: relative;
@@ -162,7 +146,7 @@
             padding: 32px 56px 72px;
             overflow: hidden;
         }
-
+ 
         .hero::before {
             content: "";
             position: absolute;
@@ -174,7 +158,7 @@
             bottom: -220px;
             pointer-events: none;
         }
-
+ 
         .hero::after {
             content: "";
             position: absolute;
@@ -186,7 +170,7 @@
             top: -120px;
             pointer-events: none;
         }
-
+ 
         .hero__half {
             position: relative;
             z-index: 1;
@@ -194,7 +178,7 @@
             align-items: center;
             justify-content: center;
         }
-
+ 
         .mockup-img {
             height: min(78vh, 780px);
             width: auto;
@@ -202,7 +186,7 @@
             display: block;
             filter: drop-shadow(0 28px 60px rgba(92, 50, 119, 0.13));
         }
-
+ 
         .hero__content {
             display: flex;
             flex-direction: column;
@@ -211,7 +195,7 @@
             gap: 22px;
             max-width: 610px;
         }
-
+ 
         .hero__eyebrow {
             display: inline-flex;
             align-items: center;
@@ -227,7 +211,7 @@
             padding: 8px 15px;
             border-radius: 999px;
         }
-
+ 
         .hero__eyebrow::before {
             content: "";
             width: 7px;
@@ -236,12 +220,12 @@
             background: var(--brand);
             animation: pulseDot 2s ease-in-out infinite;
         }
-
+ 
         @keyframes pulseDot {
             0%, 100% { opacity: 1; transform: scale(1); }
             50% { opacity: 0.45; transform: scale(1.35); }
         }
-
+ 
         .hero__tagline {
             font-family: var(--font-display);
             font-weight: 400;
@@ -250,12 +234,12 @@
             letter-spacing: -0.04em;
             color: var(--brand);
         }
-
+ 
         .hero__tagline em {
             font-style: italic;
             color: var(--brand-light);
         }
-
+ 
         .hero__launch {
             display: inline-flex;
             align-items: center;
@@ -272,21 +256,21 @@
             border-radius: 999px;
             margin-top: -8px;
         }
-
+ 
         .hero__subtitle {
             font-size: clamp(16px, 1.4vw, 20px);
             line-height: 1.55;
             color: var(--muted);
             max-width: 520px;
         }
-
+ 
         .hero__mini-points {
             display: flex;
             flex-wrap: wrap;
             gap: 9px;
             margin-top: 2px;
         }
-
+ 
         .hero__mini-point {
             font-size: 13px;
             font-weight: 600;
@@ -296,7 +280,7 @@
             border-radius: 999px;
             padding: 9px 13px;
         }
-
+ 
         /* ── CTA BUTTON ── */
         .btn-cta {
             position: relative;
@@ -317,26 +301,26 @@
             box-shadow: 0 14px 38px rgba(92, 50, 119, 0.28);
             transition: opacity 0.2s, transform 0.18s, box-shadow 0.18s;
         }
-
+ 
         .btn-cta::after {
             content: "→";
             font-size: 18px;
             line-height: 1;
             transform: translateY(-1px);
         }
-
+ 
         .btn-cta:hover {
             opacity: 0.92;
             transform: translateY(-2px);
             box-shadow: 0 20px 48px rgba(92, 50, 119, 0.34);
         }
-
+ 
         .hero__cta-note {
             font-size: 13px;
             color: var(--muted);
             margin-top: -10px;
         }
-
+ 
         /* ── FOOTER ── */
         .footer {
             background-color: var(--bg);
@@ -348,7 +332,7 @@
             gap: 24px;
             text-align: center;
         }
-
+ 
         .footer__title {
             font-family: var(--font-display);
             font-weight: 400;
@@ -356,7 +340,7 @@
             color: var(--brand);
             line-height: 1.3;
         }
-
+ 
         .footer__form {
             display: flex;
             flex-direction: column;
@@ -364,12 +348,12 @@
             width: 100%;
             max-width: 480px;
         }
-
+ 
         .footer__form-row {
             display: flex;
             gap: 12px;
         }
-
+ 
         .footer__input,
         .popup__input,
         .popup__select {
@@ -384,23 +368,23 @@
             transition: border-color 0.2s;
             width: 100%;
         }
-
+ 
         .popup__input,
         .popup__select {
             background: var(--bg);
         }
-
+ 
         .footer__input::placeholder,
         .popup__input::placeholder {
             color: rgba(92, 50, 119, 0.35);
         }
-
+ 
         .footer__input:focus,
         .popup__input:focus,
         .popup__select:focus {
             border-color: var(--brand);
         }
-
+ 
         .popup__select {
             appearance: none;
             -webkit-appearance: none;
@@ -411,7 +395,7 @@
             padding-right: 42px;
             background-color: var(--bg);
         }
-
+ 
         .footer__submit,
         .popup__submit {
             font-family: var(--font);
@@ -427,18 +411,18 @@
             white-space: nowrap;
             transition: opacity 0.2s, transform 0.15s;
         }
-
+ 
         .footer__submit {
             border-radius: 5px;
             padding: 13px 28px;
         }
-
+ 
         .footer__submit:hover,
         .popup__submit:hover {
             opacity: 0.85;
             transform: translateY(-1px);
         }
-
+ 
         .footer__message,
         .popup__message {
             font-family: var(--font);
@@ -446,7 +430,7 @@
             min-height: 18px;
             font-weight: 500;
         }
-
+ 
         .footer__links {
             display: flex;
             align-items: center;
@@ -455,7 +439,7 @@
             flex-wrap: wrap;
             margin-top: 6px;
         }
-
+ 
         .footer__link {
             font-family: var(--font);
             font-size: 14px;
@@ -463,11 +447,11 @@
             opacity: 0.8;
             transition: opacity 0.2s;
         }
-
+ 
         .footer__link:hover {
             opacity: 1;
         }
-
+ 
         .footer__copy {
             font-family: var(--font);
             font-size: 12px;
@@ -476,7 +460,7 @@
             margin-top: 12px;
             letter-spacing: 0.02em;
         }
-
+ 
         /* ── CHECKBOX PRIVACY ── */
         .checkbox-label {
             display: flex;
@@ -485,7 +469,7 @@
             cursor: pointer;
             text-align: left;
         }
-
+ 
         .checkbox-label input[type="checkbox"] {
             appearance: none;
             -webkit-appearance: none;
@@ -500,12 +484,12 @@
             transition: border-color 0.2s, background 0.2s;
             position: relative;
         }
-
+ 
         .checkbox-label input[type="checkbox"]:checked {
             background: var(--brand);
             border-color: var(--brand);
         }
-
+ 
         .checkbox-label input[type="checkbox"]:checked::after {
             content: '';
             position: absolute;
@@ -518,12 +502,12 @@
             border-left: none;
             transform: rotate(45deg);
         }
-
+ 
         .checkbox-label input[type="checkbox"]:focus {
-            outline: 2px solid rgba(92, 50, 119, 0.3);
+            outline: 2px solid rgba(92, 50, 129, 0.3);
             outline-offset: 2px;
         }
-
+ 
         .checkbox-text {
             font-family: var(--font);
             font-size: 13px;
@@ -531,12 +515,12 @@
             opacity: 0.75;
             line-height: 1.5;
         }
-
+ 
         .checkbox-text a {
             text-decoration: underline;
             opacity: 1;
         }
-
+ 
         /* ── POPUP ── */
         .popup-overlay {
             position: fixed;
@@ -552,12 +536,12 @@
             z-index: 100;
             padding: 24px;
         }
-
+ 
         .popup-overlay.active {
             opacity: 1;
             pointer-events: all;
         }
-
+ 
         .popup {
             background: #fff;
             border-radius: 20px;
@@ -571,11 +555,11 @@
             max-height: 90vh;
             overflow-y: auto;
         }
-
+ 
         .popup-overlay.active .popup {
             transform: translateY(0) scale(1);
         }
-
+ 
         .popup__close {
             position: absolute;
             top: 16px;
@@ -589,11 +573,11 @@
             line-height: 1;
             transition: opacity 0.2s;
         }
-
+ 
         .popup__close:hover {
             opacity: 1;
         }
-
+ 
         .popup__title {
             font-family: var(--font-display);
             font-weight: 400;
@@ -601,7 +585,7 @@
             color: var(--brand);
             margin-bottom: 8px;
         }
-
+ 
         .popup__subtitle {
             font-family: var(--font);
             font-weight: 400;
@@ -611,19 +595,19 @@
             margin-bottom: 26px;
             line-height: 1.5;
         }
-
+ 
         .popup__form {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-
+ 
         .field-group {
             display: flex;
             flex-direction: column;
             gap: 8px;
         }
-
+ 
         .popup__field-label {
             font-family: var(--font);
             font-size: 14px;
@@ -631,20 +615,20 @@
             color: var(--brand);
             display: block;
         }
-
+ 
         /* ── AUDIENCE SEGMENTATION ── */
         .audience-step {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
-
+ 
         .audience-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 12px;
         }
-
+ 
         .audience-card {
             border: 1.5px solid var(--line);
             background: var(--bg);
@@ -655,19 +639,19 @@
             color: var(--brand);
             transition: border-color 0.2s, background 0.2s, transform 0.15s;
         }
-
+ 
         .audience-card:hover {
             border-color: var(--brand);
             background: rgba(92, 50, 119, 0.055);
             transform: translateY(-1px);
         }
-
+ 
         .audience-card__icon {
             display: block;
             font-size: 25px;
             margin-bottom: 10px;
         }
-
+ 
         .audience-card__title {
             display: block;
             font-family: var(--font);
@@ -675,24 +659,24 @@
             font-weight: 600;
             margin-bottom: 5px;
         }
-
+ 
         .audience-card__text {
             display: block;
             font-size: 12.5px;
             line-height: 1.45;
             opacity: 0.62;
         }
-
+ 
         .popup-step {
             display: none;
             flex-direction: column;
             gap: 12px;
         }
-
+ 
         .popup-step.active {
             display: flex;
         }
-
+ 
         .popup-back {
             background: none;
             border: none;
@@ -705,23 +689,23 @@
             padding: 0;
             width: fit-content;
         }
-
+ 
         .popup-back:hover {
             opacity: 1;
         }
-
+ 
         /* ── PET QUESTION ── */
         .radio-group {
             display: flex;
             gap: 10px;
         }
-
+ 
         .radio-option,
         .checkbox-pill {
             flex: 1;
             position: relative;
         }
-
+ 
         .radio-option input[type="radio"],
         .checkbox-pill input[type="checkbox"] {
             position: absolute;
@@ -729,7 +713,7 @@
             width: 0;
             height: 0;
         }
-
+ 
         .radio-option__label,
         .checkbox-pill__label {
             display: flex;
@@ -749,24 +733,24 @@
             user-select: none;
             text-align: center;
         }
-
+ 
         .checkbox-pill__label {
             padding: 9px 12px;
             border-radius: 8px;
             font-size: 13px;
         }
-
+ 
         .radio-option input[type="radio"]:checked + .radio-option__label,
         .checkbox-pill input[type="checkbox"]:checked + .checkbox-pill__label {
             border-color: var(--brand);
             background: rgba(92, 50, 119, 0.07);
         }
-
+ 
         .radio-option__label:hover,
         .checkbox-pill__label:hover {
             border-color: rgba(92, 50, 119, 0.5);
         }
-
+ 
         .pet-extra-fields {
             display: flex;
             flex-direction: column;
@@ -776,84 +760,25 @@
             opacity: 0;
             transition: max-height 0.35s ease, opacity 0.3s ease;
         }
-
+ 
         .pet-extra-fields.visible {
             max-height: 400px;
             opacity: 1;
         }
-
+ 
         .checkbox-group-inline {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
         }
-
+ 
         .popup__submit:disabled,
-        .footer__submit:disabled,
-        .privacy-banner__button:disabled {
+        .footer__submit:disabled {
             opacity: 0.6;
             cursor: not-allowed;
             transform: none;
         }
-
-        /* ── BANNER PRIVACIDAD ── */
-        .privacy-banner {
-            position: fixed;
-            left: 24px;
-            right: 24px;
-            bottom: 24px;
-            background: rgba(255, 255, 255, 0.98);
-            border: 1px solid rgba(92, 50, 119, 0.14);
-            box-shadow: 0 20px 40px rgba(92, 50, 119, 0.12);
-            border-radius: 16px;
-            padding: 18px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            z-index: 120;
-        }
-
-        .privacy-banner.hidden {
-            display: none;
-        }
-
-        .privacy-banner__text {
-            font-family: var(--font);
-            font-size: 14px;
-            line-height: 1.5;
-            color: var(--brand);
-            text-align: left;
-        }
-
-        .privacy-banner__text a {
-            text-decoration: underline;
-        }
-
-        .privacy-banner__actions {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-shrink: 0;
-        }
-
-        .privacy-banner__button {
-            font-family: var(--font);
-            font-weight: 500;
-            font-size: 14px;
-            color: #fff;
-            background: var(--brand);
-            border: none;
-            border-radius: 10px;
-            padding: 12px 18px;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-
-        .privacy-banner__button:hover {
-            opacity: 0.88;
-        }
-
+ 
         /* ── RESPONSIVE ── */
         @media (max-width: 980px) {
             .hero {
@@ -861,150 +786,134 @@
                 gap: 28px;
                 padding: 32px 28px 60px;
             }
-
+ 
             .hero__half:first-child {
                 order: 2;
             }
-
+ 
             .hero__half:last-child {
                 order: 1;
             }
-
+ 
             .hero__content {
                 align-items: center;
                 text-align: center;
                 max-width: 620px;
             }
-
+ 
             .mockup-img {
                 height: 520px;
             }
         }
-
+ 
         @media (max-width: 768px) {
             .header {
                 padding: 18px 22px;
             }
-
+ 
             .nav {
                 align-items: center;
                 gap: 16px;
             }
-
+ 
             .logo-img {
                 height: 48px;
             }
-
+ 
             .nav__controls {
                 gap: 12px;
             }
-
+ 
             .nav__link {
                 display: none;
             }
-
+ 
             .hero {
                 padding: 26px 24px 48px;
                 min-height: auto;
             }
-
+ 
             .hero__tagline {
                 font-size: clamp(34px, 11vw, 48px);
                 line-height: 1.02;
             }
-
+ 
             .hero__subtitle {
                 font-size: 16px;
             }
-
+ 
             .hero__mini-points {
                 justify-content: center;
             }
-
+ 
             .mockup-img {
                 height: 410px;
             }
-
+ 
             .footer {
                 padding: 48px 24px 40px;
             }
-
+ 
             .footer__form-row {
                 flex-direction: column;
             }
-
+ 
             .popup {
                 padding: 36px 28px 32px;
             }
-
+ 
             .audience-cards {
                 grid-template-columns: 1fr;
             }
-
-            .privacy-banner {
-                left: 16px;
-                right: 16px;
-                bottom: 16px;
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .privacy-banner__actions {
-                width: 100%;
-            }
-
-            .privacy-banner__button {
-                width: 100%;
-            }
-
+ 
             .checkbox-group-inline {
                 grid-template-columns: 1fr 1fr;
             }
         }
-
+ 
         @media (max-width: 480px) {
             .nav {
                 flex-direction: column;
             }
-
+ 
             .logo-img {
                 height: 56px;
             }
-
+ 
             .hero {
                 padding-top: 18px;
             }
-
+ 
             .mockup-img {
                 height: 360px;
             }
-
+ 
             .hero__mini-point {
                 width: 100%;
                 text-align: center;
             }
-
+ 
             .checkbox-group-inline {
                 grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
-
+ 
 <body>
-
+ 
     <!-- HEADER -->
     <header class="header">
         <nav class="nav">
             <a href="index.html" aria-label="Woofing">
                 <img src="IMAGES/LOGO_HORIZONTAL_PNG.png" alt="Woofing" class="logo-img" />
             </a>
-
+ 
             <div class="nav__controls">
                 <div class="nav__menu">
                     <a href="contacto.html" class="nav__link" data-i18n="contact_link">Contacto</a>
                 </div>
-
+ 
                 <div class="lang-switch" aria-label="Selector de idioma">
                     <button class="lang-switch__btn active" id="langEs" type="button">ES</button>
                     <span class="lang-switch__divider">|</span>
@@ -1013,44 +922,44 @@
             </div>
         </nav>
     </header>
-
+ 
     <!-- HERO -->
     <main class="hero">
         <div class="hero__half">
             <img src="IMAGES/MOCKUP_IPHONE_2.png" alt="App Mockup" class="mockup-img" />
         </div>
-
+ 
         <div class="hero__half">
             <div class="hero__content">
                 <div class="hero__eyebrow" data-i18n="hero_eyebrow">La infraestructura pet que faltaba</div>
-
+ 
                 <h1 class="hero__tagline" data-i18n="hero_tagline">
                     La app que conecta<br />
                     <em>dueños, mascotas y comercios</em>
                 </h1>
-
+ 
                 <div class="hero__launch" data-i18n="hero_launch">Lanzamiento · Septiembre 2026</div>
-
+ 
                 <p class="hero__subtitle" data-i18n="hero_subtitle">
                     Woofing centraliza información real de cada mascota para mejorar reservas, compras, seguimiento y comunicación en toda la industria pet.
                 </p>
-
+ 
                 <div class="hero__mini-points">
                     <span class="hero__mini-point" data-i18n="point_owner">Para dueños</span>
                     <span class="hero__mini-point" data-i18n="point_business">Para comercios</span>
                     <span class="hero__mini-point" data-i18n="point_data">Con datos reales</span>
                 </div>
-
+ 
                 <button class="btn-cta" id="openPopup" type="button" data-i18n="cta_button">Entrar en Woofing</button>
                 <p class="hero__cta-note" data-i18n="cta_note">Elige si eres dueño o profesional y te llevamos al lugar correcto.</p>
             </div>
         </div>
     </main>
-
+ 
     <!-- FOOTER -->
     <footer class="footer" id="footer">
         <p class="footer__title" data-i18n="footer_title">Regístrate para recibir noticias y actualizaciones.</p>
-
+ 
         <form class="footer__form" id="footerForm">
             <div class="footer__form-row">
                 <input
@@ -1062,7 +971,7 @@
                 />
                 <button class="footer__submit" id="footerSubmit" type="submit" data-i18n="footer_submit">Suscribirme</button>
             </div>
-
+ 
             <label class="checkbox-label">
                 <input type="checkbox" id="footerPrivacy" name="privacy" />
                 <span class="checkbox-text" data-i18n="footer_privacy_label">
@@ -1070,35 +979,37 @@
                 </span>
             </label>
         </form>
-
+ 
         <p class="footer__message" id="footerMessage"></p>
-
+ 
         <div class="footer__links">
             <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
             <a class="footer__link" href="politica-privacidad.html" data-i18n="privacy_link">Política de privacidad</a>
+            <!-- ✅ NUEVO: enlace Política de Cookies -->
+            <a class="footer__link" href="cookies.html" data-i18n="cookies_link">Política de cookies</a>
             <a class="footer__link" href="aviso_legal.html" data-i18n="legal_link">Aviso legal</a>
         </div>
-
+ 
         <p class="footer__copy" data-i18n="footer_copy">© 2026 Woofing App. Todos los derechos reservados.</p>
     </footer>
-
+ 
     <!-- POPUP SEGMENTADO -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup">
             <button class="popup__close" id="closePopup" type="button">&times;</button>
-
+ 
             <!-- PASO 1: SEGMENTACIÓN -->
             <div class="popup-step active" id="stepAudience">
                 <h2 class="popup__title" data-i18n="popup_title">Antes de empezar</h2>
                 <p class="popup__subtitle" data-i18n="popup_subtitle">Dinos quién eres para llevarte al lugar correcto.</p>
-
+ 
                 <div class="audience-cards">
                     <button class="audience-card" type="button" id="chooseOwner">
                         <span class="audience-card__icon">🐾</span>
                         <span class="audience-card__title" data-i18n="audience_owner_title">Soy dueño de mascota</span>
                         <span class="audience-card__text" data-i18n="audience_owner_text">Quiero apuntarme al acceso anticipado de la app.</span>
                     </button>
-
+ 
                     <button class="audience-card" type="button" id="chooseBusiness">
                         <span class="audience-card__icon">🏪</span>
                         <span class="audience-card__title" data-i18n="audience_business_title">Soy comercio o profesional</span>
@@ -1106,14 +1017,14 @@
                     </button>
                 </div>
             </div>
-
+ 
             <!-- PASO 2A: FORMULARIO DUEÑOS -->
             <div class="popup-step" id="stepOwner">
                 <button class="popup-back" type="button" data-back="audience" data-i18n="back_button">← Volver</button>
-
+ 
                 <h2 class="popup__title" data-i18n="owner_title">Acceso Anticipado</h2>
                 <p class="popup__subtitle" data-i18n="owner_subtitle">Déjanos tu email y te avisamos cuando estemos listos.</p>
-
+ 
                 <form class="popup__form" id="popupForm">
                     <input
                         type="email"
@@ -1122,7 +1033,7 @@
                         id="emailInput"
                         name="email"
                     />
-
+ 
                     <div class="field-group">
                         <span class="popup__field-label" data-i18n="popup_has_pet">¿Tienes mascota?</span>
                         <div class="radio-group">
@@ -1136,7 +1047,7 @@
                             </div>
                         </div>
                     </div>
-
+ 
                     <div class="pet-extra-fields" id="petExtraFields">
                         <div class="field-group">
                             <span class="popup__field-label" data-i18n="popup_how_many">¿Cuántas mascotas tienes?</span>
@@ -1150,7 +1061,7 @@
                                 placeholder="1"
                             />
                         </div>
-
+ 
                         <div class="field-group">
                             <span class="popup__field-label" data-i18n="popup_pet_type">¿Qué tipo de mascota tienes?</span>
                             <div class="checkbox-group-inline">
@@ -1173,27 +1084,27 @@
                             </div>
                         </div>
                     </div>
-
+ 
                     <label class="checkbox-label">
                         <input type="checkbox" id="popupPrivacy" name="privacy" />
                         <span class="checkbox-text" data-i18n="popup_privacy_label">
                             Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.
                         </span>
                     </label>
-
+ 
                     <button class="popup__submit" id="submitEmail" type="submit" data-i18n="popup_submit">Apuntarme</button>
                 </form>
-
+ 
                 <p class="popup__message" id="popupMessage"></p>
             </div>
-
+ 
             <!-- PASO 2B: SELECTOR COMERCIOS -->
             <div class="popup-step" id="stepBusiness">
                 <button class="popup-back" type="button" data-back="audience" data-i18n="back_button">← Volver</button>
-
+ 
                 <h2 class="popup__title" data-i18n="business_title">Colabora con Woofing</h2>
                 <p class="popup__subtitle" data-i18n="business_subtitle">Selecciona tu tipo de negocio y te llevamos a la propuesta adecuada.</p>
-
+ 
                 <form class="popup__form" id="businessForm">
                     <div class="field-group">
                         <label class="popup__field-label" for="businessType" data-i18n="business_type_label">Tipo de comercio</label>
@@ -1207,30 +1118,38 @@
                             <option value="veterinario" data-i18n="business_vet">Veterinario</option>
                         </select>
                     </div>
-
+ 
                     <button class="popup__submit" id="businessSubmit" type="submit" data-i18n="business_submit">Ver propuesta</button>
                     <p class="popup__message" id="businessMessage"></p>
                 </form>
             </div>
         </div>
     </div>
-
-    <!-- BANNER PRIVACIDAD -->
-    <div class="privacy-banner" id="privacyBanner">
-        <p class="privacy-banner__text">
-            <span data-i18n="privacy_banner_text_prefix">Acepto la </span>
-            <a href="politica-privacidad.html" target="_blank" data-i18n="privacy_banner_link">Política de privacidad</a>
-            <span data-i18n="privacy_banner_text_suffix"> de Woofing App.</span>
+ 
+    <!-- ✅ BANNER DE COOKIES (reemplaza al antiguo privacy-banner) -->
+    <div id="cookie-banner" hidden role="dialog" aria-label="Aviso de cookies">
+        <div class="cookie-banner__header">
+            <span class="cookie-banner__icon">🍪</span>
+            <p class="cookie-banner__title" data-i18n="cookie_banner_title">Usamos cookies</p>
+        </div>
+        <p class="cookie-banner__text" data-i18n="cookie_banner_text">
+            Usamos cookies de terceros (Meta Pixel) para medir el rendimiento de nuestras campañas.
+            Puedes aceptarlas o rechazarlas. Más info en nuestra
+            <a href="cookies.html">Política de cookies</a>.
         </p>
-        <div class="privacy-banner__actions">
-            <button class="privacy-banner__button" id="acceptPrivacy" type="button" data-i18n="privacy_accept">Aceptar</button>
+        <div class="cookie-banner__actions">
+            <button class="cookie-btn cookie-btn--reject" onclick="setConsent(false)" data-i18n="cookie_reject">Rechazar</button>
+            <button class="cookie-btn cookie-btn--accept" onclick="setConsent(true)" data-i18n="cookie_accept">Aceptar</button>
         </div>
     </div>
-
+ 
+    <!-- ✅ COOKIE CONSENT JS (antes del cierre de body) -->
+    <script src="cookies.js"></script>
+ 
     <script>
         const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
         const LANG_KEY = "woofing_language";
-
+ 
         const BUSINESS_ROUTES = {
             tienda: "tiendas.html",
             hotel: "hoteles.html",
@@ -1239,11 +1158,11 @@
             adiestrador: "adiestradores.html",
             veterinario: "veterinarios.html"
         };
-
+ 
         const translations = {
             es: {
                 contact_link: "Contacto",
-
+ 
                 hero_eyebrow: "La infraestructura pet que faltaba",
                 hero_tagline: "La app que conecta<br /><em>dueños, mascotas y comercios</em>",
                 hero_launch: "Lanzamiento · Septiembre 2026",
@@ -1253,14 +1172,15 @@
                 point_data: "Con datos reales",
                 cta_button: "Entrar en Woofing",
                 cta_note: "Elige si eres dueño o profesional y te llevamos al lugar correcto.",
-
+ 
                 footer_title: "Regístrate para recibir noticias y actualizaciones.",
                 footer_submit: "Suscribirme",
                 footer_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
                 privacy_link: "Política de privacidad",
+                cookies_link: "Política de cookies",
                 legal_link: "Aviso legal",
                 footer_copy: "© 2026 Woofing App. Todos los derechos reservados.",
-
+ 
                 popup_title: "Antes de empezar",
                 popup_subtitle: "Dinos quién eres para llevarte al lugar correcto.",
                 audience_owner_title: "Soy dueño de mascota",
@@ -1268,7 +1188,7 @@
                 audience_business_title: "Soy comercio o profesional",
                 audience_business_text: "Quiero ver la propuesta de colaboración para mi negocio.",
                 back_button: "← Volver",
-
+ 
                 owner_title: "Acceso Anticipado",
                 owner_subtitle: "Déjanos tu email y te avisamos cuando estemos listos.",
                 popup_submit: "Apuntarme",
@@ -1282,7 +1202,7 @@
                 popup_pet_rabbit: "🐰 Conejo",
                 popup_pet_other: "🐾 Otro",
                 popup_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
-
+ 
                 business_title: "Colabora con Woofing",
                 business_subtitle: "Selecciona tu tipo de negocio y te llevamos a la propuesta adecuada.",
                 business_type_label: "Tipo de comercio",
@@ -1295,12 +1215,12 @@
                 business_vet: "Veterinario",
                 business_submit: "Ver propuesta",
                 business_required: "Selecciona un tipo de comercio.",
-
-                privacy_banner_text_prefix: "Acepto la ",
-                privacy_banner_link: "Política de privacidad",
-                privacy_banner_text_suffix: " de Woofing App.",
-                privacy_accept: "Aceptar",
-
+ 
+                cookie_banner_title: "Usamos cookies",
+                cookie_banner_text: 'Usamos cookies de terceros (Meta Pixel) para medir el rendimiento de nuestras campañas. Más info en nuestra <a href="cookies.html">Política de cookies</a>.',
+                cookie_reject: "Rechazar",
+                cookie_accept: "Aceptar",
+ 
                 invalid_email: "Por favor, introduce un email válido.",
                 privacy_required: "Debes aceptar la Política de privacidad.",
                 sending: "Enviando...",
@@ -1311,14 +1231,14 @@
                 footer_success: "¡Gracias! Te mantendremos al tanto.",
                 footer_error: "No se pudo completar la suscripción. Inténtalo de nuevo.",
                 footer_error_general: "Ha ocurrido un error al enviar la suscripción.",
-
+ 
                 popup_subject: "Nuevo acceso anticipado desde la web de Woofing",
                 footer_subject: "Nueva suscripción desde la web de Woofing"
             },
-
+ 
             en: {
                 contact_link: "Contact",
-
+ 
                 hero_eyebrow: "The missing pet infrastructure",
                 hero_tagline: "The app connecting<br /><em>owners, pets and businesses</em>",
                 hero_launch: "Launching · September 2026",
@@ -1327,15 +1247,16 @@
                 point_business: "For businesses",
                 point_data: "With real data",
                 cta_button: "Enter Woofing",
-                cta_note: "Choose whether you are an owner or a professional and we’ll take you to the right place.",
-
+                cta_note: "Choose whether you are an owner or a professional and we'll take you to the right place.",
+ 
                 footer_title: "Sign up to receive news and updates.",
                 footer_submit: "Subscribe",
                 footer_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
                 privacy_link: "Privacy Policy",
+                cookies_link: "Cookie Policy",
                 legal_link: "Legal Notice",
                 footer_copy: "© 2026 Woofing App. All rights reserved.",
-
+ 
                 popup_title: "Before we start",
                 popup_subtitle: "Tell us who you are so we can take you to the right place.",
                 audience_owner_title: "I am a pet owner",
@@ -1343,7 +1264,7 @@
                 audience_business_title: "I am a business or professional",
                 audience_business_text: "I want to see the collaboration proposal for my business.",
                 back_button: "← Back",
-
+ 
                 owner_title: "Early Access",
                 owner_subtitle: "Leave us your email and we'll let you know when we're ready.",
                 popup_submit: "Join the List",
@@ -1357,9 +1278,9 @@
                 popup_pet_rabbit: "🐰 Rabbit",
                 popup_pet_other: "🐾 Other",
                 popup_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
-
+ 
                 business_title: "Collaborate with Woofing",
-                business_subtitle: "Select your type of business and we’ll take you to the right proposal.",
+                business_subtitle: "Select your type of business and we'll take you to the right proposal.",
                 business_type_label: "Business type",
                 business_placeholder: "Select an option",
                 business_shop: "Pet products store",
@@ -1370,12 +1291,12 @@
                 business_vet: "Veterinary clinic",
                 business_submit: "See proposal",
                 business_required: "Please select a business type.",
-
-                privacy_banner_text_prefix: "I accept the ",
-                privacy_banner_link: "Privacy Policy",
-                privacy_banner_text_suffix: " of Woofing App.",
-                privacy_accept: "Accept",
-
+ 
+                cookie_banner_title: "We use cookies",
+                cookie_banner_text: 'We use third-party cookies (Meta Pixel) to measure the performance of our campaigns. More info in our <a href="cookies.html">Cookie Policy</a>.',
+                cookie_reject: "Reject",
+                cookie_accept: "Accept",
+ 
                 invalid_email: "Please enter a valid email address.",
                 privacy_required: "You must accept the Privacy Policy.",
                 sending: "Sending...",
@@ -1386,30 +1307,30 @@
                 footer_success: "Thank you! We'll keep you updated.",
                 footer_error: "Could not complete the subscription. Please try again.",
                 footer_error_general: "An error occurred while submitting the subscription.",
-
+ 
                 popup_subject: "New early access signup from the Woofing website",
                 footer_subject: "New newsletter signup from the Woofing website"
             }
         };
-
+ 
         let currentLang = localStorage.getItem(LANG_KEY) || "es";
-
+ 
         function isValidEmail(email) {
             return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         }
-
+ 
         function trackMetaEvent(eventName, params = {}) {
             if (typeof fbq === "function") {
                 fbq("track", eventName, params);
             }
         }
-
+ 
         function trackMetaCustomEvent(eventName, params = {}) {
             if (typeof fbq === "function") {
                 fbq("trackCustom", eventName, params);
             }
         }
-
+ 
         async function sendToFormspree(data) {
             return await fetch(FORMSPREE_ENDPOINT, {
                 method: "POST",
@@ -1420,56 +1341,56 @@
                 body: JSON.stringify(data)
             });
         }
-
+ 
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem(LANG_KEY, lang);
             document.documentElement.lang = lang;
-
+ 
             document.querySelectorAll("[data-i18n]").forEach((el) => {
                 const key = el.getAttribute("data-i18n");
                 if (translations[lang][key] !== undefined) {
                     el.innerHTML = translations[lang][key];
                 }
             });
-
+ 
             document.getElementById("langEs").classList.toggle("active", lang === "es");
             document.getElementById("langEn").classList.toggle("active", lang === "en");
-
+ 
             if (typeof submitEmailBtn !== "undefined" && submitEmailBtn) submitEmailBtn.textContent = translations[lang].popup_submit;
             if (typeof footerSubmit !== "undefined" && footerSubmit) footerSubmit.textContent = translations[lang].footer_submit;
             if (typeof businessSubmit !== "undefined" && businessSubmit) businessSubmit.textContent = translations[lang].business_submit;
         }
-
+ 
         document.getElementById("langEs").addEventListener("click", () => setLanguage("es"));
         document.getElementById("langEn").addEventListener("click", () => setLanguage("en"));
-
+ 
         // ── POPUP GENERAL ──
         const overlay = document.getElementById("popupOverlay");
         const stepAudience = document.getElementById("stepAudience");
         const stepOwner = document.getElementById("stepOwner");
         const stepBusiness = document.getElementById("stepBusiness");
-
+ 
         function showStep(step) {
             [stepAudience, stepOwner, stepBusiness].forEach(el => el.classList.remove("active"));
             step.classList.add("active");
         }
-
+ 
         document.getElementById("openPopup").addEventListener("click", () => {
             overlay.classList.add("active");
             document.body.classList.add("modal-open");
             showStep(stepAudience);
-
+ 
             trackMetaEvent("ViewContent", {
                 content_name: "Popup segmentado Woofing",
                 content_category: "Landing CTA"
             });
         });
-
+ 
         function closePopup() {
             overlay.classList.remove("active");
             document.body.classList.remove("modal-open");
-
+ 
             popupMsg.textContent = "";
             businessMessage.textContent = "";
             emailInput.value = "";
@@ -1482,46 +1403,46 @@
             petExtraFields.classList.remove("visible");
             showStep(stepAudience);
         }
-
+ 
         document.getElementById("closePopup").addEventListener("click", closePopup);
-
+ 
         overlay.addEventListener("click", (e) => {
             if (e.target === overlay) closePopup();
         });
-
+ 
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape" && overlay.classList.contains("active")) closePopup();
         });
-
+ 
         document.querySelectorAll(".popup-back").forEach(btn => {
             btn.addEventListener("click", () => showStep(stepAudience));
         });
-
+ 
         document.getElementById("chooseOwner").addEventListener("click", () => {
             showStep(stepOwner);
             setTimeout(() => emailInput.focus(), 80);
-
+ 
             trackMetaCustomEvent("AudienceSelected", {
                 audience_type: "pet_owner",
                 language: currentLang
             });
         });
-
+ 
         document.getElementById("chooseBusiness").addEventListener("click", () => {
             showStep(stepBusiness);
             setTimeout(() => businessType.focus(), 80);
-
+ 
             trackMetaCustomEvent("AudienceSelected", {
                 audience_type: "business",
                 language: currentLang
             });
         });
-
+ 
         // ── PET RADIO LOGIC ──
         const petExtraFields = document.getElementById("petExtraFields");
         const petYes = document.getElementById("petYes");
         const petNo = document.getElementById("petNo");
-
+ 
         function updatePetFields() {
             if (petYes.checked) {
                 petExtraFields.classList.add("visible");
@@ -1531,44 +1452,44 @@
                 document.querySelectorAll("input[name='pet_type[]']").forEach(cb => cb.checked = false);
             }
         }
-
+ 
         petYes.addEventListener("change", updatePetFields);
         petNo.addEventListener("change", updatePetFields);
-
+ 
         // ── OWNER FORM ──
         const popupForm = document.getElementById("popupForm");
         const emailInput = document.getElementById("emailInput");
         const popupMsg = document.getElementById("popupMessage");
         const submitEmailBtn = document.getElementById("submitEmail");
         const popupPrivacy = document.getElementById("popupPrivacy");
-
+ 
         popupForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-
+ 
             const email = emailInput.value.trim();
-
+ 
             if (!email || !isValidEmail(email)) {
                 popupMsg.textContent = translations[currentLang].invalid_email;
                 popupMsg.style.color = "#c00";
                 return;
             }
-
+ 
             if (!popupPrivacy.checked) {
                 popupMsg.textContent = translations[currentLang].privacy_required;
                 popupMsg.style.color = "#c00";
                 return;
             }
-
+ 
             const hasPet = petYes.checked ? "yes" : petNo.checked ? "no" : "";
             const petCount = petYes.checked ? document.getElementById("petCount").value : "";
             const petTypes = petYes.checked
                 ? Array.from(document.querySelectorAll("input[name='pet_type[]']:checked")).map(cb => cb.value).join(", ")
                 : "";
-
+ 
             submitEmailBtn.disabled = true;
             submitEmailBtn.textContent = translations[currentLang].sending;
             popupMsg.textContent = "";
-
+ 
             try {
                 const payload = {
                     email,
@@ -1578,14 +1499,14 @@
                     language: currentLang,
                     has_pet: hasPet
                 };
-
+ 
                 if (hasPet === "yes") {
                     payload.pet_count = petCount;
                     payload.pet_types = petTypes;
                 }
-
+ 
                 const response = await sendToFormspree(payload);
-
+ 
                 if (response.ok) {
                     trackMetaEvent("Lead", {
                         content_name: "Acceso anticipado dueño",
@@ -1594,7 +1515,7 @@
                         pet_types: petTypes || "none",
                         language: currentLang
                     });
-
+ 
                     popupMsg.textContent = translations[currentLang].popup_success;
                     popupMsg.style.color = "#5c3277";
                     setTimeout(() => closePopup(), 1800);
@@ -1610,65 +1531,65 @@
                 submitEmailBtn.textContent = translations[currentLang].popup_submit;
             }
         });
-
+ 
         // ── BUSINESS REDIRECT ──
         const businessForm = document.getElementById("businessForm");
         const businessType = document.getElementById("businessType");
         const businessMessage = document.getElementById("businessMessage");
         const businessSubmit = document.getElementById("businessSubmit");
-
+ 
         businessForm.addEventListener("submit", (e) => {
             e.preventDefault();
-
+ 
             const selectedType = businessType.value;
             const url = BUSINESS_ROUTES[selectedType];
-
+ 
             if (!selectedType || !url) {
                 businessMessage.textContent = translations[currentLang].business_required;
                 businessMessage.style.color = "#c00";
                 return;
             }
-
+ 
             trackMetaCustomEvent("BusinessTypeSelected", {
                 business_type: selectedType,
                 language: currentLang
             });
-
+ 
             businessSubmit.disabled = true;
             businessSubmit.textContent = translations[currentLang].redirecting;
             businessMessage.textContent = "";
-
+ 
             window.location.href = url;
         });
-
+ 
         // ── FOOTER FORM ──
         const footerForm = document.getElementById("footerForm");
         const footerEmail = document.getElementById("footerEmail");
         const footerMsg = document.getElementById("footerMessage");
         const footerSubmit = document.getElementById("footerSubmit");
         const footerPrivacy = document.getElementById("footerPrivacy");
-
+ 
         footerForm.addEventListener("submit", async (e) => {
             e.preventDefault();
-
+ 
             const email = footerEmail.value.trim();
-
+ 
             if (!email || !isValidEmail(email)) {
                 footerMsg.textContent = translations[currentLang].invalid_email;
                 footerMsg.style.color = "#c00";
                 return;
             }
-
+ 
             if (!footerPrivacy.checked) {
                 footerMsg.textContent = translations[currentLang].privacy_required;
                 footerMsg.style.color = "#c00";
                 return;
             }
-
+ 
             footerSubmit.disabled = true;
             footerSubmit.textContent = translations[currentLang].sending;
             footerMsg.textContent = "";
-
+ 
             try {
                 const response = await sendToFormspree({
                     email,
@@ -1676,14 +1597,14 @@
                     form_type: "newsletter_footer",
                     language: currentLang
                 });
-
+ 
                 if (response.ok) {
                     trackMetaEvent("Subscribe", {
                         content_name: "Newsletter footer",
                         content_category: "Newsletter",
                         language: currentLang
                     });
-
+ 
                     footerMsg.textContent = translations[currentLang].footer_success;
                     footerMsg.style.color = "#5c3277";
                     footerForm.reset();
@@ -1699,21 +1620,7 @@
                 footerSubmit.textContent = translations[currentLang].footer_submit;
             }
         });
-
-        // ── BANNER PRIVACIDAD ──
-        const privacyBanner = document.getElementById("privacyBanner");
-        const acceptPrivacyBtn = document.getElementById("acceptPrivacy");
-        const PRIVACY_KEY = "woofing_privacy_accepted";
-
-        if (localStorage.getItem(PRIVACY_KEY) === "true") {
-            privacyBanner.classList.add("hidden");
-        }
-
-        acceptPrivacyBtn.addEventListener("click", () => {
-            localStorage.setItem(PRIVACY_KEY, "true");
-            privacyBanner.classList.add("hidden");
-        });
-
+ 
         setLanguage(currentLang);
     </script>
 </body>
