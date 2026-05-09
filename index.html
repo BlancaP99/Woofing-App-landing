@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Woofing App</title>
-<meta name="facebook-domain-verification" content="vvmm4t24tcje7qn5q7zajcvw2ddh5j" />
+    <meta name="facebook-domain-verification" content="vvmm4t24tcje7qn5q7zajcvw2ddh5j" />
+
     <!-- Meta Pixel Code -->
     <script>
     !function(f,b,e,v,n,t,s)
@@ -253,6 +254,23 @@
         .hero__tagline em {
             font-style: italic;
             color: var(--brand-light);
+        }
+
+        .hero__launch {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            background: rgba(92, 50, 119, 0.10);
+            border: 1px solid rgba(92, 50, 119, 0.16);
+            color: var(--brand);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 10px 16px;
+            border-radius: 999px;
+            margin-top: -8px;
         }
 
         .hero__subtitle {
@@ -1011,6 +1029,8 @@
                     <em>dueños, mascotas y comercios</em>
                 </h1>
 
+                <div class="hero__launch" data-i18n="hero_launch">Lanzamiento · Septiembre 2026</div>
+
                 <p class="hero__subtitle" data-i18n="hero_subtitle">
                     Woofing centraliza información real de cada mascota para mejorar reservas, compras, seguimiento y comunicación en toda la industria pet.
                 </p>
@@ -1056,6 +1076,7 @@
         <div class="footer__links">
             <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
             <a class="footer__link" href="politica-privacidad.html" data-i18n="privacy_link">Política de privacidad</a>
+            <a class="footer__link" href="aviso_legal.html" data-i18n="legal_link">Aviso legal</a>
         </div>
 
         <p class="footer__copy" data-i18n="footer_copy">© 2026 Woofing App. Todos los derechos reservados.</p>
@@ -1182,6 +1203,7 @@
                             <option value="hotel" data-i18n="business_hotel">Hotel / Guardería</option>
                             <option value="peluqueria" data-i18n="business_grooming">Peluquería pet</option>
                             <option value="paseador" data-i18n="business_walker">Paseador</option>
+                            <option value="adiestrador" data-i18n="business_trainer">Adiestrador</option>
                             <option value="veterinario" data-i18n="business_vet">Veterinario</option>
                         </select>
                     </div>
@@ -1214,6 +1236,7 @@
             hotel: "hoteles.html",
             peluqueria: "peluquerias.html",
             paseador: "paseadores.html",
+            adiestrador: "adiestradores.html",
             veterinario: "veterinarios.html"
         };
 
@@ -1223,6 +1246,7 @@
 
                 hero_eyebrow: "La infraestructura pet que faltaba",
                 hero_tagline: "La app que conecta<br /><em>dueños, mascotas y comercios</em>",
+                hero_launch: "Lanzamiento · Septiembre 2026",
                 hero_subtitle: "Woofing centraliza información real de cada mascota para mejorar reservas, compras, seguimiento y comunicación en toda la industria pet.",
                 point_owner: "Para dueños",
                 point_business: "Para comercios",
@@ -1234,6 +1258,7 @@
                 footer_submit: "Suscribirme",
                 footer_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
                 privacy_link: "Política de privacidad",
+                legal_link: "Aviso legal",
                 footer_copy: "© 2026 Woofing App. Todos los derechos reservados.",
 
                 popup_title: "Antes de empezar",
@@ -1266,6 +1291,7 @@
                 business_hotel: "Hotel / Guardería",
                 business_grooming: "Peluquería pet",
                 business_walker: "Paseador",
+                business_trainer: "Adiestrador",
                 business_vet: "Veterinario",
                 business_submit: "Ver propuesta",
                 business_required: "Selecciona un tipo de comercio.",
@@ -1295,6 +1321,7 @@
 
                 hero_eyebrow: "The missing pet infrastructure",
                 hero_tagline: "The app connecting<br /><em>owners, pets and businesses</em>",
+                hero_launch: "Launching · September 2026",
                 hero_subtitle: "Woofing centralises real pet information to improve bookings, purchases, follow-up and communication across the pet industry.",
                 point_owner: "For owners",
                 point_business: "For businesses",
@@ -1306,6 +1333,7 @@
                 footer_submit: "Subscribe",
                 footer_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
                 privacy_link: "Privacy Policy",
+                legal_link: "Legal Notice",
                 footer_copy: "© 2026 Woofing App. All rights reserved.",
 
                 popup_title: "Before we start",
@@ -1338,6 +1366,7 @@
                 business_hotel: "Pet hotel / daycare",
                 business_grooming: "Pet grooming salon",
                 business_walker: "Dog walker",
+                business_trainer: "Dog trainer",
                 business_vet: "Veterinary clinic",
                 business_submit: "See proposal",
                 business_required: "Please select a business type.",
