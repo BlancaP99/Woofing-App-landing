@@ -60,9 +60,16 @@
       text-decoration: underline;
     }
 
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
     .back-link {
       display: inline-block;
-      margin-bottom: 32px;
       font-size: 14px;
       text-decoration: none;
       opacity: 0.75;
@@ -72,169 +79,415 @@
       opacity: 1;
     }
 
+    .lang-switch {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .lang-switch button {
+      background: none;
+      border: none;
+      color: #5c3277;
+      cursor: pointer;
+      font: inherit;
+      opacity: 0.4;
+    }
+
+    .lang-switch button.active {
+      opacity: 1;
+      font-weight: 700;
+    }
+
+    .lang-switch span {
+      opacity: 0.35;
+    }
+
+    .lang-content {
+      display: none;
+    }
+
+    .lang-content.active {
+      display: block;
+    }
+
     .updated {
       margin-top: 48px;
       font-size: 14px;
       opacity: 0.75;
+    }
+
+    @media (max-width: 600px) {
+      .top-bar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: 26px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <a href="index.html" class="back-link">← Volver a Woofing</a>
+  <div class="top-bar">
+    <a href="index.html" class="back-link" id="backLink">← Volver a Woofing</a>
 
-  <h1>Política de privacidad de Woofing App</h1>
+    <div class="lang-switch" aria-label="Selector de idioma">
+      <button id="btnEs" class="active" type="button">ES</button>
+      <span>|</span>
+      <button id="btnEn" type="button">EN</button>
+    </div>
+  </div>
 
-  <p>
-    <strong>COMPANION METRICS, S.L</strong>, en adelante “Woofing App”, se compromete a proteger la privacidad y seguridad de los datos personales de sus usuarios y visitantes. Esta Política de Privacidad describe cómo recogemos, utilizamos, conservamos y protegemos su información personal en cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016 (RGPD), y la Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD).
-  </p>
+  <!-- ESPAÑOL -->
+  <main id="contentEs" class="lang-content active">
 
-  <h2>Responsable del tratamiento de los datos</h2>
+    <h1>Política de privacidad de Woofing App</h1>
 
-  <p>
-    <strong>Denominación Social:</strong> COMPANION METRICS, S.L<br />
-    <strong>NIF:</strong> B27570068<br />
-    <strong>Domicilio Social:</strong> calle Fortuny, 37, bajo derecha, 28010, Madrid<br />
-    <strong>Datos Registrales:</strong> Registro Mercantil de Madrid, S 8, H M 884590, I/A 1 (21/04/2026)<br />
-    <strong>Correo electrónico de contacto:</strong> <a href="mailto:contact@woofingapp.com">contact@woofingapp.com</a>
-  </p>
+    <p>
+      <strong>COMPANION METRICS, S.L</strong>, en adelante “Woofing App”, se compromete a proteger la privacidad y seguridad de los datos personales de sus usuarios y visitantes. Esta Política de Privacidad describe cómo recogemos, utilizamos, conservamos y protegemos su información personal en cumplimiento del Reglamento (UE) 2016/679 del Parlamento Europeo y del Consejo, de 27 de abril de 2016 (RGPD), y la Ley Orgánica 3/2018, de 5 de diciembre (LOPDGDD).
+    </p>
 
-  <h2>Datos personales, finalidades y base jurídica del tratamiento</h2>
+    <h2>Responsable del tratamiento de los datos</h2>
 
-  <p>
-    Recogemos y tratamos diferentes categorías de datos personales en función de su interacción con nosotros:
-  </p>
+    <p>
+      <strong>Denominación Social:</strong> COMPANION METRICS, S.L<br />
+      <strong>NIF:</strong> B27570068<br />
+      <strong>Domicilio Social:</strong> calle Fortuny, 37, bajo derecha, 28010, Madrid<br />
+      <strong>Datos Registrales:</strong> Registro Mercantil de Madrid, S 8, H M 884590, I/A 1 (21/04/2026)<br />
+      <strong>Correo electrónico de contacto:</strong> <a href="mailto:contact@woofingapp.com">contact@woofingapp.com</a>
+    </p>
 
-  <h3>Usuarios que solicitan acceso anticipado o se suscriben a la newsletter</h3>
+    <h2>Datos personales, finalidades y base jurídica del tratamiento</h2>
 
-  <p>
-    <strong>Datos tratados:</strong> Dirección de correo electrónico y, en su caso, información sobre si tiene mascota, cuántas y de qué tipo: perro, gato, conejo u otro.
-  </p>
+    <p>
+      Recogemos y tratamos diferentes categorías de datos personales en función de su interacción con nosotros:
+    </p>
 
-  <p><strong>Finalidad:</strong></p>
-  <ul>
-    <li>Gestionar su solicitud de acceso anticipado a la aplicación “Woofing App”.</li>
-    <li>Mantenerle informado sobre el lanzamiento, noticias y actualizaciones relevantes de la aplicación.</li>
-  </ul>
+    <h3>Usuarios que solicitan acceso anticipado o se suscriben a la newsletter</h3>
 
-  <p>
-    <strong>Base jurídica:</strong> Su consentimiento expreso, conforme al art. 6.1.a del RGPD, que nos otorga al marcar la casilla de aceptación de la política de privacidad y enviar el formulario.
-  </p>
+    <p>
+      <strong>Datos tratados:</strong> Dirección de correo electrónico y, en su caso, información sobre si tiene mascota, cuántas y de qué tipo: perro, gato, conejo u otro.
+    </p>
 
-  <h3>Comercios o profesionales que contactan para colaborar</h3>
+    <p><strong>Finalidad:</strong></p>
+    <ul>
+      <li>Gestionar su solicitud de acceso anticipado a la aplicación “Woofing App”.</li>
+      <li>Mantenerle informado sobre el lanzamiento, noticias y actualizaciones relevantes de la aplicación.</li>
+    </ul>
 
-  <p>
-    <strong>Datos tratados:</strong> Nombre, apellidos, correo electrónico, número de teléfono, asunto y el contenido del mensaje que nos envíe.
-  </p>
+    <p>
+      <strong>Base jurídica:</strong> Su consentimiento expreso, conforme al art. 6.1.a del RGPD, que nos otorga al marcar la casilla de aceptación de la política de privacidad y enviar el formulario.
+    </p>
 
-  <p><strong>Finalidad:</strong></p>
-  <ul>
-    <li>Atender y gestionar su consulta o propuesta de colaboración.</li>
-    <li>Mantener el contacto profesional para valorar futuras relaciones comerciales.</li>
-  </ul>
+    <h3>Comercios o profesionales que contactan para colaborar</h3>
 
-  <p>
-    <strong>Base jurídica:</strong> La aplicación de medidas precontractuales a su solicitud, conforme al art. 6.1.b del RGPD, y nuestro interés legítimo en atender a los profesionales que se ponen en contacto con nosotros, conforme al art. 6.1.f del RGPD.
-  </p>
+    <p>
+      <strong>Datos tratados:</strong> Nombre, apellidos, correo electrónico, número de teléfono, asunto y el contenido del mensaje que nos envíe.
+    </p>
 
-  <h3>Personas que contactan a través del formulario de contacto</h3>
+    <p><strong>Finalidad:</strong></p>
+    <ul>
+      <li>Atender y gestionar su consulta o propuesta de colaboración.</li>
+      <li>Mantener el contacto profesional para valorar futuras relaciones comerciales.</li>
+    </ul>
 
-  <p>
-    Esto incluye consultas de información general, prensa, soporte, colaboraciones y otros.
-  </p>
+    <p>
+      <strong>Base jurídica:</strong> La aplicación de medidas precontractuales a su solicitud, conforme al art. 6.1.b del RGPD, y nuestro interés legítimo en atender a los profesionales que se ponen en contacto con nosotros, conforme al art. 6.1.f del RGPD.
+    </p>
 
-  <p>
-    <strong>Datos tratados:</strong> Nombre, apellidos, correo electrónico, número de teléfono, asunto y el contenido del mensaje que nos envíe.
-  </p>
+    <h3>Personas que contactan a través del formulario de contacto</h3>
 
-  <p><strong>Finalidad:</strong></p>
-  <ul>
-    <li>Atender y gestionar su consulta.</li>
-    <li>Atender propuestas de colaboración, solicitudes de información, consultas de soporte y cualquier otra comunicación relacionada con Woofing App.</li>
-  </ul>
+    <p>
+      Esto incluye consultas de información general, prensa, soporte, colaboraciones y otros.
+    </p>
 
-  <p>
-    <strong>Base jurídica:</strong> Su consentimiento expreso, conforme al art. 6.1.a del RGPD, que nos otorga al marcar la casilla de aceptación de la política de privacidad y enviar el formulario.
-  </p>
+    <p>
+      <strong>Datos tratados:</strong> Nombre, apellidos, correo electrónico, número de teléfono, asunto y el contenido del mensaje que nos envíe.
+    </p>
 
-  <h2>Plazo de conservación de los datos</h2>
+    <p><strong>Finalidad:</strong></p>
+    <ul>
+      <li>Atender y gestionar su consulta.</li>
+      <li>Atender propuestas de colaboración, solicitudes de información, consultas de soporte y cualquier otra comunicación relacionada con Woofing App.</li>
+    </ul>
 
-  <p>
-    Sus datos personales se conservarán durante el tiempo estrictamente necesario para cumplir con las finalidades para las que fueron recogidos:
-  </p>
+    <p>
+      <strong>Base jurídica:</strong> Su consentimiento expreso, conforme al art. 6.1.a del RGPD, que nos otorga al marcar la casilla de aceptación de la política de privacidad y enviar el formulario.
+    </p>
 
-  <ul>
-    <li><strong>Acceso anticipado y suscripciones:</strong> hasta que nos solicite la baja o revoque su consentimiento.</li>
-    <li><strong>Contactos profesionales:</strong> durante el tiempo necesario para gestionar su solicitud y, posteriormente, durante los plazos legales de prescripción para atender posibles responsabilidades.</li>
-    <li><strong>Contactos a través del formulario de contacto:</strong> durante el tiempo necesario para atender su consulta y, posteriormente, durante los plazos legales de prescripción para atender posibles responsabilidades.</li>
-  </ul>
+    <h2>Plazo de conservación de los datos</h2>
 
-  <h2>Comunicación de datos a terceros</h2>
+    <p>
+      Sus datos personales se conservarán durante el tiempo estrictamente necesario para cumplir con las finalidades para las que fueron recogidos:
+    </p>
 
-  <p>
-    Con carácter general, no cederemos sus datos personales a terceros, salvo que estemos legalmente obligados a ello, por ejemplo, a Administraciones Públicas competentes.
-  </p>
+    <ul>
+      <li><strong>Acceso anticipado y suscripciones:</strong> hasta que nos solicite la baja o revoque su consentimiento.</li>
+      <li><strong>Contactos profesionales:</strong> durante el tiempo necesario para gestionar su solicitud y, posteriormente, durante los plazos legales de prescripción para atender posibles responsabilidades.</li>
+      <li><strong>Contactos a través del formulario de contacto:</strong> durante el tiempo necesario para atender su consulta y, posteriormente, durante los plazos legales de prescripción para atender posibles responsabilidades.</li>
+    </ul>
 
-  <p>
-    No obstante, para la prestación de determinados servicios, podemos necesitar que proveedores externos, como servicios de alojamiento web, plataformas de envío de correos, etc., accedan a sus datos. Estos terceros actuarán como Encargados del Tratamiento y su acceso estará regulado por un contrato que garantiza la confidencialidad y el cumplimiento de la normativa de protección de datos, conforme al artículo 28 del RGPD.
-  </p>
+    <h2>Comunicación de datos a terceros</h2>
 
-  <h2>Transferencias internacionales de datos</h2>
+    <p>
+      Con carácter general, no cederemos sus datos personales a terceros, salvo que estemos legalmente obligados a ello, por ejemplo, a Administraciones Públicas competentes.
+    </p>
 
-  <p>
-    Con carácter general, procuramos que nuestros proveedores de servicios se encuentren ubicados dentro del Espacio Económico Europeo (EEE). Sin embargo, si para la prestación de un servicio fuera necesario transferir datos a un proveedor ubicado en un país fuera del EEE, nos aseguraremos de que dicha transferencia se realice al amparo de una de las garantías adecuadas previstas en el RGPD, por ejemplo, mediante la firma de Cláusulas Contractuales Tipo aprobadas por la Comisión Europea o en base a una decisión de adecuación.
-  </p>
+    <p>
+      No obstante, para la prestación de determinados servicios, podemos necesitar que proveedores externos, como servicios de alojamiento web, plataformas de envío de correos, etc., accedan a sus datos. Estos terceros actuarán como Encargados del Tratamiento y su acceso estará regulado por un contrato que garantiza la confidencialidad y el cumplimiento de la normativa de protección de datos, conforme al artículo 28 del RGPD.
+    </p>
 
-  <h2>Derechos de los interesados</h2>
+    <h2>Transferencias internacionales de datos</h2>
 
-  <p>
-    Usted tiene derecho a ejercer los siguientes derechos sobre sus datos personales:
-  </p>
+    <p>
+      Con carácter general, procuramos que nuestros proveedores de servicios se encuentren ubicados dentro del Espacio Económico Europeo (EEE). Sin embargo, si para la prestación de un servicio fuera necesario transferir datos a un proveedor ubicado en un país fuera del EEE, nos aseguraremos de que dicha transferencia se realice al amparo de una de las garantías adecuadas previstas en el RGPD, por ejemplo, mediante la firma de Cláusulas Contractuales Tipo aprobadas por la Comisión Europea o en base a una decisión de adecuación.
+    </p>
 
-  <ul>
-    <li><strong>Derecho de acceso:</strong> a saber qué datos suyos estamos tratando.</li>
-    <li><strong>Derecho de rectificación:</strong> a solicitar la corrección de datos inexactos.</li>
-    <li><strong>Derecho de supresión, o derecho al olvido:</strong> a solicitar la eliminación de sus datos cuando, entre otros motivos, ya no sean necesarios para los fines para los que fueron recogidos.</li>
-    <li><strong>Derecho a la limitación del tratamiento:</strong> a solicitar que suspendamos el tratamiento de sus datos en determinadas circunstancias.</li>
-    <li><strong>Derecho a la portabilidad de los datos:</strong> a recibir sus datos en un formato estructurado, de uso común y lectura mecánica.</li>
-    <li><strong>Derecho de oposición:</strong> a oponerse al tratamiento de sus datos por motivos relacionados con su situación particular.</li>
-  </ul>
+    <h2>Derechos de los interesados</h2>
 
-  <p>
-    Puede ejercer estos derechos enviando una solicitud por correo electrónico a <a href="mailto:contact@woofingapp.com">contact@woofingapp.com</a>, indicando el derecho que desea ejercer y adjuntando una copia de su DNI o documento identificativo equivalente.
-  </p>
+    <p>
+      Usted tiene derecho a ejercer los siguientes derechos sobre sus datos personales:
+    </p>
 
-  <p>
-    Asimismo, cuando el tratamiento de sus datos esté basado en su consentimiento, tiene derecho a retirarlo en cualquier momento. La retirada del consentimiento será tan sencilla como su otorgamiento y no afectará a la licitud del tratamiento basado en el consentimiento previo a su retirada.
-  </p>
+    <ul>
+      <li><strong>Derecho de acceso:</strong> a saber qué datos suyos estamos tratando.</li>
+      <li><strong>Derecho de rectificación:</strong> a solicitar la corrección de datos inexactos.</li>
+      <li><strong>Derecho de supresión, o derecho al olvido:</strong> a solicitar la eliminación de sus datos cuando, entre otros motivos, ya no sean necesarios para los fines para los que fueron recogidos.</li>
+      <li><strong>Derecho a la limitación del tratamiento:</strong> a solicitar que suspendamos el tratamiento de sus datos en determinadas circunstancias.</li>
+      <li><strong>Derecho a la portabilidad de los datos:</strong> a recibir sus datos en un formato estructurado, de uso común y lectura mecánica.</li>
+      <li><strong>Derecho de oposición:</strong> a oponerse al tratamiento de sus datos por motivos relacionados con su situación particular.</li>
+    </ul>
 
-  <p>
-    Asimismo, si considera que sus derechos han sido vulnerados, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos:
-    <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.
-  </p>
+    <p>
+      Puede ejercer estos derechos enviando una solicitud por correo electrónico a <a href="mailto:contact@woofingapp.com">contact@woofingapp.com</a>, indicando el derecho que desea ejercer y adjuntando una copia de su DNI o documento identificativo equivalente.
+    </p>
 
-  <h2>Uso de cookies</h2>
+    <p>
+      Asimismo, cuando el tratamiento de sus datos esté basado en su consentimiento, tiene derecho a retirarlo en cualquier momento. La retirada del consentimiento será tan sencilla como su otorgamiento y no afectará a la licitud del tratamiento basado en el consentimiento previo a su retirada.
+    </p>
 
-  <p>
-    Nuestro sitio web utiliza cookies para mejorar la experiencia de navegación y obtener datos estadísticos. Para obtener información detallada sobre las cookies que utilizamos, su finalidad y cómo puede gestionarlas o desactivarlas, por favor, consulte nuestra Política de Cookies. Puede configurar sus preferencias a través del banner de consentimiento de cookies que aparece al visitar nuestro sitio web.
-  </p>
+    <p>
+      Asimismo, si considera que sus derechos han sido vulnerados, tiene derecho a presentar una reclamación ante la Agencia Española de Protección de Datos:
+      <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.
+    </p>
 
-  <h2>Medidas de seguridad</h2>
+    <h2>Uso de cookies</h2>
 
-  <p>
-    Woofing App ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de sus datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, de conformidad con lo establecido en el RGPD.
-  </p>
+    <p>
+      Nuestro sitio web utiliza cookies para mejorar la experiencia de navegación y obtener datos estadísticos. Para obtener información detallada sobre las cookies que utilizamos, su finalidad y cómo puede gestionarlas o desactivarlas, por favor, consulte nuestra Política de Cookies. Puede configurar sus preferencias a través del banner de consentimiento de cookies que aparece al visitar nuestro sitio web.
+    </p>
 
-  <h2>Modificaciones de la Política de Privacidad</h2>
+    <h2>Medidas de seguridad</h2>
 
-  <p>
-    Nos reservamos el derecho a modificar la presente política para adaptarla a futuras novedades legislativas o jurisprudenciales. En caso de producirse cambios significativos, se lo comunicaremos a través de nuestro sitio web o por correo electrónico.
-  </p>
+    <p>
+      Woofing App ha adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de sus datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, de conformidad con lo establecido en el RGPD.
+    </p>
 
-  <p class="updated">
-    <strong>Última actualización:</strong> 8 de mayo de 2026
-  </p>
+    <h2>Modificaciones de la Política de Privacidad</h2>
+
+    <p>
+      Nos reservamos el derecho a modificar la presente política para adaptarla a futuras novedades legislativas o jurisprudenciales. En caso de producirse cambios significativos, se lo comunicaremos a través de nuestro sitio web o por correo electrónico.
+    </p>
+
+    <p class="updated">
+      <strong>Última actualización:</strong> 8 de mayo de 2026
+    </p>
+
+  </main>
+
+  <!-- ENGLISH -->
+  <main id="contentEn" class="lang-content">
+
+    <h1>Privacy Policy — Woofing App</h1>
+
+    <p>
+      <strong>COMPANION METRICS, S.L</strong>, hereinafter "Woofing App", is committed to protecting the privacy and security of the personal data of its users and visitors. This Privacy Policy describes how we collect, use, retain and protect your personal information in compliance with Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 (GDPR) and Spanish Organic Law 3/2018 of 5 December (LOPDGDD).
+    </p>
+
+    <h2>Data Controller</h2>
+
+    <p>
+      <strong>Company Name:</strong> COMPANION METRICS, S.L<br />
+      <strong>Tax ID (NIF):</strong> B27570068<br />
+      <strong>Registered Address:</strong> Calle Fortuny, 37, bajo derecha, 28010, Madrid, Spain<br />
+      <strong>Company Registry Details:</strong> Commercial Registry of Madrid, S 8, H M 884590, I/A 1 (21/04/2026)<br />
+      <strong>Contact email:</strong> <a href="mailto:contact@woofingapp.com">contact@woofingapp.com</a>
+    </p>
+
+    <h2>Personal Data, Purposes and Legal Basis for Processing</h2>
+
+    <p>
+      We collect and process different categories of personal data depending on your interaction with us:
+    </p>
+
+    <h3>Users requesting Early Access or subscribing to the newsletter</h3>
+
+    <p>
+      <strong>Data processed:</strong> Email address and, where applicable, information about whether you have a pet, how many and what type: dog, cat, rabbit or other.
+    </p>
+
+    <p><strong>Purpose:</strong></p>
+    <ul>
+      <li>To manage your request for early access to the “Woofing App” application.</li>
+      <li>To keep you informed about the app's launch, news and relevant updates.</li>
+    </ul>
+
+    <p>
+      <strong>Legal Basis:</strong> Your express consent, pursuant to Art. 6.1.a GDPR, granted by ticking the privacy policy acceptance box and submitting the form.
+    </p>
+
+    <h3>Businesses or professionals contacting us for collaboration</h3>
+
+    <p>
+      <strong>Data processed:</strong> First name, surname, email address, phone number, subject and the content of your message.
+    </p>
+
+    <p><strong>Purpose:</strong></p>
+    <ul>
+      <li>To handle and manage your enquiry or collaboration proposal.</li>
+      <li>To maintain professional contact in order to assess potential business relationships.</li>
+    </ul>
+
+    <p>
+      <strong>Legal Basis:</strong> The implementation of pre-contractual measures at your request, pursuant to Art. 6.1.b GDPR, and our legitimate interest in attending to professionals who contact us, pursuant to Art. 6.1.f GDPR.
+    </p>
+
+    <h3>Persons contacting us through the contact form</h3>
+
+    <p>
+      This includes general information, press, support, collaborations and other enquiries.
+    </p>
+
+    <p>
+      <strong>Data processed:</strong> First name, surname, email address, phone number, subject and the content of your message.
+    </p>
+
+    <p><strong>Purpose:</strong></p>
+    <ul>
+      <li>To handle and manage your enquiry.</li>
+      <li>To address collaboration proposals, information requests, support queries and any other communication related to Woofing App.</li>
+    </ul>
+
+    <p>
+      <strong>Legal Basis:</strong> Your express consent, pursuant to Art. 6.1.a GDPR, granted by ticking the privacy policy acceptance box and submitting the form.
+    </p>
+
+    <h2>Data Retention Period</h2>
+
+    <p>
+      Your personal data will be retained for the period strictly necessary to fulfil the purposes for which it was collected:
+    </p>
+
+    <ul>
+      <li><strong>Early access and newsletter subscriptions:</strong> until you request to unsubscribe or withdraw your consent.</li>
+      <li><strong>Professional contacts:</strong> for the time necessary to manage your request and, thereafter, for the applicable legal limitation periods to address any potential liabilities.</li>
+      <li><strong>Contact form enquiries:</strong> for the time necessary to handle your enquiry and, thereafter, for the applicable legal limitation periods to address any potential liabilities.</li>
+    </ul>
+
+    <h2>Disclosure of Data to Third Parties</h2>
+
+    <p>
+      As a general rule, we will not transfer your personal data to third parties, unless we are legally required to do so, for example, to competent Public Authorities.
+    </p>
+
+    <p>
+      However, in order to provide certain services, we may need external providers, such as web hosting services, email delivery platforms, etc., to access your data. These third parties will act as Data Processors and their access will be governed by a contract that guarantees confidentiality and compliance with data protection regulations, in accordance with Article 28 of the GDPR.
+    </p>
+
+    <h2>International Data Transfers</h2>
+
+    <p>
+      As a general rule, we endeavour to ensure that our service providers are located within the European Economic Area (EEA). However, if it is necessary to transfer data to a provider located outside the EEA for the provision of a service, we will ensure that such transfer is carried out under one of the appropriate safeguards provided for in the GDPR, for example, by signing Standard Contractual Clauses approved by the European Commission, or based on an adequacy decision.
+    </p>
+
+    <h2>Rights of Data Subjects</h2>
+
+    <p>
+      You have the right to exercise the following rights regarding your personal data:
+    </p>
+
+    <ul>
+      <li><strong>Right of Access:</strong> to know what data we are processing about you.</li>
+      <li><strong>Right to Rectification:</strong> to request the correction of inaccurate data.</li>
+      <li><strong>Right to Erasure, or Right to be Forgotten:</strong> to request the deletion of your data when, among other reasons, it is no longer necessary for the purposes for which it was collected.</li>
+      <li><strong>Right to Restriction of Processing:</strong> to request that we suspend the processing of your data in certain circumstances.</li>
+      <li><strong>Right to Data Portability:</strong> to receive your data in a structured, commonly used and machine-readable format.</li>
+      <li><strong>Right to Object:</strong> to object to the processing of your data on grounds related to your particular situation.</li>
+    </ul>
+
+    <p>
+      You may exercise these rights by sending a request by email to <a href="mailto:contact@woofingapp.com">contact@woofingapp.com</a>, indicating the right you wish to exercise and attaching a copy of your national ID or equivalent identification document.
+    </p>
+
+    <p>
+      Furthermore, where the processing of your data is based on your consent, you have the right to withdraw it at any time. Withdrawing consent is as easy as giving it and does not affect the lawfulness of processing carried out prior to its withdrawal.
+    </p>
+
+    <p>
+      If you consider that your rights have been violated, you have the right to lodge a complaint with the Spanish Data Protection Agency:
+      <a href="https://www.aepd.es" target="_blank" rel="noopener noreferrer">www.aepd.es</a>.
+    </p>
+
+    <h2>Use of Cookies</h2>
+
+    <p>
+      Our website uses cookies to improve the browsing experience and obtain statistical data. For detailed information about the cookies we use, their purpose and how you can manage or disable them, please consult our Cookie Policy. You can set your preferences through the cookie consent banner displayed when you visit our website.
+    </p>
+
+    <h2>Security Measures</h2>
+
+    <p>
+      Woofing App has adopted the necessary technical and organisational measures to ensure the security of your personal data and prevent its alteration, loss, processing or unauthorised access, in accordance with the provisions of the GDPR.
+    </p>
+
+    <h2>Amendments to the Privacy Policy</h2>
+
+    <p>
+      We reserve the right to amend this policy to adapt it to future legislative or case law developments. In the event of significant changes, we will notify you through our website or by email.
+    </p>
+
+    <p class="updated">
+      <strong>Last updated:</strong> 8 May 2026
+    </p>
+
+  </main>
+
+  <script>
+    const btnEs = document.getElementById("btnEs");
+    const btnEn = document.getElementById("btnEn");
+    const contentEs = document.getElementById("contentEs");
+    const contentEn = document.getElementById("contentEn");
+    const backLink = document.getElementById("backLink");
+
+    function setPrivacyLang(lang) {
+      const isEs = lang === "es";
+
+      document.documentElement.lang = lang;
+
+      btnEs.classList.toggle("active", isEs);
+      btnEn.classList.toggle("active", !isEs);
+
+      contentEs.classList.toggle("active", isEs);
+      contentEn.classList.toggle("active", !isEs);
+
+      backLink.textContent = isEs ? "← Volver a Woofing" : "← Back to Woofing";
+
+      localStorage.setItem("woofing_language", lang);
+    }
+
+    btnEs.addEventListener("click", () => setPrivacyLang("es"));
+    btnEn.addEventListener("click", () => setPrivacyLang("en"));
+
+    const savedLang = localStorage.getItem("woofing_language") || "es";
+    setPrivacyLang(savedLang);
+  </script>
 
 </body>
 </html>
