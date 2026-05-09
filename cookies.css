@@ -1,0 +1,125 @@
+/* ============================================================
+   Woofing — Cookie Banner Styles
+   Banner bottom-left, limpio y coherente con la marca
+   ============================================================ */
+ 
+#cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 9999;
+  max-width: 380px;
+  width: calc(100% - 48px);
+ 
+  background: #ffffff;
+  border: 1px solid #e8e8e8;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  padding: 20px 24px;
+ 
+  /* Animación de entrada */
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+ 
+#cookie-banner[hidden] {
+  display: none !important;
+}
+ 
+#cookie-banner.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+ 
+#cookie-banner.hiding {
+  opacity: 0;
+  transform: translateY(16px);
+}
+ 
+/* Icono y título */
+.cookie-banner__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+ 
+.cookie-banner__icon {
+  font-size: 20px;
+  line-height: 1;
+}
+ 
+.cookie-banner__title {
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0;
+}
+ 
+/* Texto */
+.cookie-banner__text {
+  font-size: 13px;
+  line-height: 1.55;
+  color: #555;
+  margin: 0 0 16px 0;
+}
+ 
+.cookie-banner__text a {
+  color: #1a1a1a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+ 
+.cookie-banner__text a:hover {
+  color: #000;
+}
+ 
+/* Botones */
+.cookie-banner__actions {
+  display: flex;
+  gap: 10px;
+}
+ 
+.cookie-btn {
+  flex: 1;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+ 
+.cookie-btn:active {
+  transform: scale(0.97);
+}
+ 
+.cookie-btn--accept {
+  background: #1a1a1a;
+  color: #ffffff;
+}
+ 
+.cookie-btn--accept:hover {
+  background: #333;
+}
+ 
+.cookie-btn--reject {
+  background: #f2f2f2;
+  color: #444;
+}
+ 
+.cookie-btn--reject:hover {
+  background: #e8e8e8;
+}
+ 
+/* Mobile */
+@media (max-width: 480px) {
+  #cookie-banner {
+    bottom: 16px;
+    left: 16px;
+    width: calc(100% - 32px);
+  }
+}
