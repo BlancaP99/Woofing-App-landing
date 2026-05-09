@@ -5,31 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Woofing — Peluquerías Pet</title>
 
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-
-fbq('init', '2060550988146665');
-fbq('track', 'PageView');
-</script>
-
-<noscript>
-  <img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=2060550988146665&ev=PageView&noscript=1" />
-</noscript>
-<!-- End Meta Pixel Code -->
+<!-- Pixel gestionado por cookies.js tras consentimiento -->
 
 <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="cookies.css" />
 
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -44,8 +27,8 @@ fbq('track', 'PageView');
   --white: #ffffff;
   --ink: #1a0d2e;
   --muted: rgba(92,50,119,0.45);
---serif: 'Playfair Display', Georgia, serif;
---sans: 'Instrument Sans', sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans: 'Instrument Sans', sans-serif;
   --radius: 20px;
   --radius-sm: 12px;
 }
@@ -2142,8 +2125,22 @@ body::before {
 
 <footer class="footer">
   <div class="footer__brand">Woofing</div>
-  <p class="footer__copy" data-i18n="footer_copy">© 2026 Woofing App. Todos los derechos reservados.</p>
-  <a href="politica-privacidad.html" class="footer__link" data-i18n="footer_privacy">Política de privacidad</a>
+
+  <p class="footer__copy" data-i18n="footer_copy">
+    © 2026 Woofing App. Todos los derechos reservados.
+  </p>
+
+  <a href="politica-privacidad.html" class="footer__link" data-i18n="footer_privacy">
+    Política de privacidad
+  </a>
+
+  <a href="cookies.html" class="footer__link" data-i18n="footer_cookies">
+    Política de cookies
+  </a>
+
+  <a href="aviso_legal.html" class="footer__link" data-i18n="footer_legal">
+    Aviso legal
+  </a>
 </footer>
 
 <div class="modal-overlay" id="contactModal">
@@ -2207,6 +2204,32 @@ body::before {
     </form>
   </div>
 </div>
+
+<!-- COOKIE BANNER -->
+<div id="cookie-banner" hidden role="dialog" aria-label="Aviso de cookies">
+  <div class="cookie-banner__header">
+    <span class="cookie-banner__icon">🍪</span>
+    <p class="cookie-banner__title" data-i18n="cookie_banner_title">Usamos cookies</p>
+  </div>
+
+  <p class="cookie-banner__text" data-i18n="cookie_banner_text">
+    Usamos cookies de terceros (Meta Pixel) para medir el rendimiento de nuestras campañas.
+    Puedes aceptarlas o rechazarlas. Más info en nuestra
+    <a href="cookies.html">Política de cookies</a>.
+  </p>
+
+  <div class="cookie-banner__actions">
+    <button class="cookie-btn cookie-btn--reject" onclick="setConsent(false)" data-i18n="cookie_reject">
+      Rechazar
+    </button>
+
+    <button class="cookie-btn cookie-btn--accept" onclick="setConsent(true)" data-i18n="cookie_accept">
+      Aceptar
+    </button>
+  </div>
+</div>
+
+<script src="cookies.js"></script>
 
 <script>
 const FORMSPREE = "https://formspree.io/f/xojkooan";
@@ -2326,8 +2349,16 @@ const tr = {
     cta_title:"Únete a Woofing<br /><em>antes del lanzamiento</em>",
     cta_subtitle:"Estamos seleccionando las primeras peluquerías colaboradoras. Condiciones especiales para quienes se suman ahora.",
     cta_btn_primary:"Contactar ahora",
+
     footer_copy:"© 2026 Woofing App. Todos los derechos reservados.",
     footer_privacy:"Política de privacidad",
+    footer_cookies:"Política de cookies",
+    footer_legal:"Aviso legal",
+
+    cookie_banner_title:"Usamos cookies",
+    cookie_banner_text:'Usamos cookies de terceros (Meta Pixel) para medir el rendimiento de nuestras campañas. Puedes aceptarlas o rechazarlas. Más info en nuestra <a href="cookies.html">Política de cookies</a>.',
+    cookie_reject:"Rechazar",
+    cookie_accept:"Aceptar",
 
     modal_title:"Hablemos",
     modal_subtitle:"Cuéntanos sobre tu peluquería pet y nos ponemos en contacto contigo pronto.",
@@ -2458,8 +2489,16 @@ const tr = {
     cta_title:"Join Woofing<br /><em>before launch</em>",
     cta_subtitle:"We are selecting the first partner grooming salons. Special conditions for those who join now.",
     cta_btn_primary:"Contact us now",
+
     footer_copy:"© 2026 Woofing App. All rights reserved.",
     footer_privacy:"Privacy Policy",
+    footer_cookies:"Cookie Policy",
+    footer_legal:"Legal Notice",
+
+    cookie_banner_title:"We use cookies",
+    cookie_banner_text:'We use third-party cookies (Meta Pixel) to measure the performance of our campaigns. You can accept or reject them. More info in our <a href="cookies.html">Cookie Policy</a>.',
+    cookie_reject:"Reject",
+    cookie_accept:"Accept",
 
     modal_title:"Let's talk",
     modal_subtitle:"Tell us about your pet grooming salon and we’ll get in touch with you soon.",
