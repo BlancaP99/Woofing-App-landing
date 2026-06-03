@@ -1414,15 +1414,43 @@
             step.classList.add("active");
         }
  
-        document.getElementById("openPopup").addEventListener("click", () => {
+        function openPopupAtStep(step, trackingName, trackingCategory) {
             overlay.classList.add("active");
             document.body.classList.add("modal-open");
-            showStep(stepAudience);
- 
+            showStep(step);
+
             trackMetaEvent("ViewContent", {
-                content_name: "Popup segmentado Woofing",
-                content_category: "Landing CTA"
+                content_name: trackingName,
+                content_category: trackingCategory
             });
+        }
+
+        const openOwnerCta = document.getElementById("openOwnerCta");
+        const openBusinessCta = document.getElementById("openBusinessCta");
+
+        if (openOwnerCta) {
+            openOwnerCta.addEventListener("click", () => {
+                openPopupAtStep(stepOwner, "Formulario acceso anticipado dueño", "Landing CTA Owner");
+                setTimeout(() => emailInput.focus(), 80);
+
+                trackMetaCustomEvent("AudienceSelected", {
+                    audience_type: "pet_owner",
+                    language: currentLang
+                });
+            });
+        }
+
+        if (openBusinessCta) {
+            openBusinessCta.addEventListener("click", () => {
+                openPopupAtStep(stepBusiness, "Selector comercio Woofing", "Landing CTA Business");
+                setTimeout(() => businessType.focus(), 80);
+
+                trackMetaCustomEvent("AudienceSelected", {
+                    audience_type: "business",
+                    language: currentLang
+                });
+            });
+        }
         });
  
         function closePopup() {
