@@ -315,6 +315,25 @@
             box-shadow: 0 20px 48px rgba(92, 50, 119, 0.34);
         }
  
+        .hero__cta-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-cta--secondary {
+            color: var(--brand);
+            background: #fff;
+            border: 1.5px solid rgba(92, 50, 119, 0.22);
+            box-shadow: 0 12px 32px rgba(92, 50, 119, 0.10);
+        }
+
+        .btn-cta--secondary:hover {
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 18px 40px rgba(92, 50, 119, 0.16);
+        }
+ 
         .hero__cta-note {
             font-size: 13px;
             color: var(--muted);
@@ -846,6 +865,10 @@
                 justify-content: center;
             }
  
+            .hero__cta-group {
+                justify-content: center;
+            }
+ 
             .mockup-img {
                 height: 410px;
             }
@@ -891,6 +914,15 @@
             .hero__mini-point {
                 width: 100%;
                 text-align: center;
+            }
+ 
+            .hero__cta-group {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .hero__cta-group .btn-cta {
+                width: 100%;
             }
  
             .checkbox-group-inline {
