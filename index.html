@@ -931,14 +931,13 @@
  
         <div class="hero__half">
             <div class="hero__content">
-                <div class="hero__eyebrow" data-i18n="hero_eyebrow">La infraestructura pet que faltaba</div>
+                <div class="hero__eyebrow" data-i18n="hero_eyebrow">Lanzamiento · Septiembre 2026</div>
  
                 <h1 class="hero__tagline" data-i18n="hero_tagline">
                     La app que conecta<br />
                     <em>dueños, mascotas y comercios</em>
                 </h1>
  
-                <div class="hero__launch" data-i18n="hero_launch">Lanzamiento · Septiembre 2026</div>
  
                 <p class="hero__subtitle" data-i18n="hero_subtitle">
                     Woofing centraliza información real de cada mascota para mejorar reservas, compras, seguimiento y comunicación en toda la industria pet.
@@ -950,8 +949,11 @@
                     <span class="hero__mini-point" data-i18n="point_data">Con datos reales</span>
                 </div>
  
-                <button class="btn-cta" id="openPopup" type="button" data-i18n="cta_button">Entrar en Woofing</button>
-                <p class="hero__cta-note" data-i18n="cta_note">Elige si eres dueño o profesional y te llevamos al lugar correcto.</p>
+                <div class="hero__cta-group">
+                    <button class="btn-cta" id="openOwnerCta" type="button" data-i18n="cta_owner">Soy dueño pet</button>
+                    <button class="btn-cta btn-cta--secondary" id="openBusinessCta" type="button" data-i18n="cta_business">Soy comercio</button>
+                </div>
+                <p class="hero__cta-note" data-i18n="cta_note">Elige tu perfil y te llevamos directamente al formulario correcto.</p>
             </div>
         </div>
     </main>
@@ -1171,8 +1173,8 @@
                 point_business: "Para comercios",
                 point_data: "Con datos reales",
                 cta_button: "Entrar en Woofing",
-                cta_owner: "Soy dueño",
-                cta_business: "Soy un comercio",
+                cta_owner: "Soy dueño pet",
+                cta_business: "Soy comercio",
                 cta_note: "Elige tu perfil y te llevamos directamente al formulario correcto.",
  
                 footer_title: "Regístrate para recibir noticias y actualizaciones.",
@@ -1249,7 +1251,7 @@
                 point_business: "For businesses",
                 point_data: "With real data",
                 cta_button: "Enter Woofing",
-                cta_owner: "I am an owner",
+                cta_owner: "I am a pet owner",
                 cta_business: "I am a business",
                 cta_note: "Choose whether you are an owner or a professional and we'll take you to the right place.",
  
