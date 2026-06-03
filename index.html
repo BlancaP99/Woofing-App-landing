@@ -1428,29 +1428,30 @@
         const openOwnerCta = document.getElementById("openOwnerCta");
         const openBusinessCta = document.getElementById("openBusinessCta");
 
-        if (openOwnerCta) {
-            openOwnerCta.addEventListener("click", () => {
-                openPopupAtStep(stepOwner, "Formulario acceso anticipado dueño", "Landing CTA Owner");
-                setTimeout(() => emailInput.focus(), 80);
+        openOwnerCta.addEventListener("click", () => {
+            openPopupAtStep(stepOwner, "Formulario acceso anticipado dueño", "Landing CTA Owner");
 
-                trackMetaCustomEvent("AudienceSelected", {
-                    audience_type: "pet_owner",
-                    language: currentLang
-                });
+            setTimeout(() => {
+                emailInput.focus();
+            }, 80);
+
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "pet_owner",
+                language: currentLang
             });
-        }
+        });
 
-        if (openBusinessCta) {
-            openBusinessCta.addEventListener("click", () => {
-                openPopupAtStep(stepBusiness, "Selector comercio Woofing", "Landing CTA Business");
-                setTimeout(() => businessType.focus(), 80);
+        openBusinessCta.addEventListener("click", () => {
+            openPopupAtStep(stepBusiness, "Selector comercio Woofing", "Landing CTA Business");
 
-                trackMetaCustomEvent("AudienceSelected", {
-                    audience_type: "business",
-                    language: currentLang
-                });
+            setTimeout(() => {
+                businessType.focus();
+            }, 80);
+
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "business",
+                language: currentLang
             });
-        }
         });
  
         function closePopup() {
