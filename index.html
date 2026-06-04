@@ -1560,19 +1560,18 @@
             try {
                 const payload = {
                     email,
-                    _subject: translations[currentLang].popup_subject,
-                    form_type: "popup_acceso_anticipado_dueno",
-                    user_segment: "pet_owner",
-                    language: currentLang,
-                    has_pet: hasPet
+                    form_type: "owner",
+                    origen_formulario: "Acceso anticipado landing",
+                    language: currentLang.toUpperCase(),
+                    has_pet: hasPet === "yes" ? "Sí" : hasPet === "no" ? "No" : ""
                 };
- 
+
                 if (hasPet === "yes") {
                     payload.pet_count = petCount;
                     payload.pet_types = petTypes;
                 }
- 
-                const response = await sendToFormspree(payload);
+
+                const response = await sendToBrevo(payload);
  
                 if (response.ok) {
                     trackMetaEvent("Lead", {
