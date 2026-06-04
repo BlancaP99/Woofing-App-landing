@@ -1181,7 +1181,7 @@
     <script src="cookies.js"></script>
  
     <script>
-        const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojkooan";
+        const BREVO_ENDPOINT = "/api/brevo-contact";
         const LANG_KEY = "woofing_language";
  
         const BUSINESS_ROUTES = {
@@ -1369,8 +1369,8 @@
             }
         }
  
-        async function sendToFormspree(data) {
-            return await fetch(FORMSPREE_ENDPOINT, {
+        async function sendToBrevo(data) {
+            return await fetch(BREVO_ENDPOINT, {
                 method: "POST",
                 headers: {
                     "Accept": "application/json",
@@ -1658,11 +1658,11 @@
             footerMsg.textContent = "";
  
             try {
-                const response = await sendToFormspree({
+                const response = await sendToBrevo({
                     email,
-                    _subject: translations[currentLang].footer_subject,
-                    form_type: "newsletter_footer",
-                    language: currentLang
+                    form_type: "newsletter",
+                    origen_formulario: "Newsletter footer",
+                    language: currentLang.toUpperCase()
                 });
  
                 if (response.ok) {
