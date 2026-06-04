@@ -2232,7 +2232,7 @@ body::before {
 <script src="cookies.js"></script>
 
 <script>
-const FORMSPREE = "https://formspree.io/f/xojkooan";
+const BREVO_ENDPOINT = "/api/brevo-contact";
 const LANG_KEY = "woofing_language";
 
 function trackMetaEvent(eventName, params = {}) {
@@ -2640,22 +2640,23 @@ form.addEventListener("submit", async e => {
   formMsg.textContent = "";
 
   try {
-    const res = await fetch(FORMSPREE, {
+    const res = await fetch(BREVO_ENDPOINT,{
       method:"POST",
       headers:{
         "Accept":"application/json",
         "Content-Type":"application/json"
       },
-      body: JSON.stringify({
+      body:JSON.stringify({
+        form_type:"business",
         nombre,
         apellido,
         email,
         telefono,
         asunto,
         mensaje,
-        language: lang,
-        form_type: "pitch_peluquerias",
-        _subject: "Nuevo contacto peluquería - Woofing Pitch"
+        tipo_comercio:"Peluquería pet",
+        origen_formulario:"Landing peluquerías",
+        language:lang.toUpperCase()
       })
     });
 
@@ -2663,8 +2664,8 @@ form.addEventListener("submit", async e => {
       trackMetaEvent("Lead", {
         content_name: "Contacto peluquería",
         content_category: "B2B Lead",
-        business_type: "peluqueria",
-        page_type: "pitch_peluquerias",
+        business_type: "peluqueria_pet",
+        page_type: "landing_peluquerias",
         language: lang
       });
 
