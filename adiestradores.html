@@ -2249,7 +2249,7 @@ body::before {
 <script src="cookies.js"></script>
 
 <script>
-const FORMSPREE = "https://formspree.io/f/xojkooan";
+const BREVO_ENDPOINT = "/api/brevo-contact";
 const LANG_KEY = "woofing_language";
 
 function trackMetaEvent(eventName, params = {}) {
@@ -2653,22 +2653,23 @@ form.addEventListener("submit", async e => {
   formMsg.textContent = "";
 
   try {
-    const res = await fetch(FORMSPREE, {
+    const res = await fetch(BREVO_ENDPOINT,{
       method:"POST",
       headers:{
         "Accept":"application/json",
         "Content-Type":"application/json"
       },
-      body: JSON.stringify({
+      body:JSON.stringify({
+        form_type:"business",
         nombre,
         apellido,
         email,
         telefono,
         asunto,
         mensaje,
-        language: lang,
-        form_type: "pitch_adiestradores",
-        _subject: "Nuevo contacto adiestrador - Woofing Pitch"
+        tipo_comercio:"Adiestrador",
+        origen_formulario:"Landing adiestradores",
+        language:lang.toUpperCase()
       })
     });
 
@@ -2677,7 +2678,7 @@ form.addEventListener("submit", async e => {
         content_name: "Contacto adiestrador",
         content_category: "B2B Lead",
         business_type: "adiestrador",
-        page_type: "pitch_adiestradores",
+        page_type: "landing_adiestradores",
         language: lang
       });
 
