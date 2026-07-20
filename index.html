@@ -340,6 +340,177 @@
             margin-top: -10px;
         }
  
+        /* ── PRODUCT OVERVIEW ── */
+        .product-overview {
+            position: relative;
+            padding: 112px 56px 124px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .product-overview::before {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(92, 50, 119, 0.08) 0%, transparent 70%);
+            left: -250px;
+            top: 15%;
+            pointer-events: none;
+        }
+
+        .product-overview__inner {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 1240px);
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin: 0 auto 72px;
+            text-align: center;
+        }
+
+        .section-heading__eyebrow {
+            display: block;
+            margin-bottom: 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--brand-light);
+        }
+
+        .section-heading__title {
+            font-family: var(--font-display);
+            font-size: clamp(34px, 4.2vw, 58px);
+            line-height: 1.02;
+            font-weight: 400;
+            letter-spacing: -0.035em;
+            color: var(--brand);
+        }
+
+        .section-heading__text {
+            max-width: 640px;
+            margin: 22px auto 0;
+            font-size: clamp(16px, 1.4vw, 19px);
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 26px;
+            align-items: stretch;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 34px 30px 32px;
+            background: var(--bg);
+            border: 1px solid rgba(92, 50, 119, 0.10);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 60px rgba(92, 50, 119, 0.10);
+        }
+
+        .product-card__visual {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            min-height: 430px;
+            margin: -4px -4px 24px;
+            overflow: hidden;
+        }
+
+        .product-card__image {
+            display: block;
+            width: auto;
+            height: 420px;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 24px 35px rgba(92, 50, 119, 0.13));
+            transition: transform 0.35s ease;
+        }
+
+        .product-card:hover .product-card__image {
+            transform: translateY(-4px) scale(1.012);
+        }
+
+        .product-card__label {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            margin-bottom: 14px;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: var(--soft);
+            border: 1px solid rgba(92, 50, 119, 0.12);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--brand);
+        }
+
+        .product-card__title {
+            margin-bottom: 12px;
+            font-family: var(--font-display);
+            font-size: clamp(25px, 2.2vw, 32px);
+            line-height: 1.08;
+            font-weight: 400;
+            letter-spacing: -0.025em;
+            color: var(--brand);
+        }
+
+        .product-card__text {
+            font-size: 15px;
+            line-height: 1.62;
+            color: var(--muted);
+        }
+
+        /* ── VALUE STRIP ── */
+        .value-strip {
+            padding: 104px 56px;
+            background: var(--brand);
+            color: #fff;
+        }
+
+        .value-strip__inner {
+            width: min(100%, 1080px);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .value-strip__title {
+            max-width: 820px;
+            margin: 0 auto;
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4.2vw, 56px);
+            line-height: 1.04;
+            font-weight: 400;
+            letter-spacing: -0.035em;
+        }
+
+        .value-strip__text {
+            max-width: 720px;
+            margin: 24px auto 0;
+            font-size: clamp(16px, 1.45vw, 19px);
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
         /* ── FOOTER ── */
         .footer {
             background-color: var(--bg);
@@ -799,6 +970,24 @@
         }
  
         /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .product-grid {
+                gap: 18px;
+            }
+
+            .product-card {
+                padding: 28px 22px 28px;
+            }
+
+            .product-card__visual {
+                min-height: 350px;
+            }
+
+            .product-card__image {
+                height: 345px;
+            }
+        }
+
         @media (max-width: 980px) {
             .hero {
                 grid-template-columns: 1fr;
@@ -822,6 +1011,46 @@
  
             .mockup-img {
                 height: 520px;
+            }
+
+            .product-overview {
+                padding: 88px 28px 96px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                max-width: 620px;
+                margin: 0 auto;
+                gap: 22px;
+            }
+
+            .product-card {
+                display: grid;
+                grid-template-columns: minmax(210px, 0.85fr) minmax(0, 1fr);
+                grid-template-rows: auto auto 1fr;
+                column-gap: 30px;
+                align-items: center;
+            }
+
+            .product-card__visual {
+                grid-column: 1;
+                grid-row: 1 / span 3;
+                min-height: 360px;
+                margin: -4px 0;
+            }
+
+            .product-card__image {
+                height: 350px;
+            }
+
+            .product-card__label,
+            .product-card__title,
+            .product-card__text {
+                grid-column: 2;
+            }
+
+            .value-strip {
+                padding: 88px 28px;
             }
         }
  
@@ -872,6 +1101,32 @@
             .mockup-img {
                 height: 410px;
             }
+
+            .product-overview {
+                padding: 72px 24px 78px;
+            }
+
+            .section-heading {
+                margin-bottom: 48px;
+            }
+
+            .product-card {
+                display: flex;
+                padding: 28px 24px 30px;
+            }
+
+            .product-card__visual {
+                min-height: 330px;
+                margin: -8px -4px 18px;
+            }
+
+            .product-card__image {
+                height: 325px;
+            }
+
+            .value-strip {
+                padding: 72px 24px;
+            }
  
             .footer {
                 padding: 48px 24px 40px;
@@ -909,6 +1164,14 @@
  
             .mockup-img {
                 height: 360px;
+            }
+
+            .product-card__visual {
+                min-height: 290px;
+            }
+
+            .product-card__image {
+                height: 285px;
             }
  
             .hero__mini-point {
@@ -963,33 +1226,84 @@
  
         <div class="hero__half">
             <div class="hero__content">
-                <div class="hero__eyebrow" data-i18n="hero_eyebrow">Lanzamiento · Septiembre 2026</div>
+                <div class="hero__eyebrow" data-i18n="hero_eyebrow">Próximamente en Madrid y toda España</div>
  
                 <h1 class="hero__tagline" data-i18n="hero_tagline">
-                    Todo lo que tu mascota necesita,<br />
-                    <em>en un solo lugar</em>
+                    Todo lo que necesita tu mascota,<br />
+                    <em>en una sola app</em>
                 </h1>
  
  
                 <p class="hero__subtitle" data-i18n="hero_subtitle">
-                    Tu veterinario, el paseador, tus tiendas favoritas y los servicios que cuidan de tu mascota. Todo conectado en Woofing.
+                    Reserva servicios para tu mascota en Madrid, descubre productos con envío a toda España y guarda toda su información en un mismo lugar.
                 </p>
  
-                <div class="hero__mini-points">
-                    <span class="hero__mini-point" data-i18n="point_owner">Para dueños</span>
-                    <span class="hero__mini-point" data-i18n="point_business">Para comercios</span>
-                    <span class="hero__mini-point" data-i18n="point_data">Con datos reales</span>
-                </div>
- 
                 <div class="hero__cta-group">
-                    <button class="btn-cta" id="openOwnerCta" type="button" data-i18n="cta_owner">Soy dueño pet</button>
-                    <button class="btn-cta btn-cta--secondary" id="openBusinessCta" type="button" data-i18n="cta_business">Soy comercio</button>
+                    <button class="btn-cta" id="openOwnerCta" type="button" data-i18n="cta_owner">Quiero acceso anticipado</button>
+                    <button class="btn-cta btn-cta--secondary" id="openBusinessCta" type="button" data-i18n="cta_business">Tengo un negocio pet</button>
                 </div>
-                <p class="hero__cta-note" data-i18n="cta_note">Elige tu perfil y te llevamos directamente al formulario correcto.</p>
             </div>
         </div>
     </main>
  
+    <!-- TODO CONECTADO -->
+    <section class="product-overview" aria-labelledby="productOverviewTitle">
+        <div class="product-overview__inner">
+            <div class="section-heading">
+                <span class="section-heading__eyebrow" data-i18n="overview_eyebrow">Dentro de Woofing</span>
+                <h2 class="section-heading__title" id="productOverviewTitle" data-i18n="overview_title">Todo conectado en Woofing</h2>
+                <p class="section-heading__text" data-i18n="overview_text">
+                    Servicios, productos e información personalizada para cuidar mejor de tu mascota, todo desde una sola app.
+                </p>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-card__visual">
+                        <img src="IMAGES/phone-3.png" alt="Reservas de servicios en Woofing" class="product-card__image" />
+                    </div>
+                    <span class="product-card__label" data-i18n="services_label">Disponible en Madrid</span>
+                    <h3 class="product-card__title" data-i18n="services_title">Reserva servicios</h3>
+                    <p class="product-card__text" data-i18n="services_text">
+                        Encuentra y reserva peluquerías, paseadores, guarderías, hoteles y otros profesionales para tu mascota en Madrid.
+                    </p>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-card__visual">
+                        <img src="IMAGES/phone-4.png" alt="Productos para mascotas en Woofing" class="product-card__image" />
+                    </div>
+                    <span class="product-card__label" data-i18n="products_label">Envíos a toda España</span>
+                    <h3 class="product-card__title" data-i18n="products_title">Compra productos</h3>
+                    <p class="product-card__text" data-i18n="products_text">
+                        Descubre productos para tu mascota y recíbelos en casa con envíos a toda España.
+                    </p>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-card__visual">
+                        <img src="IMAGES/phone-5.png" alt="Gestión del perfil de mascota en Woofing" class="product-card__image" />
+                    </div>
+                    <span class="product-card__label" data-i18n="profile_label">Un perfil por mascota</span>
+                    <h3 class="product-card__title" data-i18n="profile_title">Gestiona su perfil</h3>
+                    <p class="product-card__text" data-i18n="profile_text">
+                        Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPUESTA DE VALOR -->
+    <section class="value-strip">
+        <div class="value-strip__inner">
+            <h2 class="value-strip__title" data-i18n="value_title">Una app pensada para el día a día real de tu mascota</h2>
+            <p class="value-strip__text" data-i18n="value_text">
+                Desde encontrar un servicio hasta comprar productos o tener organizada toda su información, Woofing reúne en un solo lugar lo que antes estaba repartido entre distintas plataformas.
+            </p>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="footer" id="footer">
         <p class="footer__title" data-i18n="footer_title">Regístrate para recibir noticias y actualizaciones.</p>
@@ -1197,17 +1511,32 @@
             es: {
                 contact_link: "Contacto",
  
-                hero_eyebrow: "Lanzamiento · Septiembre 2026",
-                hero_tagline: "Todo lo que tu mascota necesita,<br /><em>en un solo lugar</em>",
+                hero_eyebrow: "Próximamente en Madrid y toda España",
+                hero_tagline: "Todo lo que necesita tu mascota,<br /><em>en una sola app</em>",
                 hero_launch: "",
-                hero_subtitle: "Tu veterinario, el paseador, tus tiendas favoritas y los servicios que cuidan de tu mascota. Todo conectado en Woofing.",
+                hero_subtitle: "Reserva servicios para tu mascota en Madrid, descubre productos con envío a toda España y guarda toda su información en un mismo lugar.",
                 point_owner: "Para dueños",
                 point_business: "Para comercios",
                 point_data: "Con datos reales",
                 cta_button: "Entrar en Woofing",
-                cta_owner: "Soy dueño pet",
-                cta_business: "Soy comercio",
+                cta_owner: "Quiero acceso anticipado",
+                cta_business: "Tengo un negocio pet",
                 cta_note: "Elige tu perfil y te llevamos directamente al formulario correcto.",
+
+                overview_eyebrow: "Dentro de Woofing",
+                overview_title: "Todo conectado en Woofing",
+                overview_text: "Servicios, productos e información personalizada para cuidar mejor de tu mascota, todo desde una sola app.",
+                services_label: "Disponible en Madrid",
+                services_title: "Reserva servicios",
+                services_text: "Encuentra y reserva peluquerías, paseadores, guarderías, hoteles y otros profesionales para tu mascota en Madrid.",
+                products_label: "Envíos a toda España",
+                products_title: "Compra productos",
+                products_text: "Descubre productos para tu mascota y recíbelos en casa con envíos a toda España.",
+                profile_label: "Un perfil por mascota",
+                profile_title: "Gestiona su perfil",
+                profile_text: "Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.",
+                value_title: "Una app pensada para el día a día real de tu mascota",
+                value_text: "Desde encontrar un servicio hasta comprar productos o tener organizada toda su información, Woofing reúne en un solo lugar lo que antes estaba repartido entre distintas plataformas.",
  
                 footer_title: "Regístrate para recibir noticias y actualizaciones.",
                 footer_submit: "Suscribirme",
@@ -1275,17 +1604,32 @@
             en: {
                 contact_link: "Contact",
  
-                hero_eyebrow: "Launching · September 2026",
-                hero_tagline: "Everything your pet needs,<br /><em>in one place</em>",
+                hero_eyebrow: "Coming soon in Madrid and across Spain",
+                hero_tagline: "Everything your pet needs,<br /><em>in one app</em>",
                 hero_launch: "",
-                hero_subtitle: "Your vet, your dog walker, your favourite stores and the services that care for your pet. Everything connected in Woofing.",
+                hero_subtitle: "Book services for your pet in Madrid, discover products delivered across Spain and keep all their information in one place.",
                 point_owner: "For owners",
                 point_business: "For businesses",
                 point_data: "With real data",
                 cta_button: "Enter Woofing",
-                cta_owner: "I am a pet owner",
-                cta_business: "I am a business",
+                cta_owner: "Get early access",
+                cta_business: "I run a pet business",
                 cta_note: "Choose whether you are an owner or a professional and we'll take you to the right place.",
+
+                overview_eyebrow: "Inside Woofing",
+                overview_title: "Everything connected in Woofing",
+                overview_text: "Services, products and personalised information to help you care for your pet, all from one app.",
+                services_label: "Available in Madrid",
+                services_title: "Book services",
+                services_text: "Find and book groomers, dog walkers, daycares, hotels and other professionals for your pet in Madrid.",
+                products_label: "Delivery across Spain",
+                products_title: "Shop products",
+                products_text: "Discover products for your pet and have them delivered to your home anywhere in Spain.",
+                profile_label: "One profile per pet",
+                profile_title: "Manage their profile",
+                profile_text: "Keep their information, needs and important details in a profile designed to have everything close at hand.",
+                value_title: "An app designed for your pet's real everyday life",
+                value_text: "From finding a service to shopping for products or keeping all their information organised, Woofing brings together what used to be spread across different platforms.",
  
                 footer_title: "Sign up to receive news and updates.",
                 footer_submit: "Subscribe",
