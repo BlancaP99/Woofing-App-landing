@@ -1,0 +1,2037 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Woofing App</title>
+    <meta name="facebook-domain-verification" content="vvmm4t24tcje7qn5q7zajcvw2ddh5j" />
+ 
+    <!-- ❌ PIXEL ELIMINADO DE AQUÍ — ahora lo gestiona cookies.js -->
+ 
+    <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+ 
+    <!-- ✅ COOKIE BANNER CSS -->
+    <link rel="stylesheet" href="cookies.css" />
+ 
+    <style>
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+ 
+        :root {
+            --brand: #5c3277;
+            --brand-light: #7b45a0;
+            --bg: #F8F9FA;
+            --white: #ffffff;
+            --soft: rgba(92, 50, 119, 0.07);
+            --soft-strong: rgba(92, 50, 119, 0.12);
+            --line: rgba(92, 50, 119, 0.18);
+            --muted: rgba(92, 50, 119, 0.58);
+            --font: 'Instrument Sans', sans-serif;
+            --font-display: 'Playfair Display', Georgia, serif;
+        }
+ 
+        html, body {
+            font-family: var(--font);
+            background-color: var(--bg);
+            color: var(--brand);
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+ 
+        body.modal-open {
+            overflow: hidden;
+        }
+ 
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+ 
+        /* ── HEADER ── */
+        .header {
+            width: 100%;
+            padding: 24px 56px;
+            background-color: rgba(248, 249, 250, 0.92);
+            backdrop-filter: blur(14px);
+            position: relative;
+            z-index: 20;
+        }
+ 
+        .nav {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+ 
+        .logo-img {
+            height: 68px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+ 
+        .nav__controls {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+ 
+        .nav__menu {
+            display: flex;
+            align-items: center;
+        }
+ 
+        .nav__link {
+            font-family: var(--font);
+            font-weight: 500;
+            font-size: 13px;
+            color: var(--brand);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: opacity 0.2s;
+        }
+ 
+        .nav__link:hover {
+            opacity: 0.55;
+        }
+ 
+        .lang-switch {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--font);
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+ 
+        .lang-switch__btn {
+            background: none;
+            border: none;
+            color: var(--brand);
+            cursor: pointer;
+            font: inherit;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+        }
+ 
+        .lang-switch__btn.active {
+            opacity: 1;
+            font-weight: 700;
+        }
+ 
+        .lang-switch__btn:hover {
+            opacity: 0.75;
+        }
+ 
+        .lang-switch__divider {
+            opacity: 0.35;
+        }
+ 
+        /* ── HERO ── */
+        .hero {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            min-height: calc(100vh - 116px);
+            padding: 32px 56px 72px;
+            overflow: hidden;
+        }
+ 
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 680px;
+            height: 680px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(92, 50, 119, 0.10) 0%, transparent 68%);
+            left: -240px;
+            bottom: -220px;
+            pointer-events: none;
+        }
+ 
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(179, 136, 212, 0.14) 0%, transparent 70%);
+            right: -160px;
+            top: -120px;
+            pointer-events: none;
+        }
+ 
+        .hero__half {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+ 
+        .mockup-img {
+            height: min(78vh, 780px);
+            width: auto;
+            object-fit: contain;
+            display: block;
+            filter: drop-shadow(0 28px 60px rgba(92, 50, 119, 0.13));
+        }
+ 
+        .hero__content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+            gap: 22px;
+            max-width: 610px;
+        }
+ 
+        .hero__eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            background: var(--soft);
+            border: 1px solid rgba(92, 50, 119, 0.14);
+            color: var(--brand);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            padding: 8px 15px;
+            border-radius: 999px;
+        }
+ 
+        .hero__eyebrow::before {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--brand);
+            animation: pulseDot 2s ease-in-out infinite;
+        }
+ 
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.45; transform: scale(1.35); }
+        }
+ 
+        .hero__tagline {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(38px, 5.1vw, 72px);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            color: var(--brand);
+        }
+ 
+        .hero__tagline em {
+            font-style: italic;
+            color: var(--brand-light);
+        }
+ 
+        .hero__launch {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            width: fit-content;
+            background: rgba(92, 50, 119, 0.10);
+            border: 1px solid rgba(92, 50, 119, 0.16);
+            color: var(--brand);
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 10px 16px;
+            border-radius: 999px;
+            margin-top: -8px;
+        }
+ 
+        .hero__subtitle {
+            font-size: clamp(16px, 1.4vw, 20px);
+            line-height: 1.55;
+            color: var(--muted);
+            max-width: 520px;
+        }
+ 
+        .hero__mini-points {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin-top: 2px;
+        }
+ 
+        .hero__mini-point {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--brand);
+            background: rgba(255, 255, 255, 0.68);
+            border: 1px solid rgba(92, 50, 119, 0.13);
+            border-radius: 999px;
+            padding: 9px 13px;
+        }
+ 
+        /* ── CTA BUTTON ── */
+        .btn-cta {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-family: var(--font);
+            font-weight: 700;
+            font-size: 15px;
+            color: #fff;
+            background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+            border: none;
+            border-radius: 999px;
+            padding: 17px 34px;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            box-shadow: 0 14px 38px rgba(92, 50, 119, 0.28);
+            transition: opacity 0.2s, transform 0.18s, box-shadow 0.18s;
+        }
+ 
+        .btn-cta::after {
+            content: "→";
+            font-size: 18px;
+            line-height: 1;
+            transform: translateY(-1px);
+        }
+ 
+        .btn-cta:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 48px rgba(92, 50, 119, 0.34);
+        }
+ 
+        .hero__cta-group {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn-cta--secondary {
+            color: var(--brand);
+            background: #fff;
+            border: 1.5px solid rgba(92, 50, 119, 0.22);
+            box-shadow: 0 12px 32px rgba(92, 50, 119, 0.10);
+        }
+
+        .btn-cta--secondary:hover {
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 18px 40px rgba(92, 50, 119, 0.16);
+        }
+ 
+        .hero__cta-note {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: -10px;
+        }
+ 
+        /* ── PRODUCT OVERVIEW ── */
+        .product-overview {
+            position: relative;
+            padding: 112px 56px 124px;
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .product-overview::before {
+            content: "";
+            position: absolute;
+            width: 520px;
+            height: 520px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(92, 50, 119, 0.08) 0%, transparent 70%);
+            left: -250px;
+            top: 15%;
+            pointer-events: none;
+        }
+
+        .product-overview__inner {
+            position: relative;
+            z-index: 1;
+            width: min(100%, 1240px);
+            margin: 0 auto;
+        }
+
+        .section-heading {
+            max-width: 720px;
+            margin: 0 auto 72px;
+            text-align: center;
+        }
+
+        .section-heading__eyebrow {
+            display: block;
+            margin-bottom: 14px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--brand-light);
+        }
+
+        .section-heading__title {
+            font-family: var(--font-display);
+            font-size: clamp(34px, 4.2vw, 58px);
+            line-height: 1.02;
+            font-weight: 400;
+            letter-spacing: -0.035em;
+            color: var(--brand);
+        }
+
+        .section-heading__text {
+            max-width: 640px;
+            margin: 22px auto 0;
+            font-size: clamp(16px, 1.4vw, 19px);
+            line-height: 1.6;
+            color: var(--muted);
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 26px;
+            align-items: stretch;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            padding: 34px 30px 32px;
+            background: var(--bg);
+            border: 1px solid rgba(92, 50, 119, 0.10);
+            border-radius: 28px;
+            overflow: hidden;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 24px 60px rgba(92, 50, 119, 0.10);
+        }
+
+        .product-card__visual {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            min-height: 430px;
+            margin: -4px -4px 24px;
+            overflow: hidden;
+        }
+
+        .product-card__image {
+            display: block;
+            width: auto;
+            height: 420px;
+            max-width: 100%;
+            object-fit: contain;
+            filter: drop-shadow(0 24px 35px rgba(92, 50, 119, 0.13));
+            transition: transform 0.35s ease;
+        }
+
+        .product-card:hover .product-card__image {
+            transform: translateY(-4px) scale(1.012);
+        }
+
+        .product-card__label {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            margin-bottom: 14px;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: var(--soft);
+            border: 1px solid rgba(92, 50, 119, 0.12);
+            font-size: 11px;
+            line-height: 1;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--brand);
+        }
+
+        .product-card__title {
+            margin-bottom: 12px;
+            font-family: var(--font-display);
+            font-size: clamp(25px, 2.2vw, 32px);
+            line-height: 1.08;
+            font-weight: 400;
+            letter-spacing: -0.025em;
+            color: var(--brand);
+        }
+
+        .product-card__text {
+            font-size: 15px;
+            line-height: 1.62;
+            color: var(--muted);
+        }
+
+        /* ── VALUE STRIP ── */
+        .value-strip {
+            padding: 104px 56px;
+            background: var(--brand);
+            color: #fff;
+        }
+
+        .value-strip__inner {
+            width: min(100%, 1080px);
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .value-strip__title {
+            max-width: 820px;
+            margin: 0 auto;
+            font-family: var(--font-display);
+            font-size: clamp(32px, 4.2vw, 56px);
+            line-height: 1.04;
+            font-weight: 400;
+            letter-spacing: -0.035em;
+        }
+
+        .value-strip__text {
+            max-width: 720px;
+            margin: 24px auto 0;
+            font-size: clamp(16px, 1.45vw, 19px);
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.72);
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background-color: var(--bg);
+            border-top: 1px solid rgba(92, 50, 119, 0.1);
+            padding: 64px 48px 48px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+            text-align: center;
+        }
+ 
+        .footer__title {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(20px, 2vw, 28px);
+            color: var(--brand);
+            line-height: 1.3;
+        }
+ 
+        .footer__form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+            max-width: 480px;
+        }
+ 
+        .footer__form-row {
+            display: flex;
+            gap: 12px;
+        }
+ 
+        .footer__input,
+        .popup__input,
+        .popup__select {
+            font-family: var(--font);
+            font-size: 15px;
+            color: var(--brand);
+            background: #fff;
+            border: 1.5px solid rgba(92, 50, 119, 0.2);
+            border-radius: 10px;
+            padding: 13px 18px;
+            outline: none;
+            transition: border-color 0.2s;
+            width: 100%;
+        }
+ 
+        .popup__input,
+        .popup__select {
+            background: var(--bg);
+        }
+ 
+        .footer__input::placeholder,
+        .popup__input::placeholder {
+            color: rgba(92, 50, 119, 0.35);
+        }
+ 
+        .footer__input:focus,
+        .popup__input:focus,
+        .popup__select:focus {
+            border-color: var(--brand);
+        }
+ 
+        .popup__select {
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235c3277' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 42px;
+            background-color: var(--bg);
+        }
+ 
+        .footer__submit,
+        .popup__submit {
+            font-family: var(--font);
+            font-weight: 600;
+            font-size: 15px;
+            color: #fff;
+            background: var(--brand);
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            transition: opacity 0.2s, transform 0.15s;
+        }
+ 
+        .footer__submit {
+            border-radius: 5px;
+            padding: 13px 28px;
+        }
+ 
+        .footer__submit:hover,
+        .popup__submit:hover {
+            opacity: 0.85;
+            transform: translateY(-1px);
+        }
+ 
+        .footer__message,
+        .popup__message {
+            font-family: var(--font);
+            font-size: 13px;
+            min-height: 18px;
+            font-weight: 500;
+        }
+ 
+        .footer__links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 6px;
+        }
+ 
+        .footer__link {
+            font-family: var(--font);
+            font-size: 14px;
+            color: var(--brand);
+            opacity: 0.8;
+            transition: opacity 0.2s;
+        }
+ 
+        .footer__link:hover {
+            opacity: 1;
+        }
+ 
+        .footer__copy {
+            font-family: var(--font);
+            font-size: 12px;
+            color: var(--brand);
+            opacity: 0.35;
+            margin-top: 12px;
+            letter-spacing: 0.02em;
+        }
+ 
+        /* ── CHECKBOX PRIVACY ── */
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            cursor: pointer;
+            text-align: left;
+        }
+ 
+        .checkbox-label input[type="checkbox"] {
+            appearance: none;
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            min-width: 18px;
+            border: 1.5px solid rgba(92, 50, 119, 0.35);
+            border-radius: 5px;
+            background: #fff;
+            cursor: pointer;
+            margin-top: 1px;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+ 
+        .checkbox-label input[type="checkbox"]:checked {
+            background: var(--brand);
+            border-color: var(--brand);
+        }
+ 
+        .checkbox-label input[type="checkbox"]:checked::after {
+            content: '';
+            position: absolute;
+            left: 4px;
+            top: 1px;
+            width: 6px;
+            height: 10px;
+            border: 2px solid #fff;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+        }
+ 
+        .checkbox-label input[type="checkbox"]:focus {
+            outline: 2px solid rgba(92, 50, 129, 0.3);
+            outline-offset: 2px;
+        }
+ 
+        .checkbox-text {
+            font-family: var(--font);
+            font-size: 13px;
+            color: var(--brand);
+            opacity: 0.75;
+            line-height: 1.5;
+        }
+ 
+        .checkbox-text a {
+            text-decoration: underline;
+            opacity: 1;
+        }
+ 
+        /* ── POPUP ── */
+        .popup-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(92, 50, 119, 0.15);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            z-index: 100;
+            padding: 24px;
+        }
+ 
+        .popup-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+ 
+        .popup {
+            background: #fff;
+            border-radius: 20px;
+            padding: 44px 40px 40px;
+            width: 100%;
+            max-width: 520px;
+            position: relative;
+            transform: translateY(20px) scale(0.97);
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            box-shadow: 0 24px 64px rgba(92, 50, 119, 0.15);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+ 
+        .popup-overlay.active .popup {
+            transform: translateY(0) scale(1);
+        }
+ 
+        .popup__close {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--brand);
+            cursor: pointer;
+            opacity: 0.45;
+            line-height: 1;
+            transition: opacity 0.2s;
+        }
+ 
+        .popup__close:hover {
+            opacity: 1;
+        }
+ 
+        .popup__title {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 26px;
+            color: var(--brand);
+            margin-bottom: 8px;
+        }
+ 
+        .popup__subtitle {
+            font-family: var(--font);
+            font-weight: 400;
+            font-size: 14px;
+            color: var(--brand);
+            opacity: 0.62;
+            margin-bottom: 26px;
+            line-height: 1.5;
+        }
+ 
+        .popup__form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+ 
+        .field-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+ 
+        .popup__field-label {
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--brand);
+            display: block;
+        }
+ 
+        /* ── AUDIENCE SEGMENTATION ── */
+        .audience-step {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+ 
+        .audience-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+ 
+        .audience-card {
+            border: 1.5px solid var(--line);
+            background: var(--bg);
+            border-radius: 16px;
+            padding: 20px 16px;
+            cursor: pointer;
+            text-align: left;
+            color: var(--brand);
+            transition: border-color 0.2s, background 0.2s, transform 0.15s;
+        }
+ 
+        .audience-card:hover {
+            border-color: var(--brand);
+            background: rgba(92, 50, 119, 0.055);
+            transform: translateY(-1px);
+        }
+ 
+        .audience-card__icon {
+            display: block;
+            font-size: 25px;
+            margin-bottom: 10px;
+        }
+ 
+        .audience-card__title {
+            display: block;
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+ 
+        .audience-card__text {
+            display: block;
+            font-size: 12.5px;
+            line-height: 1.45;
+            opacity: 0.62;
+        }
+ 
+        .popup-step {
+            display: none;
+            flex-direction: column;
+            gap: 12px;
+        }
+ 
+        .popup-step.active {
+            display: flex;
+        }
+ 
+        .popup-back {
+            background: none;
+            border: none;
+            color: var(--brand);
+            font-family: var(--font);
+            font-size: 13px;
+            cursor: pointer;
+            opacity: 0.65;
+            text-align: left;
+            padding: 0;
+            width: fit-content;
+        }
+ 
+        .popup-back:hover {
+            opacity: 1;
+        }
+ 
+        /* ── PET QUESTION ── */
+        .radio-group {
+            display: flex;
+            gap: 10px;
+        }
+ 
+        .radio-option,
+        .checkbox-pill {
+            flex: 1;
+            position: relative;
+        }
+ 
+        .radio-option input[type="radio"],
+        .checkbox-pill input[type="checkbox"] {
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+ 
+        .radio-option__label,
+        .checkbox-pill__label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 7px;
+            padding: 11px 16px;
+            border: 1.5px solid rgba(92, 50, 119, 0.2);
+            border-radius: 10px;
+            background: var(--bg);
+            cursor: pointer;
+            font-family: var(--font);
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--brand);
+            transition: border-color 0.2s, background 0.2s;
+            user-select: none;
+            text-align: center;
+        }
+ 
+        .checkbox-pill__label {
+            padding: 9px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+        }
+ 
+        .radio-option input[type="radio"]:checked + .radio-option__label,
+        .checkbox-pill input[type="checkbox"]:checked + .checkbox-pill__label {
+            border-color: var(--brand);
+            background: rgba(92, 50, 119, 0.07);
+        }
+ 
+        .radio-option__label:hover,
+        .checkbox-pill__label:hover {
+            border-color: rgba(92, 50, 119, 0.5);
+        }
+ 
+        .pet-extra-fields {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.35s ease, opacity 0.3s ease;
+        }
+ 
+        .pet-extra-fields.visible {
+            max-height: 400px;
+            opacity: 1;
+        }
+ 
+        .checkbox-group-inline {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+ 
+        .popup__submit:disabled,
+        .footer__submit:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+ 
+        /* ── RESPONSIVE ── */
+        @media (max-width: 1100px) {
+            .product-grid {
+                gap: 18px;
+            }
+
+            .product-card {
+                padding: 28px 22px 28px;
+            }
+
+            .product-card__visual {
+                min-height: 350px;
+            }
+
+            .product-card__image {
+                height: 345px;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 28px;
+                padding: 32px 28px 60px;
+            }
+ 
+            .hero__half:first-child {
+                order: 2;
+            }
+ 
+            .hero__half:last-child {
+                order: 1;
+            }
+ 
+            .hero__content {
+                align-items: center;
+                text-align: center;
+                max-width: 620px;
+            }
+ 
+            .mockup-img {
+                height: 520px;
+            }
+
+            .product-overview {
+                padding: 88px 28px 96px;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+                max-width: 620px;
+                margin: 0 auto;
+                gap: 22px;
+            }
+
+            .product-card {
+                display: grid;
+                grid-template-columns: minmax(210px, 0.85fr) minmax(0, 1fr);
+                grid-template-rows: auto auto 1fr;
+                column-gap: 30px;
+                align-items: center;
+            }
+
+            .product-card__visual {
+                grid-column: 1;
+                grid-row: 1 / span 3;
+                min-height: 360px;
+                margin: -4px 0;
+            }
+
+            .product-card__image {
+                height: 350px;
+            }
+
+            .product-card__label,
+            .product-card__title,
+            .product-card__text {
+                grid-column: 2;
+            }
+
+            .value-strip {
+                padding: 88px 28px;
+            }
+        }
+ 
+        @media (max-width: 768px) {
+            .header {
+                padding: 18px 22px;
+            }
+ 
+            .nav {
+                align-items: center;
+                gap: 16px;
+            }
+ 
+            .logo-img {
+                height: 48px;
+            }
+ 
+            .nav__controls {
+                gap: 12px;
+            }
+ 
+            .nav__link {
+                display: none;
+            }
+ 
+            .hero {
+                padding: 26px 24px 48px;
+                min-height: auto;
+            }
+ 
+            .hero__tagline {
+                font-size: clamp(34px, 11vw, 48px);
+                line-height: 1.02;
+            }
+ 
+            .hero__subtitle {
+                font-size: 16px;
+            }
+ 
+            .hero__mini-points {
+                justify-content: center;
+            }
+ 
+            .hero__cta-group {
+                justify-content: center;
+            }
+ 
+            .mockup-img {
+                height: 410px;
+            }
+
+            .product-overview {
+                padding: 72px 24px 78px;
+            }
+
+            .section-heading {
+                margin-bottom: 48px;
+            }
+
+            .product-card {
+                display: flex;
+                padding: 28px 24px 30px;
+            }
+
+            .product-card__visual {
+                min-height: 330px;
+                margin: -8px -4px 18px;
+            }
+
+            .product-card__image {
+                height: 325px;
+            }
+
+            .value-strip {
+                padding: 72px 24px;
+            }
+ 
+            .footer {
+                padding: 48px 24px 40px;
+            }
+ 
+            .footer__form-row {
+                flex-direction: column;
+            }
+ 
+            .popup {
+                padding: 36px 28px 32px;
+            }
+ 
+            .audience-cards {
+                grid-template-columns: 1fr;
+            }
+ 
+            .checkbox-group-inline {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+ 
+        @media (max-width: 480px) {
+            .nav {
+                flex-direction: column;
+            }
+ 
+            .logo-img {
+                height: 56px;
+            }
+ 
+            .hero {
+                padding-top: 18px;
+            }
+ 
+            .mockup-img {
+                height: 360px;
+            }
+
+            .product-card__visual {
+                min-height: 290px;
+            }
+
+            .product-card__image {
+                height: 285px;
+            }
+ 
+            .hero__mini-point {
+                width: 100%;
+                text-align: center;
+            }
+ 
+            .hero__cta-group {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .hero__cta-group .btn-cta {
+                width: 100%;
+            }
+ 
+            .checkbox-group-inline {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+ 
+<body>
+ 
+    <!-- HEADER -->
+    <header class="header">
+        <nav class="nav">
+            <a href="index.html" aria-label="Woofing">
+                <img src="IMAGES/LOGO_HORIZONTAL_PNG.png" alt="Woofing" class="logo-img" />
+            </a>
+ 
+            <div class="nav__controls">
+                <div class="nav__menu">
+                    <a href="contacto.html" class="nav__link" data-i18n="contact_link">Contacto</a>
+                </div>
+ 
+                <div class="lang-switch" aria-label="Selector de idioma">
+                    <button class="lang-switch__btn active" id="langEs" type="button">ES</button>
+                    <span class="lang-switch__divider">|</span>
+                    <button class="lang-switch__btn" id="langEn" type="button">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+ 
+    <!-- HERO -->
+    <main class="hero">
+        <div class="hero__half">
+            <img src="IMAGES/MOCKUP_IPHONE_2.png" alt="App Mockup" class="mockup-img" />
+        </div>
+ 
+        <div class="hero__half">
+            <div class="hero__content">
+                <div class="hero__eyebrow" data-i18n="hero_eyebrow">Próximamente en Madrid y toda España</div>
+ 
+                <h1 class="hero__tagline" data-i18n="hero_tagline">
+                    Todo lo que necesita tu mascota,<br />
+                    <em>en una sola app</em>
+                </h1>
+ 
+ 
+                <p class="hero__subtitle" data-i18n="hero_subtitle">
+                    Reserva servicios para tu mascota en Madrid, descubre productos con envío a toda España y guarda toda su información en un mismo lugar.
+                </p>
+ 
+                <div class="hero__cta-group">
+                    <button class="btn-cta" id="openOwnerCta" type="button" data-i18n="cta_owner">Quiero acceso anticipado</button>
+                    <button class="btn-cta btn-cta--secondary" id="openBusinessCta" type="button" data-i18n="cta_business">Tengo un negocio pet</button>
+                </div>
+            </div>
+        </div>
+    </main>
+ 
+    <!-- TODO CONECTADO -->
+    <section class="product-overview" aria-labelledby="productOverviewTitle">
+        <div class="product-overview__inner">
+            <div class="section-heading">
+                <span class="section-heading__eyebrow" data-i18n="overview_eyebrow">Dentro de Woofing</span>
+                <h2 class="section-heading__title" id="productOverviewTitle" data-i18n="overview_title">Todo conectado en Woofing</h2>
+                <p class="section-heading__text" data-i18n="overview_text">
+                    Servicios, productos e información personalizada para cuidar mejor de tu mascota, todo desde una sola app.
+                </p>
+            </div>
+
+            <div class="product-grid">
+                <article class="product-card">
+                    <div class="product-card__visual">
+                        <img src="IMAGES/phone-3.png" alt="Reservas de servicios en Woofing" class="product-card__image" />
+                    </div>
+                    <span class="product-card__label" data-i18n="services_label">Disponible en Madrid</span>
+                    <h3 class="product-card__title" data-i18n="services_title">Reserva servicios</h3>
+                    <p class="product-card__text" data-i18n="services_text">
+                        Encuentra y reserva peluquerías, paseadores, guarderías, hoteles y otros profesionales para tu mascota en Madrid.
+                    </p>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-card__visual">
+                        <img src="IMAGES/phone-4.png" alt="Productos para mascotas en Woofing" class="product-card__image" />
+                    </div>
+                    <span class="product-card__label" data-i18n="products_label">Envíos a toda España</span>
+                    <h3 class="product-card__title" data-i18n="products_title">Compra productos</h3>
+                    <p class="product-card__text" data-i18n="products_text">
+                        Descubre productos para tu mascota y recíbelos en casa con envíos a toda España.
+                    </p>
+                </article>
+
+                <article class="product-card">
+                    <div class="product-card__visual">
+                        <img src="IMAGES/phone-5.png" alt="Gestión del perfil de mascota en Woofing" class="product-card__image" />
+                    </div>
+                    <span class="product-card__label" data-i18n="profile_label">Un perfil por mascota</span>
+                    <h3 class="product-card__title" data-i18n="profile_title">Gestiona su perfil</h3>
+                    <p class="product-card__text" data-i18n="profile_text">
+                        Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPUESTA DE VALOR -->
+    <section class="value-strip">
+        <div class="value-strip__inner">
+            <h2 class="value-strip__title" data-i18n="value_title">Una app pensada para el día a día real de tu mascota</h2>
+            <p class="value-strip__text" data-i18n="value_text">
+                Desde encontrar un servicio hasta comprar productos o tener organizada toda su información, Woofing reúne en un solo lugar lo que antes estaba repartido entre distintas plataformas.
+            </p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" id="footer">
+        <p class="footer__title" data-i18n="footer_title">Regístrate para recibir noticias y actualizaciones.</p>
+ 
+        <form class="footer__form" id="footerForm">
+            <div class="footer__form-row">
+                <input
+                    type="email"
+                    class="footer__input"
+                    placeholder="tu@email.com"
+                    id="footerEmail"
+                    name="email"
+                />
+                <button class="footer__submit" id="footerSubmit" type="submit" data-i18n="footer_submit">Suscribirme</button>
+            </div>
+ 
+            <label class="checkbox-label">
+                <input type="checkbox" id="footerPrivacy" name="privacy" />
+                <span class="checkbox-text" data-i18n="footer_privacy_label">
+                    Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.
+                </span>
+            </label>
+        </form>
+ 
+        <p class="footer__message" id="footerMessage"></p>
+ 
+        <div class="footer__links">
+            <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
+            <a class="footer__link" href="politica-privacidad.html" data-i18n="privacy_link">Política de privacidad</a>
+            <!-- ✅ NUEVO: enlace Política de Cookies -->
+            <a class="footer__link" href="cookies.html" data-i18n="cookies_link">Política de cookies</a>
+            <a class="footer__link" href="aviso_legal.html" data-i18n="legal_link">Aviso legal</a>
+        </div>
+ 
+        <p class="footer__copy" data-i18n="footer_copy">© 2026 Woofing App. Todos los derechos reservados.</p>
+    </footer>
+ 
+    <!-- POPUP SEGMENTADO -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup">
+            <button class="popup__close" id="closePopup" type="button">&times;</button>
+ 
+            <!-- PASO 1: SEGMENTACIÓN -->
+            <div class="popup-step active" id="stepAudience">
+                <h2 class="popup__title" data-i18n="popup_title">Antes de empezar</h2>
+                <p class="popup__subtitle" data-i18n="popup_subtitle">Dinos quién eres para llevarte al lugar correcto.</p>
+ 
+                <div class="audience-cards">
+                    <button class="audience-card" type="button" id="chooseOwner">
+                        <span class="audience-card__icon">🐾</span>
+                        <span class="audience-card__title" data-i18n="audience_owner_title">Soy dueño de mascota</span>
+                        <span class="audience-card__text" data-i18n="audience_owner_text">Quiero apuntarme al acceso anticipado de la app.</span>
+                    </button>
+ 
+                    <button class="audience-card" type="button" id="chooseBusiness">
+                        <span class="audience-card__icon">🏪</span>
+                        <span class="audience-card__title" data-i18n="audience_business_title">Soy comercio o profesional</span>
+                        <span class="audience-card__text" data-i18n="audience_business_text">Quiero ver la propuesta de colaboración para mi negocio.</span>
+                    </button>
+                </div>
+            </div>
+ 
+            <!-- PASO 2A: FORMULARIO DUEÑOS -->
+            <div class="popup-step" id="stepOwner">
+                <button class="popup-back" type="button" data-back="audience" data-i18n="back_button">← Volver</button>
+ 
+                <h2 class="popup__title" data-i18n="owner_title">Acceso Anticipado</h2>
+                <p class="popup__subtitle" data-i18n="owner_subtitle">Déjanos tu email y te avisamos cuando estemos listos.</p>
+ 
+                <form class="popup__form" id="popupForm">
+                    <input
+                        type="email"
+                        class="popup__input"
+                        placeholder="tu@email.com"
+                        id="emailInput"
+                        name="email"
+                    />
+ 
+                    <div class="field-group">
+                        <span class="popup__field-label" data-i18n="popup_has_pet">¿Tienes mascota?</span>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="has_pet" id="petYes" value="yes" />
+                                <label class="radio-option__label" for="petYes" data-i18n="popup_yes">Sí</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="has_pet" id="petNo" value="no" />
+                                <label class="radio-option__label" for="petNo" data-i18n="popup_no">No</label>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <div class="pet-extra-fields" id="petExtraFields">
+                        <div class="field-group">
+                            <span class="popup__field-label" data-i18n="popup_how_many">¿Cuántas mascotas tienes?</span>
+                            <input
+                                type="number"
+                                class="popup__input"
+                                id="petCount"
+                                name="pet_count"
+                                min="1"
+                                max="99"
+                                placeholder="1"
+                            />
+                        </div>
+ 
+                        <div class="field-group">
+                            <span class="popup__field-label" data-i18n="popup_pet_type">¿Qué tipo de mascota tienes?</span>
+                            <div class="checkbox-group-inline">
+                                <div class="checkbox-pill">
+                                    <input type="checkbox" id="petDog" name="pet_type[]" value="dog" />
+                                    <label class="checkbox-pill__label" for="petDog" data-i18n="popup_pet_dog">🐶 Perro</label>
+                                </div>
+                                <div class="checkbox-pill">
+                                    <input type="checkbox" id="petCat" name="pet_type[]" value="cat" />
+                                    <label class="checkbox-pill__label" for="petCat" data-i18n="popup_pet_cat">🐱 Gato</label>
+                                </div>
+                                <div class="checkbox-pill">
+                                    <input type="checkbox" id="petRabbit" name="pet_type[]" value="rabbit" />
+                                    <label class="checkbox-pill__label" for="petRabbit" data-i18n="popup_pet_rabbit">🐰 Conejo</label>
+                                </div>
+                                <div class="checkbox-pill">
+                                    <input type="checkbox" id="petOther" name="pet_type[]" value="other" />
+                                    <label class="checkbox-pill__label" for="petOther" data-i18n="popup_pet_other">🐾 Otro</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+ 
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="popupPrivacy" name="privacy" />
+                        <span class="checkbox-text" data-i18n="popup_privacy_label">
+                            Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.
+                        </span>
+                    </label>
+ 
+                    <button class="popup__submit" id="submitEmail" type="submit" data-i18n="popup_submit">Apuntarme</button>
+                </form>
+ 
+                <p class="popup__message" id="popupMessage"></p>
+            </div>
+ 
+            <!-- PASO 2B: SELECTOR COMERCIOS -->
+            <div class="popup-step" id="stepBusiness">
+                <button class="popup-back" type="button" data-back="audience" data-i18n="back_button">← Volver</button>
+ 
+                <h2 class="popup__title" data-i18n="business_title">Colabora con Woofing</h2>
+                <p class="popup__subtitle" data-i18n="business_subtitle">Selecciona tu tipo de negocio y te llevamos a la propuesta adecuada.</p>
+ 
+                <form class="popup__form" id="businessForm">
+                    <div class="field-group">
+                        <label class="popup__field-label" for="businessType" data-i18n="business_type_label">Tipo de comercio</label>
+                        <select class="popup__select" id="businessType" name="business_type">
+                            <option value="" selected disabled data-i18n="business_placeholder">Selecciona una opción</option>
+                            <option value="tienda" data-i18n="business_shop">Tienda de productos pet</option>
+                            <option value="hotel" data-i18n="business_hotel">Hotel / Guardería</option>
+                            <option value="peluqueria" data-i18n="business_grooming">Peluquería pet</option>
+                            <option value="paseador" data-i18n="business_walker">Paseador</option>
+                            <option value="adiestrador" data-i18n="business_trainer">Adiestrador</option>
+                            <option value="veterinario" data-i18n="business_vet">Veterinario</option>
+                        </select>
+                    </div>
+ 
+                    <button class="popup__submit" id="businessSubmit" type="submit" data-i18n="business_submit">Ver propuesta</button>
+                    <p class="popup__message" id="businessMessage"></p>
+                </form>
+            </div>
+        </div>
+    </div>
+ 
+    <!-- ✅ BANNER DE COOKIES (reemplaza al antiguo privacy-banner) -->
+    <div id="cookie-banner" hidden role="dialog" aria-label="Aviso de cookies">
+        <div class="cookie-banner__header">
+            <span class="cookie-banner__icon">🍪</span>
+            <p class="cookie-banner__title" data-i18n="cookie_banner_title">Usamos cookies</p>
+        </div>
+        <p class="cookie-banner__text" data-i18n="cookie_banner_text">
+            Usamos cookies de terceros (Meta Pixel) para medir el rendimiento de nuestras campañas.
+            Puedes aceptarlas o rechazarlas. Más info en nuestra
+            <a href="cookies.html">Política de cookies</a>.
+        </p>
+        <div class="cookie-banner__actions">
+            <button class="cookie-btn cookie-btn--reject" onclick="setConsent(false)" data-i18n="cookie_reject">Rechazar</button>
+            <button class="cookie-btn cookie-btn--accept" onclick="setConsent(true)" data-i18n="cookie_accept">Aceptar</button>
+        </div>
+    </div>
+ 
+    <!-- ✅ COOKIE CONSENT JS (antes del cierre de body) -->
+    <script src="cookies.js"></script>
+ 
+    <script>
+        const BREVO_ENDPOINT = "/api/brevo-contact";
+        const LANG_KEY = "woofing_language";
+ 
+        const BUSINESS_ROUTES = {
+            tienda: "tiendas.html",
+            hotel: "hoteles.html",
+            peluqueria: "peluquerias.html",
+            paseador: "paseadores.html",
+            adiestrador: "adiestradores.html",
+            veterinario: "veterinarios.html"
+        };
+ 
+        const translations = {
+            es: {
+                contact_link: "Contacto",
+ 
+                hero_eyebrow: "Próximamente en Madrid y toda España",
+                hero_tagline: "Todo lo que necesita tu mascota,<br /><em>en una sola app</em>",
+                hero_launch: "",
+                hero_subtitle: "Reserva servicios para tu mascota en Madrid, descubre productos con envío a toda España y guarda toda su información en un mismo lugar.",
+                point_owner: "Para dueños",
+                point_business: "Para comercios",
+                point_data: "Con datos reales",
+                cta_button: "Entrar en Woofing",
+                cta_owner: "Quiero acceso anticipado",
+                cta_business: "Tengo un negocio pet",
+                cta_note: "Elige tu perfil y te llevamos directamente al formulario correcto.",
+
+                overview_eyebrow: "Dentro de Woofing",
+                overview_title: "Todo conectado en Woofing",
+                overview_text: "Servicios, productos e información personalizada para cuidar mejor de tu mascota, todo desde una sola app.",
+                services_label: "Disponible en Madrid",
+                services_title: "Reserva servicios",
+                services_text: "Encuentra y reserva peluquerías, paseadores, guarderías, hoteles y otros profesionales para tu mascota en Madrid.",
+                products_label: "Envíos a toda España",
+                products_title: "Compra productos",
+                products_text: "Descubre productos para tu mascota y recíbelos en casa con envíos a toda España.",
+                profile_label: "Un perfil por mascota",
+                profile_title: "Gestiona su perfil",
+                profile_text: "Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.",
+                value_title: "Una app pensada para el día a día real de tu mascota",
+                value_text: "Desde encontrar un servicio hasta comprar productos o tener organizada toda su información, Woofing reúne en un solo lugar lo que antes estaba repartido entre distintas plataformas.",
+ 
+                footer_title: "Regístrate para recibir noticias y actualizaciones.",
+                footer_submit: "Suscribirme",
+                footer_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
+                privacy_link: "Política de privacidad",
+                cookies_link: "Política de cookies",
+                legal_link: "Aviso legal",
+                footer_copy: "© 2026 Woofing App. Todos los derechos reservados.",
+ 
+                popup_title: "Antes de empezar",
+                popup_subtitle: "Dinos quién eres para llevarte al lugar correcto.",
+                audience_owner_title: "Soy dueño de mascota",
+                audience_owner_text: "Quiero apuntarme al acceso anticipado de la app.",
+                audience_business_title: "Soy comercio o profesional",
+                audience_business_text: "Quiero ver la propuesta de colaboración para mi negocio.",
+                back_button: "← Volver",
+ 
+                owner_title: "Acceso Anticipado",
+                owner_subtitle: "Déjanos tu email y te avisamos cuando estemos listos.",
+                popup_submit: "Apuntarme",
+                popup_has_pet: "¿Tienes mascota?",
+                popup_yes: "Sí",
+                popup_no: "No",
+                popup_how_many: "¿Cuántas mascotas tienes?",
+                popup_pet_type: "¿Qué tipo de mascota tienes?",
+                popup_pet_dog: "🐶 Perro",
+                popup_pet_cat: "🐱 Gato",
+                popup_pet_rabbit: "🐰 Conejo",
+                popup_pet_other: "🐾 Otro",
+                popup_privacy_label: 'Acepto la <a href="politica-privacidad.html" target="_blank">Política de privacidad</a> de Woofing App.',
+ 
+                business_title: "Colabora con Woofing",
+                business_subtitle: "Selecciona tu tipo de negocio y te llevamos a la propuesta adecuada.",
+                business_type_label: "Tipo de comercio",
+                business_placeholder: "Selecciona una opción",
+                business_shop: "Tienda de productos pet",
+                business_hotel: "Hotel / Guardería",
+                business_grooming: "Peluquería pet",
+                business_walker: "Paseador",
+                business_trainer: "Adiestrador",
+                business_vet: "Veterinario",
+                business_submit: "Ver propuesta",
+                business_required: "Selecciona un tipo de comercio.",
+ 
+                cookie_banner_title: "Usamos cookies",
+                cookie_banner_text: 'Usamos cookies de terceros (Meta Pixel) para medir el rendimiento de nuestras campañas. Más info en nuestra <a href="cookies.html">Política de cookies</a>.',
+                cookie_reject: "Rechazar",
+                cookie_accept: "Aceptar",
+ 
+                invalid_email: "Por favor, introduce un email válido.",
+                privacy_required: "Debes aceptar la Política de privacidad.",
+                sending: "Enviando...",
+                redirecting: "Redirigiendo...",
+                popup_success: "¡Genial! Te avisaremos pronto.",
+                popup_error: "No se pudo enviar. Inténtalo de nuevo.",
+                popup_error_general: "Ha ocurrido un error al enviar el formulario.",
+                footer_success: "¡Gracias! Te mantendremos al tanto.",
+                footer_error: "No se pudo completar la suscripción. Inténtalo de nuevo.",
+                footer_error_general: "Ha ocurrido un error al enviar la suscripción.",
+ 
+                popup_subject: "Nuevo acceso anticipado desde la web de Woofing",
+                footer_subject: "Nueva suscripción desde la web de Woofing"
+            },
+ 
+            en: {
+                contact_link: "Contact",
+ 
+                hero_eyebrow: "Coming soon in Madrid and across Spain",
+                hero_tagline: "Everything your pet needs,<br /><em>in one app</em>",
+                hero_launch: "",
+                hero_subtitle: "Book services for your pet in Madrid, discover products delivered across Spain and keep all their information in one place.",
+                point_owner: "For owners",
+                point_business: "For businesses",
+                point_data: "With real data",
+                cta_button: "Enter Woofing",
+                cta_owner: "Get early access",
+                cta_business: "I run a pet business",
+                cta_note: "Choose whether you are an owner or a professional and we'll take you to the right place.",
+
+                overview_eyebrow: "Inside Woofing",
+                overview_title: "Everything connected in Woofing",
+                overview_text: "Services, products and personalised information to help you care for your pet, all from one app.",
+                services_label: "Available in Madrid",
+                services_title: "Book services",
+                services_text: "Find and book groomers, dog walkers, daycares, hotels and other professionals for your pet in Madrid.",
+                products_label: "Delivery across Spain",
+                products_title: "Shop products",
+                products_text: "Discover products for your pet and have them delivered to your home anywhere in Spain.",
+                profile_label: "One profile per pet",
+                profile_title: "Manage their profile",
+                profile_text: "Keep their information, needs and important details in a profile designed to have everything close at hand.",
+                value_title: "An app designed for your pet's real everyday life",
+                value_text: "From finding a service to shopping for products or keeping all their information organised, Woofing brings together what used to be spread across different platforms.",
+ 
+                footer_title: "Sign up to receive news and updates.",
+                footer_submit: "Subscribe",
+                footer_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
+                privacy_link: "Privacy Policy",
+                cookies_link: "Cookie Policy",
+                legal_link: "Legal Notice",
+                footer_copy: "© 2026 Woofing App. All rights reserved.",
+ 
+                popup_title: "Before we start",
+                popup_subtitle: "Tell us who you are so we can take you to the right place.",
+                audience_owner_title: "I am a pet owner",
+                audience_owner_text: "I want to join the early access list for the app.",
+                audience_business_title: "I am a business or professional",
+                audience_business_text: "I want to see the collaboration proposal for my business.",
+                back_button: "← Back",
+ 
+                owner_title: "Early Access",
+                owner_subtitle: "Leave us your email and we'll let you know when we're ready.",
+                popup_submit: "Join the List",
+                popup_has_pet: "Do you have a pet?",
+                popup_yes: "Yes",
+                popup_no: "No",
+                popup_how_many: "How many pets do you have?",
+                popup_pet_type: "What type of pet do you have?",
+                popup_pet_dog: "🐶 Dog",
+                popup_pet_cat: "🐱 Cat",
+                popup_pet_rabbit: "🐰 Rabbit",
+                popup_pet_other: "🐾 Other",
+                popup_privacy_label: 'I accept the <a href="politica-privacidad.html" target="_blank">Privacy Policy</a> of Woofing App.',
+ 
+                business_title: "Collaborate with Woofing",
+                business_subtitle: "Select your type of business and we'll take you to the right proposal.",
+                business_type_label: "Business type",
+                business_placeholder: "Select an option",
+                business_shop: "Pet products store",
+                business_hotel: "Pet hotel / daycare",
+                business_grooming: "Pet grooming salon",
+                business_walker: "Dog walker",
+                business_trainer: "Dog trainer",
+                business_vet: "Veterinary clinic",
+                business_submit: "See proposal",
+                business_required: "Please select a business type.",
+ 
+                cookie_banner_title: "We use cookies",
+                cookie_banner_text: 'We use third-party cookies (Meta Pixel) to measure the performance of our campaigns. More info in our <a href="cookies.html">Cookie Policy</a>.',
+                cookie_reject: "Reject",
+                cookie_accept: "Accept",
+ 
+                invalid_email: "Please enter a valid email address.",
+                privacy_required: "You must accept the Privacy Policy.",
+                sending: "Sending...",
+                redirecting: "Redirecting...",
+                popup_success: "Great! We'll let you know soon.",
+                popup_error: "Could not send. Please try again.",
+                popup_error_general: "An error occurred while submitting the form.",
+                footer_success: "Thank you! We'll keep you updated.",
+                footer_error: "Could not complete the subscription. Please try again.",
+                footer_error_general: "An error occurred while submitting the subscription.",
+ 
+                popup_subject: "New early access signup from the Woofing website",
+                footer_subject: "New newsletter signup from the Woofing website"
+            }
+        };
+ 
+        let currentLang = localStorage.getItem(LANG_KEY) || "es";
+ 
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+ 
+        function trackMetaEvent(eventName, params = {}) {
+            if (typeof fbq === "function") {
+                fbq("track", eventName, params);
+            }
+        }
+ 
+        function trackMetaCustomEvent(eventName, params = {}) {
+            if (typeof fbq === "function") {
+                fbq("trackCustom", eventName, params);
+            }
+        }
+ 
+        async function sendToBrevo(data) {
+            return await fetch(BREVO_ENDPOINT, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+        }
+ 
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem(LANG_KEY, lang);
+            document.documentElement.lang = lang;
+ 
+            document.querySelectorAll("[data-i18n]").forEach((el) => {
+                const key = el.getAttribute("data-i18n");
+                if (translations[lang][key] !== undefined) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+ 
+            document.getElementById("langEs").classList.toggle("active", lang === "es");
+            document.getElementById("langEn").classList.toggle("active", lang === "en");
+ 
+            if (typeof submitEmailBtn !== "undefined" && submitEmailBtn) submitEmailBtn.textContent = translations[lang].popup_submit;
+            if (typeof footerSubmit !== "undefined" && footerSubmit) footerSubmit.textContent = translations[lang].footer_submit;
+            if (typeof businessSubmit !== "undefined" && businessSubmit) businessSubmit.textContent = translations[lang].business_submit;
+        }
+ 
+        document.getElementById("langEs").addEventListener("click", () => setLanguage("es"));
+        document.getElementById("langEn").addEventListener("click", () => setLanguage("en"));
+ 
+        // ── POPUP GENERAL ──
+        const overlay = document.getElementById("popupOverlay");
+        const stepAudience = document.getElementById("stepAudience");
+        const stepOwner = document.getElementById("stepOwner");
+        const stepBusiness = document.getElementById("stepBusiness");
+ 
+        function showStep(step) {
+            [stepAudience, stepOwner, stepBusiness].forEach(el => el.classList.remove("active"));
+            step.classList.add("active");
+        }
+ 
+        function openPopupAtStep(step, trackingName, trackingCategory) {
+            overlay.classList.add("active");
+            document.body.classList.add("modal-open");
+            showStep(step);
+
+            trackMetaEvent("ViewContent", {
+                content_name: trackingName,
+                content_category: trackingCategory
+            });
+        }
+
+        const openOwnerCta = document.getElementById("openOwnerCta");
+        const openBusinessCta = document.getElementById("openBusinessCta");
+
+        openOwnerCta.addEventListener("click", () => {
+            openPopupAtStep(stepOwner, "Formulario acceso anticipado dueño", "Landing CTA Owner");
+
+            setTimeout(() => {
+                emailInput.focus();
+            }, 80);
+
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "pet_owner",
+                language: currentLang
+            });
+        });
+
+        openBusinessCta.addEventListener("click", () => {
+            openPopupAtStep(stepBusiness, "Selector comercio Woofing", "Landing CTA Business");
+
+            setTimeout(() => {
+                businessType.focus();
+            }, 80);
+
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "business",
+                language: currentLang
+            });
+        });
+ 
+        function closePopup() {
+            overlay.classList.remove("active");
+            document.body.classList.remove("modal-open");
+ 
+            popupMsg.textContent = "";
+            businessMessage.textContent = "";
+            emailInput.value = "";
+            submitEmailBtn.disabled = false;
+            submitEmailBtn.textContent = translations[currentLang].popup_submit;
+            businessSubmit.disabled = false;
+            businessSubmit.textContent = translations[currentLang].business_submit;
+            popupForm.reset();
+            businessForm.reset();
+            petExtraFields.classList.remove("visible");
+            showStep(stepAudience);
+        }
+ 
+        document.getElementById("closePopup").addEventListener("click", closePopup);
+ 
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) closePopup();
+        });
+ 
+        document.addEventListener("keydown", (e) => {
+            if (e.key === "Escape" && overlay.classList.contains("active")) closePopup();
+        });
+ 
+        document.querySelectorAll(".popup-back").forEach(btn => {
+            btn.addEventListener("click", () => showStep(stepAudience));
+        });
+ 
+        document.getElementById("chooseOwner").addEventListener("click", () => {
+            showStep(stepOwner);
+            setTimeout(() => emailInput.focus(), 80);
+ 
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "pet_owner",
+                language: currentLang
+            });
+        });
+ 
+        document.getElementById("chooseBusiness").addEventListener("click", () => {
+            showStep(stepBusiness);
+            setTimeout(() => businessType.focus(), 80);
+ 
+            trackMetaCustomEvent("AudienceSelected", {
+                audience_type: "business",
+                language: currentLang
+            });
+        });
+ 
+        // ── PET RADIO LOGIC ──
+        const petExtraFields = document.getElementById("petExtraFields");
+        const petYes = document.getElementById("petYes");
+        const petNo = document.getElementById("petNo");
+ 
+        function updatePetFields() {
+            if (petYes.checked) {
+                petExtraFields.classList.add("visible");
+            } else {
+                petExtraFields.classList.remove("visible");
+                document.getElementById("petCount").value = "";
+                document.querySelectorAll("input[name='pet_type[]']").forEach(cb => cb.checked = false);
+            }
+        }
+ 
+        petYes.addEventListener("change", updatePetFields);
+        petNo.addEventListener("change", updatePetFields);
+ 
+        // ── OWNER FORM ──
+        const popupForm = document.getElementById("popupForm");
+        const emailInput = document.getElementById("emailInput");
+        const popupMsg = document.getElementById("popupMessage");
+        const submitEmailBtn = document.getElementById("submitEmail");
+        const popupPrivacy = document.getElementById("popupPrivacy");
+ 
+        popupForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+ 
+            const email = emailInput.value.trim();
+ 
+            if (!email || !isValidEmail(email)) {
+                popupMsg.textContent = translations[currentLang].invalid_email;
+                popupMsg.style.color = "#c00";
+                return;
+            }
+ 
+            if (!popupPrivacy.checked) {
+                popupMsg.textContent = translations[currentLang].privacy_required;
+                popupMsg.style.color = "#c00";
+                return;
+            }
+ 
+            const hasPet = petYes.checked ? "yes" : petNo.checked ? "no" : "";
+            const petCount = petYes.checked ? document.getElementById("petCount").value : "";
+            const petTypes = petYes.checked
+                ? Array.from(document.querySelectorAll("input[name='pet_type[]']:checked")).map(cb => cb.value).join(", ")
+                : "";
+ 
+            submitEmailBtn.disabled = true;
+            submitEmailBtn.textContent = translations[currentLang].sending;
+            popupMsg.textContent = "";
+ 
+            try {
+                const payload = {
+                    email,
+                    form_type: "owner",
+                    origen_formulario: "Acceso anticipado landing",
+                    language: currentLang.toUpperCase(),
+                    has_pet: hasPet === "yes" ? "Sí" : hasPet === "no" ? "No" : ""
+                };
+
+                if (hasPet === "yes") {
+                    payload.pet_count = petCount;
+                    payload.pet_types = petTypes;
+                }
+
+                const response = await sendToBrevo(payload);
+ 
+                if (response.ok) {
+                    trackMetaEvent("Lead", {
+                        content_name: "Acceso anticipado dueño",
+                        content_category: "Pet Owner Signup",
+                        has_pet: hasPet,
+                        pet_types: petTypes || "none",
+                        language: currentLang
+                    });
+ 
+                    popupMsg.textContent = translations[currentLang].popup_success;
+                    popupMsg.style.color = "#5c3277";
+                    setTimeout(() => closePopup(), 1800);
+                } else {
+                    popupMsg.textContent = translations[currentLang].popup_error;
+                    popupMsg.style.color = "#c00";
+                }
+            } catch (error) {
+                popupMsg.textContent = translations[currentLang].popup_error_general;
+                popupMsg.style.color = "#c00";
+            } finally {
+                submitEmailBtn.disabled = false;
+                submitEmailBtn.textContent = translations[currentLang].popup_submit;
+            }
+        });
+ 
+        // ── BUSINESS REDIRECT ──
+        const businessForm = document.getElementById("businessForm");
+        const businessType = document.getElementById("businessType");
+        const businessMessage = document.getElementById("businessMessage");
+        const businessSubmit = document.getElementById("businessSubmit");
+ 
+        businessForm.addEventListener("submit", (e) => {
+            e.preventDefault();
+ 
+            const selectedType = businessType.value;
+            const url = BUSINESS_ROUTES[selectedType];
+ 
+            if (!selectedType || !url) {
+                businessMessage.textContent = translations[currentLang].business_required;
+                businessMessage.style.color = "#c00";
+                return;
+            }
+ 
+            trackMetaCustomEvent("BusinessTypeSelected", {
+                business_type: selectedType,
+                language: currentLang
+            });
+ 
+            businessSubmit.disabled = true;
+            businessSubmit.textContent = translations[currentLang].redirecting;
+            businessMessage.textContent = "";
+ 
+            window.location.href = url;
+        });
+ 
+        // ── FOOTER FORM ──
+        const footerForm = document.getElementById("footerForm");
+        const footerEmail = document.getElementById("footerEmail");
+        const footerMsg = document.getElementById("footerMessage");
+        const footerSubmit = document.getElementById("footerSubmit");
+        const footerPrivacy = document.getElementById("footerPrivacy");
+ 
+        footerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+ 
+            const email = footerEmail.value.trim();
+ 
+            if (!email || !isValidEmail(email)) {
+                footerMsg.textContent = translations[currentLang].invalid_email;
+                footerMsg.style.color = "#c00";
+                return;
+            }
+ 
+            if (!footerPrivacy.checked) {
+                footerMsg.textContent = translations[currentLang].privacy_required;
+                footerMsg.style.color = "#c00";
+                return;
+            }
+ 
+            footerSubmit.disabled = true;
+            footerSubmit.textContent = translations[currentLang].sending;
+            footerMsg.textContent = "";
+ 
+            try {
+                const response = await sendToBrevo({
+                    email,
+                    form_type: "newsletter",
+                    origen_formulario: "Newsletter footer",
+                    language: currentLang.toUpperCase()
+                });
+ 
+                if (response.ok) {
+                    trackMetaEvent("Subscribe", {
+                        content_name: "Newsletter footer",
+                        content_category: "Newsletter",
+                        language: currentLang
+                    });
+ 
+                    footerMsg.textContent = translations[currentLang].footer_success;
+                    footerMsg.style.color = "#5c3277";
+                    footerForm.reset();
+                } else {
+                    footerMsg.textContent = translations[currentLang].footer_error;
+                    footerMsg.style.color = "#c00";
+                }
+            } catch (error) {
+                footerMsg.textContent = translations[currentLang].footer_error_general;
+                footerMsg.style.color = "#c00";
+            } finally {
+                footerSubmit.disabled = false;
+                footerSubmit.textContent = translations[currentLang].footer_submit;
+            }
+        });
+ 
+        setLanguage(currentLang);
+    </script>
+</body>
+</html>
