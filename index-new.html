@@ -480,35 +480,66 @@
             color: var(--muted);
         }
 
-        /* ── VALUE STRIP ── */
-        .value-strip {
-            padding: 104px 56px;
-            background: var(--brand);
-            color: #fff;
+        /* ── CAMPAÑA PERROS DE MADRID ── */
+        .campaign-strip {
+            position: relative;
+            padding: 96px 56px;
+            overflow: hidden;
+            background:
+                radial-gradient(ellipse 36% 88% at -5% 50%, rgba(92, 50, 119, 0.25) 0%, rgba(123, 69, 160, 0.12) 42%, transparent 76%),
+                radial-gradient(ellipse 36% 88% at 105% 50%, rgba(92, 50, 119, 0.25) 0%, rgba(123, 69, 160, 0.12) 42%, transparent 76%),
+                #fff;
+            color: var(--brand);
         }
 
-        .value-strip__inner {
+        .campaign-strip__inner {
+            position: relative;
+            z-index: 1;
             width: min(100%, 1080px);
             margin: 0 auto;
-            text-align: center;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(250px, 0.42fr);
+            align-items: center;
+            gap: 72px;
         }
 
-        .value-strip__title {
-            max-width: 820px;
-            margin: 0 auto;
-            font-family: var(--font-display);
-            font-size: clamp(32px, 4.2vw, 56px);
-            line-height: 1.04;
-            font-weight: 400;
+        .campaign-strip__eyebrow {
+            display: inline-flex;
+            padding: 8px 14px;
+            margin-bottom: 22px;
+            border: 1px solid rgba(92, 50, 119, 0.22);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.64);
+            color: var(--brand);
+            backdrop-filter: blur(10px);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .campaign-strip__title {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: clamp(58px, 7vw, 104px);
+            line-height: 0.92;
+            font-weight: 900;
             letter-spacing: -0.035em;
+            text-transform: uppercase;
         }
 
-        .value-strip__text {
-            max-width: 720px;
-            margin: 24px auto 0;
-            font-size: clamp(16px, 1.45vw, 19px);
-            line-height: 1.65;
-            color: rgba(255, 255, 255, 0.72);
+        .campaign-strip__title span {
+            display: block;
+        }
+
+        .campaign-strip__copy {
+            margin-bottom: 22px;
+            font-size: clamp(17px, 1.4vw, 20px);
+            line-height: 1.5;
+            color: rgba(92, 50, 119, 0.68);
+        }
+
+        .campaign-strip__copy strong {
+            color: var(--brand);
         }
 
         /* ── FOOTER ── */
@@ -1049,8 +1080,12 @@
                 grid-column: 2;
             }
 
-            .value-strip {
-                padding: 88px 28px;
+            .campaign-strip {
+                padding: 82px 28px;
+            }
+
+            .campaign-strip__inner {
+                gap: 44px;
             }
         }
  
@@ -1124,8 +1159,35 @@
                 height: 325px;
             }
 
-            .value-strip {
-                padding: 72px 24px;
+            .campaign-strip {
+                padding: 64px 24px 68px;
+            }
+
+            .campaign-strip__inner {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+                gap: 30px;
+            }
+
+            .campaign-strip__eyebrow {
+                margin-bottom: 18px;
+            }
+
+            .campaign-strip__title {
+                font-size: clamp(54px, 17vw, 78px);
+                line-height: 0.94;
+                letter-spacing: -0.04em;
+            }
+
+            .campaign-strip__copy {
+                margin-bottom: 20px;
+                font-size: 17px;
+            }
+
+            .campaign-strip__cta {
+                width: 100%;
+                min-height: 56px;
             }
  
             .footer {
@@ -1294,13 +1356,24 @@
         </div>
     </section>
 
-    <!-- PROPUESTA DE VALOR -->
-    <section class="value-strip">
-        <div class="value-strip__inner">
-            <h2 class="value-strip__title" data-i18n="value_title">Una app pensada para el día a día real de tu mascota</h2>
-            <p class="value-strip__text" data-i18n="value_text">
-                Desde encontrar un servicio hasta comprar productos o tener organizada toda su información, Woofing reúne en un solo lugar lo que antes estaba repartido entre distintas plataformas.
-            </p>
+    <!-- CAMPAÑA PERROS DE MADRID -->
+    <section class="campaign-strip" aria-labelledby="campaignTitle">
+        <div class="campaign-strip__inner">
+            <div class="campaign-strip__content">
+                <span class="campaign-strip__eyebrow" data-i18n="campaign_eyebrow">Casting abierto · Madrid</span>
+                <h2 class="campaign-strip__title" id="campaignTitle">
+                    <span data-i18n="campaign_title_1">Se buscan</span>
+                    <span data-i18n="campaign_title_2">los perros</span>
+                    <span data-i18n="campaign_title_3">de Madrid</span>
+                </h2>
+            </div>
+
+            <div class="campaign-strip__action">
+                <p class="campaign-strip__copy" data-i18n="campaign_text">
+                    <strong>Queremos conocer al tuyo.</strong> Preséntanoslo y podrá convertirse en una de las caras de Woofing.
+                </p>
+                <a class="btn-cta campaign-strip__cta" href="perros-de-madrid.html" data-i18n="campaign_cta">Presentar a mi perro</a>
+            </div>
         </div>
     </section>
 
@@ -1535,8 +1608,12 @@
                 profile_label: "Un perfil por mascota",
                 profile_title: "Gestiona su perfil",
                 profile_text: "Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.",
-                value_title: "Una app pensada para el día a día real de tu mascota",
-                value_text: "Desde encontrar un servicio hasta comprar productos o tener organizada toda su información, Woofing reúne en un solo lugar lo que antes estaba repartido entre distintas plataformas.",
+                campaign_eyebrow: "Casting abierto · Madrid",
+                campaign_title_1: "Se buscan",
+                campaign_title_2: "los perros",
+                campaign_title_3: "de Madrid",
+                campaign_text: "<strong>Queremos conocer al tuyo.</strong> Preséntanoslo y podrá convertirse en una de las caras de Woofing.",
+                campaign_cta: "Presentar a mi perro",
  
                 footer_title: "Regístrate para recibir noticias y actualizaciones.",
                 footer_submit: "Suscribirme",
@@ -1628,8 +1705,12 @@
                 profile_label: "One profile per pet",
                 profile_title: "Manage their profile",
                 profile_text: "Keep their information, needs and important details in a profile designed to have everything close at hand.",
-                value_title: "An app designed for your pet's real everyday life",
-                value_text: "From finding a service to shopping for products or keeping all their information organised, Woofing brings together what used to be spread across different platforms.",
+                campaign_eyebrow: "Open casting · Madrid",
+                campaign_title_1: "Calling all",
+                campaign_title_2: "the dogs",
+                campaign_title_3: "of Madrid",
+                campaign_text: "<strong>We want to meet yours.</strong> Introduce them and they could become one of the faces of Woofing.",
+                campaign_cta: "Introduce my dog",
  
                 footer_title: "Sign up to receive news and updates.",
                 footer_submit: "Subscribe",
