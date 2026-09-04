@@ -22,6 +22,14 @@
     />
 
     <style>
+        @font-face {
+            font-family: "Oswald";
+            src: url("IMAGES/Oswald-VariableFont_wght.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 200 700;
+            font-display: swap;
+        }
+
         *,
         *::before,
         *::after {
@@ -137,7 +145,8 @@
         h1 {
             max-width: 930px;
             margin: 0 auto;
-            font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+            font-family: "Oswald", "Arial Narrow", sans-serif;
+            font-weight: 700;
             font-size: clamp(68px, 10vw, 148px);
             line-height: 0.91;
             letter-spacing: -0.035em;
