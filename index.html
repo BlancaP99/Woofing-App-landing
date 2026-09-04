@@ -17,6 +17,14 @@
     <link rel="stylesheet" href="cookies.css" />
  
     <style>
+        @font-face {
+            font-family: "Oswald";
+            src: url("IMAGES/Oswald-VariableFont_wght.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 200 700;
+            font-display: swap;
+        }
+
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -227,12 +235,16 @@
         }
  
         .hero__tagline {
-            font-family: var(--font-display);
-            font-weight: 400;
+            font-family: "Oswald", "Arial Narrow", sans-serif;
+            font-stretch: condensed;
+            transform: scaleX(0.70);
+            transform-origin: center;
+            font-weight: 700;
             font-size: clamp(38px, 5.1vw, 72px);
             line-height: 0.98;
             letter-spacing: -0.04em;
             color: var(--brand);
+            text-transform: uppercase;
         }
  
         .hero__tagline em {
