@@ -1,1 +1,349 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <title>Interés registrado | Woofing</title>
+
+    <meta
+        name="description"
+        content="Hemos registrado tu interés en la camiseta personalizada de Woofing."
+    >
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="IMAGES/favicon_circulo.png"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <style>
+        @font-face {
+            font-family: "Oswald";
+            src: url("IMAGES/Oswald-VariableFont_wght.ttf") format("truetype");
+            font-style: normal;
+            font-weight: 200 700;
+            font-display: swap;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --brand: #5c3277;
+            --brand-light: #7b45a0;
+            --text-soft: rgba(92, 50, 119, 0.68);
+            --line: rgba(92, 50, 119, 0.16);
+            --white: #ffffff;
+            --background: #faf8fb;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--brand);
+            font-family: "Instrument Sans", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .page {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow: hidden;
+            background:
+                radial-gradient(
+                    circle at 0% 18%,
+                    rgba(123, 69, 160, 0.22),
+                    transparent 34%
+                ),
+                radial-gradient(
+                    circle at 100% 80%,
+                    rgba(92, 50, 119, 0.18),
+                    transparent 36%
+                ),
+                #faf8fb;
+        }
+
+        .header {
+            position: relative;
+            z-index: 2;
+            width: min(100% - 40px, 1180px);
+            margin: 0 auto;
+            padding: 26px 0;
+        }
+
+        .logo {
+            display: block;
+            width: auto;
+            height: 58px;
+        }
+
+        .main {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex: 1;
+            align-items: center;
+            justify-content: center;
+            width: min(100% - 40px, 900px);
+            margin: 0 auto;
+            padding: 50px 0 90px;
+        }
+
+        .card {
+            width: 100%;
+            padding: 70px 64px;
+            border: 1px solid var(--line);
+            border-radius: 32px;
+            background: rgba(255, 255, 255, 0.84);
+            box-shadow: 0 24px 70px rgba(92, 50, 119, 0.12);
+            backdrop-filter: blur(18px);
+            text-align: center;
+        }
+
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            background: var(--brand);
+            color: var(--white);
+            font-size: 31px;
+            box-shadow: 0 15px 35px rgba(92, 50, 119, 0.22);
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            padding: 8px 15px;
+            margin-bottom: 23px;
+            border: 1px solid rgba(92, 50, 119, 0.22);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.7);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            max-width: 760px;
+            margin: 0 auto;
+            font-family: "Oswald", "Arial Narrow", sans-serif;
+            font-size: clamp(52px, 8vw, 94px);
+            font-weight: 700;
+            line-height: 0.94;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+        }
+
+        .intro {
+            max-width: 590px;
+            margin: 27px auto 0;
+            color: var(--text-soft);
+            font-size: clamp(16px, 2vw, 19px);
+            line-height: 1.65;
+        }
+
+        .intro strong {
+            color: var(--brand);
+        }
+
+        .notice {
+            max-width: 570px;
+            margin: 30px auto 0;
+            padding: 18px 22px;
+            border: 1px solid var(--line);
+            border-radius: 17px;
+            background: rgba(92, 50, 119, 0.055);
+            color: var(--text-soft);
+            font-size: 14px;
+            line-height: 1.55;
+        }
+
+        .buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 34px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 54px;
+            padding: 14px 26px;
+            border: 1px solid var(--brand);
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            transition:
+                transform 0.2s ease,
+                background-color 0.2s ease,
+                color 0.2s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+        }
+
+        .button--primary {
+            background: var(--brand);
+            color: var(--white);
+            box-shadow: 0 15px 34px rgba(92, 50, 119, 0.19);
+        }
+
+        .button--secondary {
+            background: transparent;
+            color: var(--brand);
+        }
+
+        .button--secondary:hover {
+            background: rgba(92, 50, 119, 0.06);
+        }
+
+        .footer {
+            position: relative;
+            z-index: 1;
+            padding: 0 20px 28px;
+            color: rgba(92, 50, 119, 0.5);
+            font-size: 11px;
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            .header {
+                padding-top: 20px;
+            }
+
+            .logo {
+                height: 48px;
+            }
+
+            .main {
+                align-items: flex-start;
+                padding: 35px 0 65px;
+            }
+
+            .card {
+                padding: 50px 24px;
+                border-radius: 25px;
+            }
+
+            .icon {
+                width: 64px;
+                height: 64px;
+                font-size: 27px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+
+        <header class="header">
+            <a href="https://www.woofingapp.com/" aria-label="Volver a Woofing">
+                <img
+                    src="IMAGES/LOGO_HORIZONTAL_PNG.png"
+                    alt="Woofing"
+                    class="logo"
+                >
+            </a>
+        </header>
+
+        <main class="main">
+            <section class="card">
+
+                <div class="icon">✓</div>
+
+                <div class="eyebrow">
+                    Interés registrado
+                </div>
+
+                <h1>
+                    ¡Nos encanta que te guste la idea!
+                </h1>
+
+                <p class="intro">
+                    Hemos anotado tu interés en la camiseta personalizada de tu perro.
+                    <strong>No tienes que pagar nada ni estás confirmando una compra.</strong>
+                </p>
+
+                <p class="intro">
+                    Cuando la edición esté preparada, te enviaremos el diseño,
+                    el precio, las tallas, los colores y toda la información
+                    antes de que decidas si quieres reservarla.
+                </p>
+
+                <div class="notice">
+                    Utilizaremos la fotografía que nos has enviado para preparar
+                    la propuesta de diseño. No produciremos ninguna camiseta
+                    sin tu confirmación previa.
+                </div>
+
+                <div class="buttons">
+                    <a
+                        href="https://www.instagram.com/woofingapp/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="button button--primary"
+                    >
+                        Seguir a Woofing en Instagram →
+                    </a>
+
+                    <a
+                        href="https://www.woofingapp.com/"
+                        class="button button--secondary"
+                    >
+                        Volver a Woofing
+                    </a>
+                </div>
+
+            </section>
+        </main>
+
+        <footer class="footer">
+            © 2026 Woofing App. Todos los derechos reservados.
+        </footer>
+
+    </div>
+</body>
+</html>
