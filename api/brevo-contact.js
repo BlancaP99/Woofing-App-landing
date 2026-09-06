@@ -25,6 +25,13 @@ function getListIdByFormType(formType) {
     return Number(process.env.BREVO_LIST_NEWSLETTER_ID);
   }
 
+  /*
+   * Lista #11: INTERESADOS CAMISETA
+   */
+  if (formType === "shirt_interest") {
+    return 11;
+  }
+
   return null;
 }
 
@@ -37,12 +44,17 @@ function buildAttributes(body) {
 
   if (body.form_type === "owner") {
     attributes.TIENE_MASCOTA = body.has_pet || "";
-    attributes.NUMERO_MASCOTAS = body.pet_count ? Number(body.pet_count) : undefined;
+
+    attributes.NUMERO_MASCOTAS = body.pet_count
+      ? Number(body.pet_count)
+      : undefined;
+
     attributes.TIPO_MASCOTA = body.pet_types || "";
   }
 
   if (body.form_type === "newsletter") {
-    attributes.ORIGEN_FORMULARIO = body.origen_formulario || "Newsletter footer";
+    attributes.ORIGEN_FORMULARIO =
+      body.origen_formulario || "Newsletter footer";
   }
 
   if (body.form_type === "business") {
@@ -52,9 +64,23 @@ function buildAttributes(body) {
     attributes.ASUNTO = body.asunto || "";
     attributes.MENSAJE = body.mensaje || "";
     attributes.TIPO_COMERCIO = body.tipo_comercio || "";
-    attributes.ORIGEN_FORMULARIO = body.origen_formulario || "Formulario comercio";
+
+    attributes.ORIGEN_FORMULARIO =
+      body.origen_formulario || "Formulario comercio";
   }
 
+  /*
+   * Procedencia del interés en la camiseta.
+   */
+  if (body.form_type === "shirt_interest") {
+    attributes.ORIGEN_FORMULARIO =
+      body.origen_formulario ||
+      "CTA camiseta · Email Perros de Madrid";
+  }
+
+  /*
+   * Elimina atributos vacíos antes de enviarlos a Brevo.
+   */
   Object.keys(attributes).forEach((key) => {
     if (
       attributes[key] === "" ||
@@ -124,7 +150,7 @@ export default async function handler(req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Accept": "application/json",
+        Accept: "application/json",
         "api-key": apiKey
       },
       body: JSON.stringify(brevoPayload)
