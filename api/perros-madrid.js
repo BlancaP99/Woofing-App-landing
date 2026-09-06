@@ -10,6 +10,11 @@ const BREVO_CONTACTS_ENDPOINT =
  */
 const BREVO_LIST_IDS = [10, 4];
 
+/*
+ * Lista #11: INTERESADOS CAMISETA PERSONALIZADA
+ */
+const BREVO_SHIRT_INTEREST_LIST_ID = 11;
+
 const MAX_BASE64_LENGTH = 2_800_000;
 
 function clean(value, maxLength = 500) {
@@ -42,6 +47,8 @@ export default async function handler(request, response) {
 
     const body = request.body || {};
 
+    const formType = clean(body.form_type, 50);
+
     /*
      * Honeypot invisible contra bots.
      */
@@ -58,6 +65,84 @@ export default async function handler(request, response) {
 
     const email = clean(body.email, 150)
         .toLowerCase();
+
+    /*
+     * Registro procedente del CTA de la camiseta.
+     *
+     * El contacto ya existe normalmente en Brevo por haber
+     * participado en Perros de Madrid. updateEnabled permite
+     * actualizarlo y añadirlo también a la lista #11.
+     * Esta ruta no necesita volver a enviar nombre, foto ni
+     * consentimientos porque solo registra el interés indicado
+     * al pulsar el botón del email.
+     */
+    if (formType === "shirt_interest") {
+        if (!isEmail(email)) {
+            return response.status(400).json({
+                error: "El email no es válido."
+            });
+        }
+
+        if (!process.env.BREVO_API_KEY) {
+            return response.status(503).json({
+                error:
+                    "El registro de interés todavía no está configurado."
+            });
+        }
+
+        try {
+            const shirtInterestResponse = await fetch(
+                BREVO_CONTACTS_ENDPOINT,
+                {
+                    method: "POST",
+                    headers: {
+                        accept: "application/json",
+                        "api-key":
+                            process.env.BREVO_API_KEY,
+                        "content-type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        email,
+                        listIds: [
+                            BREVO_SHIRT_INTEREST_LIST_ID
+                        ],
+                        updateEnabled: true
+                    })
+                }
+            );
+
+            if (!shirtInterestResponse.ok) {
+                const details =
+                    await shirtInterestResponse.text();
+
+                console.error(
+                    "Brevo shirt interest rejected:",
+                    shirtInterestResponse.status,
+                    details.slice(0, 300)
+                );
+
+                return response.status(502).json({
+                    error:
+                        "No hemos podido registrar tu interés. Inténtalo de nuevo."
+                });
+            }
+
+            return response.status(200).json({
+                ok: true
+            });
+        } catch (error) {
+            console.error(
+                "Brevo shirt interest request failed:",
+                error.message
+            );
+
+            return response.status(502).json({
+                error:
+                    "No hemos podido registrar tu interés. Inténtalo de nuevo."
+            });
+        }
+    }
 
     const instagram = clean(body.instagram, 60);
 
