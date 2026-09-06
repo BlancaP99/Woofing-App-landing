@@ -11,20 +11,12 @@
     <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Oswald:wght@600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
  
     <!-- ✅ COOKIE BANNER CSS -->
     <link rel="stylesheet" href="cookies.css" />
  
     <style>
-        @font-face {
-            font-family: "Oswald";
-            src: url("IMAGES/Oswald-VariableFont_wght.ttf") format("truetype");
-            font-style: normal;
-            font-weight: 200 700;
-            font-display: swap;
-        }
-
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -188,11 +180,26 @@
         }
  
         .mockup-img {
-            height: min(78vh, 780px);
-            width: auto;
+            width: min(66vw, 940px);
+            height: auto;
+            max-width: none;
             object-fit: contain;
             display: block;
-            filter: drop-shadow(0 28px 60px rgba(92, 50, 119, 0.13));
+            transform: translate(10%, 13%);
+            filter: drop-shadow(0 34px 70px rgba(92, 50, 119, 0.18));
+            transition: transform 0.6s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .hero__visual {
+            align-self: stretch;
+            justify-content: flex-end;
+            overflow: hidden;
+            order: 2;
+        }
+
+        .hero__copy {
+            order: 1;
+            justify-content: flex-start;
         }
  
         .hero__content {
@@ -235,13 +242,13 @@
         }
  
         .hero__tagline {
-    font-family: var(--font-display);
-    font-weight: 400;
-    font-size: clamp(38px, 5.1vw, 72px);
-    line-height: 0.98;
-    letter-spacing: -0.04em;
-    color: var(--brand);
-}
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(38px, 5.1vw, 72px);
+            line-height: 0.98;
+            letter-spacing: -0.04em;
+            color: var(--brand);
+        }
  
         .hero__tagline em {
             font-style: italic;
@@ -409,42 +416,51 @@
         }
 
         .product-grid {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 26px;
-            align-items: stretch;
+            display: flex;
+            flex-direction: column;
+            gap: 74px;
         }
 
         .product-card {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: minmax(0, 1.18fr) minmax(280px, 0.82fr);
+            grid-template-rows: auto auto auto 1fr;
+            column-gap: clamp(44px, 7vw, 110px);
+            align-items: center;
             min-width: 0;
-            padding: 34px 30px 32px;
-            background: var(--bg);
-            border: 1px solid rgba(92, 50, 119, 0.10);
-            border-radius: 28px;
-            overflow: hidden;
+            padding: 0;
+            background: transparent;
+            border: 0;
+            border-radius: 0;
+            overflow: visible;
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
         .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 24px 60px rgba(92, 50, 119, 0.10);
+            transform: none;
+            box-shadow: none;
         }
 
         .product-card__visual {
             display: flex;
             align-items: flex-end;
             justify-content: center;
-            min-height: 430px;
-            margin: -4px -4px 24px;
+            grid-column: 1;
+            grid-row: 1 / span 4;
+            min-height: 560px;
+            margin: 0;
+            border: 1px solid rgba(92, 50, 119, 0.09);
+            border-radius: 34px;
+            background:
+                radial-gradient(circle at 50% 62%, rgba(123, 69, 160, 0.13), transparent 46%),
+                var(--bg);
             overflow: hidden;
         }
 
         .product-card__image {
             display: block;
             width: auto;
-            height: 420px;
+            height: 520px;
             max-width: 100%;
             object-fit: contain;
             filter: drop-shadow(0 24px 35px rgba(92, 50, 119, 0.13));
@@ -452,10 +468,36 @@
         }
 
         .product-card:hover .product-card__image {
-            transform: translateY(-4px) scale(1.012);
+            transform: translateY(-7px) scale(1.018);
+        }
+
+        .product-card__number {
+            grid-column: 2;
+            margin-bottom: 34px;
+            font-size: clamp(44px, 5vw, 76px);
+            line-height: 1;
+            font-weight: 500;
+            letter-spacing: -0.055em;
+            color: var(--brand);
+        }
+
+        .product-card:nth-child(even) {
+            grid-template-columns: minmax(280px, 0.82fr) minmax(0, 1.18fr);
+        }
+
+        .product-card:nth-child(even) .product-card__visual {
+            grid-column: 2;
+        }
+
+        .product-card:nth-child(even) .product-card__number,
+        .product-card:nth-child(even) .product-card__label,
+        .product-card:nth-child(even) .product-card__title,
+        .product-card:nth-child(even) .product-card__text {
+            grid-column: 1;
         }
 
         .product-card__label {
+            grid-column: 2;
             display: inline-flex;
             align-items: center;
             width: fit-content;
@@ -473,6 +515,7 @@
         }
 
         .product-card__title {
+            grid-column: 2;
             margin-bottom: 12px;
             font-family: var(--font-display);
             font-size: clamp(25px, 2.2vw, 32px);
@@ -483,9 +526,11 @@
         }
 
         .product-card__text {
+            grid-column: 2;
             font-size: 15px;
             line-height: 1.62;
             color: var(--muted);
+            max-width: 430px;
         }
 
         /* ── CAMPAÑA PERROS DE MADRID ── */
@@ -527,16 +572,13 @@
         }
 
         .campaign-strip__title {
-    font-family: "Oswald", "Arial Narrow", sans-serif;
-    font-stretch: condensed;
-    transform: scaleX(0.70);
-    transform-origin: left center;
-    font-weight: 700;
-    font-size: clamp(58px, 7vw, 104px);
-    line-height: 0.92;
-    letter-spacing: -0.035em;
-    text-transform: uppercase;
-}
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            font-size: clamp(58px, 7vw, 104px);
+            line-height: 0.92;
+            font-weight: 900;
+            letter-spacing: -0.035em;
+            text-transform: uppercase;
+        }
 
         .campaign-strip__title span {
             display: block;
@@ -1265,6 +1307,1508 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* ── AJUSTES EDITORIALES NUEVOS ── */
+        @media (max-width: 1100px) {
+            .mockup-img {
+                width: min(72vw, 820px);
+            }
+
+            .product-card__visual {
+                min-height: 500px;
+            }
+
+            .product-card__image {
+                height: 460px;
+            }
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+                gap: 18px;
+            }
+
+            .hero__copy {
+                order: 1;
+                justify-content: center;
+            }
+
+            .hero__visual {
+                order: 2;
+                min-height: 540px;
+                justify-content: center;
+            }
+
+            .mockup-img {
+                width: min(92vw, 690px);
+                height: auto;
+                transform: translate(0, 12%);
+            }
+
+            .product-grid {
+                max-width: 760px;
+                gap: 62px;
+            }
+
+            .product-card,
+            .product-card:nth-child(even) {
+                display: grid;
+                grid-template-columns: minmax(220px, 0.9fr) minmax(0, 1.1fr);
+                grid-template-rows: auto auto auto 1fr;
+                column-gap: 38px;
+                padding: 0;
+            }
+
+            .product-card__visual,
+            .product-card:nth-child(even) .product-card__visual {
+                grid-column: 1;
+                grid-row: 1 / span 4;
+                min-height: 430px;
+            }
+
+            .product-card__number,
+            .product-card__label,
+            .product-card__title,
+            .product-card__text,
+            .product-card:nth-child(even) .product-card__number,
+            .product-card:nth-child(even) .product-card__label,
+            .product-card:nth-child(even) .product-card__title,
+            .product-card:nth-child(even) .product-card__text {
+                grid-column: 2;
+            }
+
+            .product-card__image {
+                height: 390px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero__visual {
+                min-height: 430px;
+            }
+
+            .mockup-img {
+                width: min(112vw, 590px);
+                transform: translate(0, 10%);
+            }
+
+            .product-grid {
+                gap: 70px;
+            }
+
+            .product-card,
+            .product-card:nth-child(even) {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+            }
+
+            .product-card__visual,
+            .product-card:nth-child(even) .product-card__visual {
+                width: 100%;
+                min-height: 390px;
+                margin: 0 0 26px;
+                border-radius: 26px;
+            }
+
+            .product-card__image {
+                height: 360px;
+            }
+
+            .product-card__number {
+                margin-bottom: 18px;
+                font-size: 48px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero__visual {
+                min-height: 360px;
+            }
+
+            .mockup-img {
+                width: 128vw;
+                transform: translate(0, 8%);
+            }
+
+            .product-card__visual,
+            .product-card:nth-child(even) .product-card__visual {
+                min-height: 330px;
+            }
+
+            .product-card__image {
+                height: 305px;
+            }
+        }
+
+        /* ── LANDING 2026: HERO + PRODUCTO ── */
+        .header {
+            position: absolute;
+            inset: 0 0 auto;
+            background: transparent;
+        }
+
+        .hero {
+            grid-template-columns: minmax(0, 1.18fr) minmax(420px, .82fr);
+            min-height: 100svh;
+            padding: 0;
+            background: #f8f9fa;
+        }
+
+        .hero::before,
+        .hero::after {
+            display: none;
+        }
+
+        .hero__visual {
+            order: 1;
+            align-self: stretch;
+            min-height: 100svh;
+            overflow: hidden;
+        }
+
+        .hero__visual picture,
+        .hero__visual source {
+            display: contents;
+        }
+
+        .hero__background {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            object-position: 56% center;
+        }
+
+        .hero__copy {
+            order: 2;
+            justify-content: flex-start;
+            padding: 150px clamp(34px, 5vw, 88px) 80px clamp(28px, 4vw, 68px);
+        }
+
+        .hero__content {
+            max-width: 550px;
+            gap: 18px;
+        }
+
+        .hero__eyebrow {
+            padding: 8px 14px;
+            font-size: 11px;
+        }
+
+        .hero__tagline {
+            max-width: 520px;
+            font-size: clamp(42px, 4.6vw, 68px);
+            line-height: .98;
+        }
+
+        .hero__subtitle {
+            max-width: 430px;
+            font-size: clamp(16px, 1.15vw, 18px);
+            line-height: 1.5;
+        }
+
+        .hero__cta-group {
+            margin-top: 6px;
+        }
+
+        .hero__cta-group .btn-cta {
+            padding: 15px 23px;
+            font-size: 14px;
+        }
+
+        .product-overview {
+            padding: 110px 56px 120px;
+        }
+
+        .product-overview__inner {
+            width: min(100%, 1320px);
+        }
+
+        .section-heading {
+            display: none;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: clamp(24px, 3vw, 46px);
+        }
+
+        .product-card,
+        .product-card:nth-child(even) {
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            min-width: 0;
+            padding: 0;
+            transform: none;
+        }
+
+        .product-card__visual,
+        .product-card:nth-child(even) .product-card__visual {
+            order: 1;
+            width: 100%;
+            min-height: 470px;
+            margin: 0 0 20px;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            overflow: visible;
+        }
+
+        .product-card__image {
+            height: 460px;
+            max-width: 100%;
+            filter: drop-shadow(0 24px 34px rgba(92, 50, 119, .14));
+        }
+
+        .product-card__number {
+            display: none;
+        }
+
+        .product-card__label {
+            order: 2;
+            margin: 0 22px -10px;
+            position: relative;
+            z-index: 2;
+            background: #fff;
+        }
+
+        .product-card__title {
+            order: 3;
+            margin: 0;
+            padding: 29px 22px 8px;
+            background: var(--soft);
+            border: 1px solid rgba(92, 50, 119, .08);
+            border-bottom: 0;
+            border-radius: 24px 24px 0 0;
+            font-size: clamp(24px, 2vw, 30px);
+        }
+
+        .product-card__text {
+            order: 4;
+            max-width: none;
+            min-height: 116px;
+            padding: 0 22px 24px;
+            background: var(--soft);
+            border: 1px solid rgba(92, 50, 119, .08);
+            border-top: 0;
+            border-radius: 0 0 24px 24px;
+        }
+
+        .campaign-strip__title {
+            font-family: 'Oswald', Impact, sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.045em;
+        }
+
+        @media (max-width: 980px) {
+            .header {
+                position: relative;
+                background: rgba(248, 249, 250, .92);
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 0;
+                min-height: auto;
+                padding: 0;
+            }
+
+            .hero__copy {
+                order: 1;
+                padding: 54px 28px 44px;
+                justify-content: center;
+            }
+
+            .hero__content {
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero__visual {
+                order: 2;
+                min-height: 74svh;
+                max-height: 820px;
+            }
+
+            .hero__background {
+                object-position: center bottom;
+            }
+
+            .product-overview {
+                padding: 84px 28px 92px;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 18px;
+                max-width: none;
+            }
+
+            .product-card,
+            .product-card:nth-child(even) {
+                display: flex;
+            }
+
+            .product-card__visual,
+            .product-card:nth-child(even) .product-card__visual {
+                min-height: 350px;
+            }
+
+            .product-card__image {
+                height: 340px;
+            }
+
+            .product-card__title {
+                padding-inline: 17px;
+                font-size: 23px;
+            }
+
+            .product-card__text {
+                padding-inline: 17px;
+                min-height: 142px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero__copy {
+                padding: 42px 22px 38px;
+            }
+
+            .hero__tagline {
+                max-width: 390px;
+                font-size: clamp(38px, 12vw, 52px);
+            }
+
+            .hero__subtitle {
+                max-width: 340px;
+                font-size: 16px;
+            }
+
+            .hero__cta-group {
+                width: 100%;
+                flex-direction: column;
+            }
+
+            .hero__cta-group .btn-cta {
+                width: min(100%, 360px);
+            }
+
+            .hero__visual {
+                min-height: 690px;
+                max-height: none;
+            }
+
+            .hero__background {
+                content: url('IMAGES/FONDO-WEB-LANDING-MOVIL.png');
+                object-fit: cover;
+                object-position: center bottom;
+            }
+
+            .product-overview {
+                padding: 76px 20px 82px;
+            }
+
+            .product-grid {
+                display: flex;
+                flex-direction: column;
+                gap: 64px;
+                max-width: 430px;
+                margin: 0 auto;
+            }
+
+            .product-card__visual,
+            .product-card:nth-child(even) .product-card__visual {
+                min-height: 390px;
+                margin-bottom: 18px;
+            }
+
+            .product-card__image {
+                height: 380px;
+            }
+
+            .product-card__label {
+                margin-inline: 20px;
+            }
+
+            .product-card__title {
+                padding: 28px 20px 8px;
+                font-size: 27px;
+            }
+
+            .product-card__text {
+                min-height: 0;
+                padding: 0 20px 22px;
+            }
+
+            .campaign-strip__title {
+                font-size: clamp(52px, 16vw, 76px);
+                line-height: .92;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav {
+                flex-direction: row;
+            }
+
+            .hero__visual {
+                min-height: 620px;
+            }
+
+            .hero__eyebrow {
+                font-size: 10px;
+                letter-spacing: .1em;
+            }
+
+            .product-card__visual,
+            .product-card:nth-child(even) .product-card__visual {
+                min-height: 350px;
+            }
+
+            .product-card__image {
+                height: 340px;
+            }
+        }
+
+        /* ── HERO A FONDO COMPLETO ── */
+        .hero {
+            display: block;
+            position: relative;
+            min-height: 100svh;
+            padding: 0;
+            background-image: url('IMAGES/FONDO-WEB-LANDING.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .hero__visual {
+            display: none;
+        }
+
+        .hero__copy {
+            min-height: 100svh;
+            width: 46%;
+            margin-left: 54%;
+            padding: 148px clamp(42px, 5vw, 92px) 72px clamp(36px, 4vw, 70px);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .hero__content {
+            align-items: flex-start;
+            text-align: left;
+            gap: 20px;
+            max-width: 560px;
+        }
+
+        .hero__tagline {
+            max-width: 540px;
+            font-family: var(--font-display);
+            font-size: clamp(44px, 5vw, 72px);
+            font-weight: 500;
+            font-style: normal;
+            line-height: .98;
+            letter-spacing: -.04em;
+            color: var(--brand);
+        }
+
+        .hero__tagline em {
+            font: inherit;
+            color: inherit;
+        }
+
+        .hero__subtitle {
+            max-width: 530px;
+            font-size: clamp(16px, 1.25vw, 19px);
+            line-height: 1.58;
+        }
+
+        .hero__cta-group {
+            width: min(100%, 330px);
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 12px;
+            margin-top: 4px;
+        }
+
+        .hero__cta-group .btn-cta {
+            width: 100%;
+            min-height: 54px;
+        }
+
+        .footer__submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 49px;
+            border-radius: 999px;
+            padding: 13px 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+            box-shadow: 0 12px 30px rgba(92, 50, 119, .22);
+        }
+
+        .footer__submit::after {
+            content: "→";
+            font-size: 18px;
+            line-height: 1;
+        }
+
+        @media (max-width: 980px) {
+            .header {
+                position: absolute;
+                background: transparent;
+            }
+
+            .hero {
+                min-height: 100svh;
+                background-image: url('IMAGES/FONDO-WEB-LANDING-MOVIL.png');
+                background-position: center bottom;
+            }
+
+            .hero__copy {
+                width: 100%;
+                min-height: 100svh;
+                margin-left: 0;
+                padding: 126px 28px 62vh;
+                display: block;
+            }
+
+            .hero__content {
+                margin: 0 auto;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+                max-width: 620px;
+            }
+
+            .hero__tagline {
+                max-width: 520px;
+                font-size: clamp(40px, 8.5vw, 62px);
+                line-height: 1;
+            }
+
+            .hero__subtitle {
+                max-width: 520px;
+            }
+
+            .hero__cta-group {
+                width: min(100%, 340px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 16px 20px;
+            }
+
+            .nav,
+            .nav__controls {
+                flex-direction: row;
+            }
+
+            .hero {
+                min-height: 1180px;
+                background-size: cover;
+                background-position: center bottom;
+            }
+
+            .hero__copy {
+                min-height: 1180px;
+                padding: 108px 22px 720px;
+            }
+
+            .hero__content {
+                gap: 14px;
+            }
+
+            .hero__tagline {
+                max-width: 390px;
+                font-size: clamp(38px, 11vw, 52px);
+            }
+
+            .hero__subtitle {
+                max-width: 390px;
+                font-size: 15px;
+                line-height: 1.48;
+            }
+
+            .hero__cta-group {
+                gap: 10px;
+            }
+
+            .hero__cta-group .btn-cta {
+                min-height: 50px;
+                padding-block: 13px;
+            }
+
+            .footer__form-row {
+                align-items: stretch;
+            }
+
+            .footer__submit {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 46px;
+            }
+
+            .hero {
+                min-height: 1080px;
+            }
+
+            .hero__copy {
+                min-height: 1080px;
+                padding: 94px 18px 655px;
+            }
+
+            .hero__eyebrow {
+                padding: 7px 12px;
+            }
+
+            .hero__tagline {
+                font-size: clamp(36px, 11vw, 46px);
+            }
+
+            .hero__subtitle {
+                font-size: 14px;
+            }
+
+            .hero__cta-group {
+                width: min(100%, 315px);
+            }
+        }
+
+        /* ── REFINADO HERO + NAVEGACIÓN AL HACER SCROLL ── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 30;
+            background: #f8f9fa;
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+            border-bottom: 1px solid rgba(92, 50, 119, .08);
+            box-shadow: 0 10px 30px rgba(92, 50, 119, .07);
+            opacity: 0;
+            transform: translateY(-110%);
+            pointer-events: none;
+            transition: transform .28s ease, opacity .28s ease;
+        }
+
+        .header.header--visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .hero {
+            background-image: url('IMAGES/FONDO-WEB-LANDING-2.png');
+            background-position: center center;
+        }
+
+        .hero__copy {
+            width: 38%;
+            margin-left: 62%;
+            padding: 72px clamp(40px, 4vw, 76px) 58px 22px;
+        }
+
+        .hero__content {
+            max-width: 455px;
+            gap: 14px;
+        }
+
+        .hero__brand-logo {
+            width: clamp(142px, 13vw, 205px);
+            height: auto;
+            display: block;
+            margin-bottom: 18px;
+            object-fit: contain;
+        }
+
+        .hero__eyebrow {
+            font-size: 10px;
+            padding: 7px 12px;
+        }
+
+        .hero__tagline {
+            max-width: 430px;
+            font-size: clamp(38px, 3.8vw, 58px);
+            line-height: 1;
+        }
+
+        .hero__subtitle {
+            max-width: 420px;
+            font-size: clamp(14px, 1.02vw, 16px);
+            line-height: 1.5;
+        }
+
+        .hero__cta-group {
+            width: min(100%, 290px);
+            gap: 9px;
+        }
+
+        .hero__cta-group .btn-cta {
+            min-height: 48px;
+            padding: 13px 20px;
+            font-size: 13px;
+        }
+
+        /* ── TRES EXPERIENCIAS EDITORIALES ── */
+        .product-overview {
+            padding: 108px 42px 124px;
+            background: #fff;
+        }
+
+        .experience-grid {
+            width: min(100%, 1320px);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 96px;
+        }
+
+        .experience-row {
+            display: grid;
+            grid-template-columns: minmax(250px, .34fr) minmax(0, 1fr);
+            align-items: center;
+            gap: clamp(40px, 6vw, 92px);
+        }
+
+        .experience-row:nth-child(even) {
+            grid-template-columns: minmax(0, 1fr) minmax(250px, .34fr);
+        }
+
+        .experience-row:nth-child(even) .experience-row__copy {
+            order: 2;
+        }
+
+        .experience-row__copy {
+            min-width: 0;
+        }
+
+        .experience-row__label {
+            display: inline-flex;
+            margin-bottom: 14px;
+            padding: 7px 11px;
+            border: 1px solid rgba(92, 50, 119, .12);
+            border-radius: 999px;
+            background: var(--soft);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .experience-row__title {
+            margin-bottom: 13px;
+            font-family: var(--font-display);
+            font-size: clamp(32px, 3.1vw, 48px);
+            line-height: 1.02;
+            font-weight: 500;
+            letter-spacing: -.035em;
+        }
+
+        .experience-row__text {
+            max-width: 380px;
+            font-size: 15px;
+            line-height: 1.62;
+            color: var(--muted);
+        }
+
+        .experience-row__visual {
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .product-rail {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            align-items: end;
+            gap: 14px;
+            padding: 32px 28px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(92, 50, 119, .06), rgba(123, 69, 160, .12));
+        }
+
+        .product-rail img {
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 18px 23px rgba(61, 28, 81, .12));
+            transition: transform .25s ease;
+        }
+
+        .product-rail img:nth-child(2),
+        .product-rail img:nth-child(4) {
+            transform: translateY(-16px);
+        }
+
+        .services-gallery {
+            padding: 24px 0;
+            overflow: hidden;
+        }
+
+        .services-gallery img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .management-panel {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 420px;
+            padding: 54px;
+            border-radius: 32px;
+            background: linear-gradient(145deg, #f8f9fa, rgba(92, 50, 119, .10));
+        }
+
+        .management-panel img {
+            display: block;
+            width: min(100%, 720px);
+            height: auto;
+            filter: drop-shadow(0 22px 30px rgba(92, 50, 119, .12));
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                min-height: 100svh;
+                background-image: url('IMAGES/FONDO-WEB-LANDING-MOVIL.png');
+                background-position: center bottom;
+            }
+
+            .hero__copy {
+                width: 100%;
+                min-height: 100svh;
+                margin-left: 0;
+                padding: 48px 28px 62vh;
+            }
+
+            .hero__content {
+                max-width: 500px;
+                margin: 0 auto;
+                align-items: center;
+                text-align: center;
+            }
+
+            .hero__brand-logo {
+                width: 158px;
+                margin-bottom: 10px;
+            }
+
+            .experience-row,
+            .experience-row:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 34px;
+            }
+
+            .experience-row:nth-child(even) .experience-row__copy {
+                order: initial;
+            }
+
+            .experience-row__copy {
+                text-align: center;
+            }
+
+            .experience-row__text {
+                margin-inline: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                min-height: 1080px;
+            }
+
+            .hero__copy {
+                min-height: 1080px;
+                padding: 34px 20px 635px;
+            }
+
+            .hero__brand-logo {
+                width: 142px;
+                margin-bottom: 6px;
+            }
+
+            .hero__content {
+                gap: 11px;
+            }
+
+            .hero__tagline {
+                font-size: clamp(34px, 10vw, 44px);
+            }
+
+            .hero__subtitle {
+                max-width: 370px;
+                font-size: 13px;
+                line-height: 1.43;
+            }
+
+            .hero__cta-group {
+                width: min(100%, 270px);
+                gap: 8px;
+            }
+
+            .hero__cta-group .btn-cta {
+                min-height: 44px;
+                padding: 11px 18px;
+                font-size: 12px;
+            }
+
+            .product-overview {
+                padding: 76px 20px 88px;
+            }
+
+            .experience-grid {
+                gap: 76px;
+            }
+
+            .experience-row {
+                gap: 26px;
+            }
+
+            .experience-row__title {
+                font-size: clamp(31px, 9vw, 42px);
+            }
+
+            .product-rail {
+                grid-template-columns: repeat(4, 180px);
+                gap: 12px;
+                padding: 24px 20px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+            }
+
+            .product-rail::-webkit-scrollbar {
+                display: none;
+            }
+
+            .product-rail img {
+                scroll-snap-align: center;
+            }
+
+            .services-gallery {
+                width: min(100%, 270px);
+                margin: 0 auto;
+                overflow: visible;
+            }
+
+            .services-gallery img {
+                width: 100%;
+            }
+
+            .management-panel {
+                min-height: 300px;
+                padding: 24px 18px;
+                border-radius: 26px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 1020px;
+            }
+
+            .hero__copy {
+                min-height: 1020px;
+                padding: 28px 16px 600px;
+            }
+
+            .hero__brand-logo {
+                width: 130px;
+            }
+
+            .hero__eyebrow {
+                font-size: 9px;
+            }
+
+            .hero__tagline {
+                font-size: 35px;
+            }
+
+            .hero__subtitle {
+                max-width: 340px;
+                font-size: 12.5px;
+            }
+        }
+
+        /* ── COMPOSICIÓN FINAL: LOGO / MÓVIL / TEXTO ── */
+        .hero__brand-logo--left {
+            position: absolute;
+            z-index: 2;
+            left: clamp(34px, 6vw, 112px);
+            top: 50%;
+            width: clamp(280px, 21vw, 400px);
+            margin: 0;
+            transform: translateY(-50%);
+        }
+
+        .hero__copy {
+            width: 35%;
+            margin-left: 65%;
+            padding: 72px clamp(26px, 3.3vw, 64px) 58px 10px;
+        }
+
+        .hero__content {
+            max-width: 420px;
+        }
+
+        .hero__tagline {
+            font-size: clamp(36px, 3.45vw, 54px);
+        }
+
+        .hero__subtitle {
+            max-width: 400px;
+            font-size: clamp(13px, .95vw, 15px);
+        }
+
+        /* ── SERVICIOS: MISMO SISTEMA QUE PRODUCTOS ── */
+        .service-rail {
+            display: grid;
+            grid-template-columns: repeat(6, minmax(0, 1fr));
+            align-items: center;
+            gap: 12px;
+            padding: 28px 24px 20px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(92, 50, 119, .06), rgba(123, 69, 160, .12));
+        }
+
+        .service-rail img {
+            display: block;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 18px 23px rgba(61, 28, 81, .10));
+        }
+
+        .service-rail img:nth-child(even) {
+            transform: translateY(-12px);
+        }
+
+        /* ── GESTIÓN: CALENDARIO Y SLOTS ── */
+        .schedule-panel {
+            padding: 30px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, rgba(92, 50, 119, .06), rgba(123, 69, 160, .12));
+        }
+
+        .schedule-card {
+            width: min(100%, 760px);
+            margin: 0 auto;
+            padding: 24px;
+            border-radius: 24px;
+            background: rgba(255, 255, 255, .92);
+            box-shadow: 0 20px 44px rgba(61, 28, 81, .10);
+        }
+
+        .schedule-card__top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .schedule-card__month {
+            font-family: var(--font-display);
+            font-size: clamp(24px, 2.4vw, 34px);
+            color: var(--brand);
+        }
+
+        .schedule-card__pet {
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: var(--soft);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .schedule-days {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .schedule-day {
+            min-width: 0;
+        }
+
+        .schedule-day__name {
+            display: block;
+            margin-bottom: 8px;
+            padding-left: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .schedule-slot {
+            min-height: 92px;
+            padding: 12px;
+            border: 1px solid rgba(92, 50, 119, .10);
+            border-radius: 15px;
+            background: #f4edf8;
+        }
+
+        .schedule-slot__time {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--brand);
+        }
+
+        .schedule-slot__event {
+            display: block;
+            font-size: 13px;
+            line-height: 1.28;
+            color: var(--brand);
+        }
+
+        /* ── CAMPAÑA COMO PÓSTER ── */
+        .campaign-strip {
+            padding: 96px 24px;
+            background: #f8f9fa;
+        }
+
+        .campaign-strip__inner {
+            position: relative;
+            display: block;
+            width: min(88vw, 700px);
+            aspect-ratio: 9 / 16;
+            margin: 0 auto;
+            border-radius: 34px;
+            overflow: hidden;
+            background: #fff url('IMAGES/CARTEL-SIN-NADA.png') center / cover no-repeat;
+            box-shadow: 0 34px 90px rgba(92, 50, 119, .19);
+        }
+
+        .campaign-strip__content {
+            display: none;
+        }
+
+        .campaign-strip__action {
+            position: absolute;
+            right: 6%;
+            bottom: 5%;
+            width: min(52%, 310px);
+        }
+
+        .campaign-strip__copy {
+            display: none;
+        }
+
+        .campaign-strip__cta {
+            width: 100%;
+            min-height: 54px;
+            padding-inline: 22px;
+            background: var(--brand);
+            color: #fff;
+            border: 2px solid #fff;
+            box-shadow: 0 18px 38px rgba(45, 19, 62, .28);
+        }
+
+        @media (max-width: 980px) {
+            .hero__brand-logo--left {
+                position: static;
+                width: 150px;
+                margin: 0 auto 8px;
+                transform: none;
+            }
+
+            .hero__copy {
+                width: 100%;
+                margin-left: 0;
+                padding-inline: 24px;
+            }
+
+            .service-rail {
+                grid-template-columns: repeat(6, 185px);
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+                scrollbar-width: none;
+            }
+
+            .service-rail::-webkit-scrollbar {
+                display: none;
+            }
+
+            .service-rail img {
+                scroll-snap-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .schedule-panel {
+                padding: 18px;
+                border-radius: 25px;
+            }
+
+            .schedule-card {
+                padding: 18px;
+            }
+
+            .schedule-days {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .campaign-strip {
+                padding: 70px 14px;
+            }
+
+            .campaign-strip__inner {
+                width: min(100%, 560px);
+                border-radius: 24px;
+            }
+
+            .campaign-strip__action {
+                right: 5%;
+                bottom: 4.5%;
+                width: 58%;
+            }
+
+            .campaign-strip__cta {
+                min-height: 48px;
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero__brand-logo--left {
+                width: 128px;
+                margin-bottom: 5px;
+            }
+
+            .service-rail {
+                grid-template-columns: repeat(6, 165px);
+                padding: 22px 18px 15px;
+            }
+
+            .schedule-card__top {
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .schedule-days {
+                grid-template-columns: 1fr;
+            }
+
+            .schedule-slot {
+                min-height: 76px;
+            }
+
+            .campaign-strip__action {
+                right: 4%;
+                bottom: 3.7%;
+                width: 64%;
+            }
+        }
+
+        /* ── CAMPAÑA: CARTEL COMPLETO + CTA LATERAL ── */
+        .campaign-strip {
+            padding: 92px 40px;
+        }
+
+        .campaign-strip__inner {
+            width: min(100%, 1120px);
+            aspect-ratio: auto;
+            display: grid;
+            grid-template-columns: minmax(320px, 520px) minmax(260px, 1fr);
+            align-items: center;
+            justify-content: center;
+            gap: clamp(54px, 8vw, 120px);
+            padding: 0;
+            border-radius: 0;
+            overflow: visible;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        .campaign-poster {
+            display: block;
+            width: 100%;
+            height: auto;
+            border-radius: 28px;
+            box-shadow: 0 28px 70px rgba(92, 50, 119, .17);
+        }
+
+        .campaign-strip__action {
+            position: static;
+            width: min(100%, 320px);
+            justify-self: start;
+        }
+
+        .campaign-strip__cta {
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .campaign-strip {
+                padding: 68px 20px;
+            }
+
+            .campaign-strip__inner {
+                grid-template-columns: 1fr;
+                gap: 34px;
+                width: min(100%, 520px);
+            }
+
+            .campaign-poster {
+                width: min(100%, 430px);
+                margin: 0 auto;
+                border-radius: 22px;
+            }
+
+            .campaign-strip__action {
+                width: min(100%, 310px);
+                justify-self: center;
+            }
+        }
+
+        /* ── CAMPAÑA FINAL: MOCKUP COMO FONDO ── */
+        .campaign-strip {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            min-height: 560px;
+            padding: 0;
+            overflow: hidden;
+            background-image: url('IMAGES/CARTEL-MOCKUP-1.png');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .campaign-strip__inner {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 6vw 8vw;
+            background: transparent;
+        }
+
+        .campaign-poster,
+        .campaign-strip__content {
+            display: none;
+        }
+
+        .campaign-strip__action {
+            position: static;
+            width: min(30vw, 330px);
+            min-width: 260px;
+            margin: 0;
+        }
+
+        .campaign-strip__cta {
+            width: 100%;
+            min-height: 56px;
+            border-color: rgba(255, 255, 255, .92);
+            box-shadow: 0 20px 48px rgba(25, 16, 30, .32);
+        }
+
+        @media (max-width: 768px) {
+            .campaign-strip {
+                aspect-ratio: auto;
+                min-height: 540px;
+                background-size: auto 100%;
+                background-position: 34% center;
+                background-color: #cbc6bd;
+            }
+
+            .campaign-strip__inner {
+                align-items: flex-end;
+                justify-content: flex-end;
+                padding: 0 20px 32px;
+            }
+
+            .campaign-strip__action {
+                width: min(70vw, 290px);
+                min-width: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .campaign-strip {
+                min-height: 500px;
+                background-position: 31% center;
+            }
+
+            .campaign-strip__inner {
+                padding: 0 16px 24px;
+            }
+
+            .campaign-strip__cta {
+                min-height: 48px;
+                font-size: 12px;
+            }
+        }
+
+        /* ── AJUSTE DE TAMAÑOS: HEADER + LOGO HERO ── */
+        .header {
+            padding: 10px 44px;
+        }
+
+        .header .logo-img {
+            height: 46px;
+        }
+
+        .hero__brand-logo--left {
+            width: clamp(220px, 17vw, 320px);
+        }
+
+        @media (max-width: 980px) {
+            .header {
+                padding: 9px 24px;
+            }
+
+            .header .logo-img {
+                height: 42px;
+            }
+
+            .hero__brand-logo--left {
+                width: 195px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 8px 18px;
+            }
+
+            .header .logo-img {
+                height: 38px;
+            }
+
+            .hero__brand-logo--left {
+                width: 170px;
+            }
+        }
     </style>
 </head>
  
@@ -1293,18 +2837,14 @@
  
     <!-- HERO -->
     <main class="hero">
-        <div class="hero__half">
-            <img src="IMAGES/MOCKUP_IPHONE_2.png" alt="App Mockup" class="mockup-img" />
-        </div>
- 
-        <div class="hero__half">
+        <img src="IMAGES/LOGO_HORIZONTAL_PNG.png" alt="Woofing" class="hero__brand-logo hero__brand-logo--left" />
+        <div class="hero__half hero__visual" aria-hidden="true"></div>
+
+        <div class="hero__half hero__copy">
             <div class="hero__content">
-                <div class="hero__eyebrow" data-i18n="hero_eyebrow">Próximamente en Madrid y toda España</div>
+                <div class="hero__eyebrow" data-i18n="hero_eyebrow">Otoño 2026</div>
  
-                <h1 class="hero__tagline" data-i18n="hero_tagline">
-                    Todo lo que necesita tu mascota,<br />
-                    <em>en una sola app</em>
-                </h1>
+                <h1 class="hero__tagline" data-i18n="hero_tagline">Todo para tu mascota</h1>
  
  
                 <p class="hero__subtitle" data-i18n="hero_subtitle">
@@ -1312,69 +2852,91 @@
                 </p>
  
                 <div class="hero__cta-group">
-                    <button class="btn-cta" id="openOwnerCta" type="button" data-i18n="cta_owner">Quiero acceso anticipado</button>
-                    <button class="btn-cta btn-cta--secondary" id="openBusinessCta" type="button" data-i18n="cta_business">Tengo un negocio pet</button>
+                    <button class="btn-cta" id="openOwnerCta" type="button" data-i18n="cta_owner">Acceso anticipado</button>
+                    <button class="btn-cta btn-cta--secondary" id="openBusinessCta" type="button" data-i18n="cta_business">Acceso partnerships</button>
                 </div>
             </div>
         </div>
     </main>
  
     <!-- TODO CONECTADO -->
-    <section class="product-overview" aria-labelledby="productOverviewTitle">
-        <div class="product-overview__inner">
-            <div class="section-heading">
-                <span class="section-heading__eyebrow" data-i18n="overview_eyebrow">Dentro de Woofing</span>
-                <h2 class="section-heading__title" id="productOverviewTitle" data-i18n="overview_title">Todo conectado en Woofing</h2>
-                <p class="section-heading__text" data-i18n="overview_text">
-                    Servicios, productos e información personalizada para cuidar mejor de tu mascota, todo desde una sola app.
-                </p>
-            </div>
+    <section class="product-overview" aria-label="Funciones principales de Woofing">
+        <div class="experience-grid">
+            <article class="experience-row">
+                <div class="experience-row__copy">
+                    <span class="experience-row__label" data-i18n="products_label">Envíos a toda España</span>
+                    <h2 class="experience-row__title" data-i18n="products_title">Compra productos</h2>
+                    <p class="experience-row__text" data-i18n="products_text">Descubre productos para tu mascota y recíbelos en casa con envíos a toda España.</p>
+                </div>
+                <div class="experience-row__visual product-rail" aria-label="Productos disponibles en Woofing">
+                    <img src="IMAGES/PRODUCTO-1.png" alt="Producto para mascotas en Woofing" />
+                    <img src="IMAGES/PRODUCTO-2.png" alt="Producto para mascotas en Woofing" />
+                    <img src="IMAGES/PRODUCTO-3.png" alt="Producto para mascotas en Woofing" />
+                    <img src="IMAGES/PRODUCTO-4.png" alt="Producto para mascotas en Woofing" />
+                </div>
+            </article>
 
-            <div class="product-grid">
-                <article class="product-card">
-                    <div class="product-card__visual">
-                        <img src="IMAGES/phone-3.png" alt="Reservas de servicios en Woofing" class="product-card__image" />
-                    </div>
-                    <span class="product-card__label" data-i18n="services_label">Disponible en Madrid</span>
-                    <h3 class="product-card__title" data-i18n="services_title">Reserva servicios</h3>
-                    <p class="product-card__text" data-i18n="services_text">
-                        Encuentra y reserva peluquerías, paseadores, guarderías, hoteles y otros profesionales para tu mascota en Madrid.
-                    </p>
-                </article>
+            <article class="experience-row">
+                <div class="experience-row__copy">
+                    <span class="experience-row__label" data-i18n="services_label">Disponible en Madrid</span>
+                    <h2 class="experience-row__title" data-i18n="services_title">Reserva servicios</h2>
+                    <p class="experience-row__text" data-i18n="services_text">Encuentra y reserva peluquerías, paseadores, guarderías, hoteles y otros profesionales para tu mascota en Madrid.</p>
+                </div>
+                <div class="experience-row__visual service-rail" aria-label="Servicios disponibles en Woofing">
+                    <img src="IMAGES/SERVICIO-1.png" alt="Accesorios para mascotas" />
+                    <img src="IMAGES/SERVICIO-2.png" alt="Peluquerías para mascotas" />
+                    <img src="IMAGES/SERVICIO-3.png" alt="Veterinarios" />
+                    <img src="IMAGES/SERVICIO-4.png" alt="Paseadores de perros" />
+                    <img src="IMAGES/SERVICIO-5.png" alt="Alimentación para mascotas" />
+                    <img src="IMAGES/SERVICIO-6.png" alt="Hoteles para perros" />
+                </div>
+            </article>
 
-                <article class="product-card">
-                    <div class="product-card__visual">
-                        <img src="IMAGES/phone-4.png" alt="Productos para mascotas en Woofing" class="product-card__image" />
+            <article class="experience-row">
+                <div class="experience-row__copy">
+                    <span class="experience-row__label" data-i18n="profile_label">Un perfil por mascota</span>
+                    <h2 class="experience-row__title" data-i18n="profile_title">Gestiona su perfil</h2>
+                    <p class="experience-row__text" data-i18n="profile_text">Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.</p>
+                </div>
+                <div class="experience-row__visual schedule-panel">
+                    <div class="schedule-card" aria-label="Ejemplo de agenda de mascota">
+                        <div class="schedule-card__top">
+                            <span class="schedule-card__month">Septiembre</span>
+                            <span class="schedule-card__pet">Agenda de Tango</span>
+                        </div>
+                        <div class="schedule-days">
+                            <div class="schedule-day">
+                                <span class="schedule-day__name">Lun 14</span>
+                                <div class="schedule-slot"><span class="schedule-slot__time">10:00</span><span class="schedule-slot__event">Peluquería</span></div>
+                            </div>
+                            <div class="schedule-day">
+                                <span class="schedule-day__name">Mar 15</span>
+                                <div class="schedule-slot"><span class="schedule-slot__time">17:30</span><span class="schedule-slot__event">Paseo reservado</span></div>
+                            </div>
+                            <div class="schedule-day">
+                                <span class="schedule-day__name">Jue 17</span>
+                                <div class="schedule-slot"><span class="schedule-slot__time">09:15</span><span class="schedule-slot__event">Veterinario</span></div>
+                            </div>
+                            <div class="schedule-day">
+                                <span class="schedule-day__name">Vie 18</span>
+                                <div class="schedule-slot"><span class="schedule-slot__time">Todo el día</span><span class="schedule-slot__event">Desparasitación</span></div>
+                            </div>
+                        </div>
                     </div>
-                    <span class="product-card__label" data-i18n="products_label">Envíos a toda España</span>
-                    <h3 class="product-card__title" data-i18n="products_title">Compra productos</h3>
-                    <p class="product-card__text" data-i18n="products_text">
-                        Descubre productos para tu mascota y recíbelos en casa con envíos a toda España.
-                    </p>
-                </article>
-
-                <article class="product-card">
-                    <div class="product-card__visual">
-                        <img src="IMAGES/phone-5.png" alt="Gestión del perfil de mascota en Woofing" class="product-card__image" />
-                    </div>
-                    <span class="product-card__label" data-i18n="profile_label">Un perfil por mascota</span>
-                    <h3 class="product-card__title" data-i18n="profile_title">Gestiona su perfil</h3>
-                    <p class="product-card__text" data-i18n="profile_text">
-                        Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.
-                    </p>
-                </article>
-            </div>
+                </div>
+            </article>
         </div>
     </section>
 
     <!-- CAMPAÑA PERROS DE MADRID -->
-    <section class="campaign-strip" aria-labelledby="campaignTitle">
+    <section class="campaign-strip" aria-label="Se buscan perros de Madrid">
         <div class="campaign-strip__inner">
+            <img src="IMAGES/CARTEL-SIN-NADA.png" alt="Se buscan perros de Madrid" class="campaign-poster" />
             <div class="campaign-strip__content">
                 <span class="campaign-strip__eyebrow" data-i18n="campaign_eyebrow">Casting abierto · Madrid</span>
                 <h2 class="campaign-strip__title" id="campaignTitle">
                     <span data-i18n="campaign_title_1">Se buscan</span>
-                    <span data-i18n="campaign_title_2">perros</span>
+                    <span data-i18n="campaign_title_2">los perros</span>
                     <span data-i18n="campaign_title_3">de Madrid</span>
                 </h2>
             </div>
@@ -1595,16 +3157,16 @@
             es: {
                 contact_link: "Contacto",
  
-                hero_eyebrow: "Próximamente en Madrid y toda España",
-                hero_tagline: "Todo lo que necesita tu mascota,<br /><em>en una sola app</em>",
+                hero_eyebrow: "Otoño 2026",
+                hero_tagline: "Todo para tu mascota",
                 hero_launch: "",
                 hero_subtitle: "Reserva servicios para tu mascota en Madrid, descubre productos con envío a toda España y guarda toda su información en un mismo lugar.",
                 point_owner: "Para dueños",
                 point_business: "Para comercios",
                 point_data: "Con datos reales",
                 cta_button: "Entrar en Woofing",
-                cta_owner: "Quiero acceso anticipado",
-                cta_business: "Tengo un negocio pet",
+                cta_owner: "Acceso anticipado",
+                cta_business: "Acceso partnerships",
                 cta_note: "Elige tu perfil y te llevamos directamente al formulario correcto.",
 
                 overview_eyebrow: "Dentro de Woofing",
@@ -1621,7 +3183,7 @@
                 profile_text: "Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.",
                 campaign_eyebrow: "Casting abierto · Madrid",
                 campaign_title_1: "Se buscan",
-                campaign_title_2: "perros",
+                campaign_title_2: "los perros",
                 campaign_title_3: "de Madrid",
                 campaign_text: "<strong>Queremos conocer al tuyo.</strong> Preséntanoslo y podrá convertirse en una de las caras de Woofing.",
                 campaign_cta: "Presentar a mi perro",
@@ -1692,16 +3254,16 @@
             en: {
                 contact_link: "Contact",
  
-                hero_eyebrow: "Coming soon in Madrid and across Spain",
-                hero_tagline: "Everything your pet needs,<br /><em>in one app</em>",
+                hero_eyebrow: "Autumn 2026",
+                hero_tagline: "Everything for your pet",
                 hero_launch: "",
                 hero_subtitle: "Book services for your pet in Madrid, discover products delivered across Spain and keep all their information in one place.",
                 point_owner: "For owners",
                 point_business: "For businesses",
                 point_data: "With real data",
                 cta_button: "Enter Woofing",
-                cta_owner: "Get early access",
-                cta_business: "I run a pet business",
+                cta_owner: "Early access",
+                cta_business: "Partnership access",
                 cta_note: "Choose whether you are an owner or a professional and we'll take you to the right place.",
 
                 overview_eyebrow: "Inside Woofing",
@@ -2123,6 +3685,16 @@
             }
         });
  
+        // El menú permanece oculto en el hero y aparece al avanzar por la página.
+        const pageHeader = document.querySelector(".header");
+
+        function updateHeaderVisibility() {
+            pageHeader.classList.toggle("header--visible", window.scrollY > 120);
+        }
+
+        updateHeaderVisibility();
+        window.addEventListener("scroll", updateHeaderVisibility, { passive: true });
+
         setLanguage(currentLang);
     </script>
 </body>
