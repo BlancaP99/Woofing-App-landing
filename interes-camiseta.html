@@ -242,6 +242,22 @@
             text-align: center;
         }
 
+        .registration-message {
+            max-width: 590px;
+            margin: 22px auto 0;
+            color: var(--text-soft);
+            font-size: 15px;
+            line-height: 1.55;
+        }
+
+        .registration-message--error {
+            color: #a13b55;
+        }
+
+        [hidden] {
+            display: none !important;
+        }
+
         @media (max-width: 650px) {
             .header {
                 padding-top: 20px;
@@ -301,16 +317,21 @@
         <main class="main">
             <section class="card">
 
-                <div class="icon">✓</div>
+                <div class="icon" id="statusIcon">…</div>
 
-                <div class="eyebrow">
-                    Interés registrado
+                <div class="eyebrow" id="statusEyebrow">
+                    Registrando interés
                 </div>
 
-                <h1>
-                    ¡Tu diseño está cerca!
+                <h1 id="statusTitle">
+                    Un momento…
                 </h1>
 
+                <p class="registration-message" id="registrationMessage">
+                    Estamos guardando tu solicitud.
+                </p>
+
+                <div id="successContent" hidden>
                 <p class="intro">
                     Hemos anotado tu interés y ya tenemos la fotografía que
                     necesitamos para empezar a preparar una propuesta
@@ -349,6 +370,16 @@
                         Volver a Woofing
                     </a>
                 </div>
+                </div>
+
+                <div class="buttons" id="errorActions" hidden>
+                    <button type="button" class="button button--primary" id="retryButton">
+                        Intentarlo de nuevo
+                    </button>
+                    <a href="mailto:hola@woofingapp.com" class="button button--secondary">
+                        Contactar con Woofing
+                    </a>
+                </div>
 
             </section>
         </main>
@@ -358,5 +389,80 @@
         </footer>
 
     </div>
+
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const email = (params.get("email") || "").trim();
+            const statusIcon = document.getElementById("statusIcon");
+            const statusEyebrow = document.getElementById("statusEyebrow");
+            const statusTitle = document.getElementById("statusTitle");
+            const registrationMessage = document.getElementById("registrationMessage");
+            const successContent = document.getElementById("successContent");
+            const errorActions = document.getElementById("errorActions");
+            const retryButton = document.getElementById("retryButton");
+
+            function showSuccess() {
+                statusIcon.textContent = "✓";
+                statusEyebrow.textContent = "Interés registrado";
+                statusTitle.textContent = "¡Tu diseño está cerca!";
+                registrationMessage.hidden = true;
+                errorActions.hidden = true;
+                successContent.hidden = false;
+            }
+
+            function showError(message) {
+                statusIcon.textContent = "!";
+                statusEyebrow.textContent = "No se ha podido registrar";
+                statusTitle.textContent = "Vamos a intentarlo otra vez";
+                registrationMessage.textContent = message;
+                registrationMessage.classList.add("registration-message--error");
+                registrationMessage.hidden = false;
+                successContent.hidden = true;
+                errorActions.hidden = false;
+            }
+
+            async function registerInterest() {
+                if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    showError("El enlace no contiene un email válido. Vuelve al correo y pulsa de nuevo el botón.");
+                    return;
+                }
+
+                registrationMessage.classList.remove("registration-message--error");
+                registrationMessage.textContent = "Estamos guardando tu solicitud.";
+                registrationMessage.hidden = false;
+                errorActions.hidden = true;
+
+                try {
+                    const response = await fetch("/api/brevo-contact", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({
+                            form_type: "shirt_interest",
+                            email: email,
+                            origen_formulario: "CTA camiseta · Email Perros de Madrid",
+                            language: "es"
+                        })
+                    });
+
+                    let result = {};
+                    try {
+                        result = await response.json();
+                    } catch (_) {}
+
+                    if (!response.ok || result.success === false) {
+                        throw new Error(result.error || "No se pudo completar el registro.");
+                    }
+
+                    showSuccess();
+                } catch (error) {
+                    showError("No hemos podido guardar tu interés. Comprueba tu conexión e inténtalo de nuevo.");
+                }
+            }
+
+            retryButton.addEventListener("click", registerInterest);
+            registerInterest();
+        })();
+    </script>
 </body>
 </html>
