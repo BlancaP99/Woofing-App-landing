@@ -1024,12 +1024,23 @@ body::before{
 /* Header compartido con el index */
 .header{
   width:100%;
-  padding:24px 56px;
-  background-color:rgba(248,249,250,.92);
-  backdrop-filter:blur(14px);
-  position:relative;
+  padding:10px 44px;
+  background:#f8f9fa;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
   z-index:100;
+  border-bottom:1px solid rgba(92,50,119,.08);
+  box-shadow:0 10px 30px rgba(92,50,119,.07);
+  opacity:0;
+  transform:translateY(-110%);
+  pointer-events:none;
+  transition:transform .28s ease,opacity .28s ease;
 }
+.header.header--visible{opacity:1;transform:translateY(0);pointer-events:auto}
 .header .nav{
   width:100%;
   position:static;
@@ -1043,7 +1054,7 @@ body::before{
   border:0;
 }
 .logo-img{
-  height:68px;
+  height:46px;
   width:auto;
   object-fit:contain;
   display:block;
@@ -1168,19 +1179,35 @@ body::before{
 .btn-white{padding:16px 34px;box-shadow:0 14px 38px rgba(26,13,46,.22)}
 .btn-ghost{padding:16px 34px}
 
-/* La página empieza después del header, como en el index */
-.hero{min-height:calc(100svh - 116px);padding-top:72px}
+/* Fondo de landing y detalles morados del index */
+.hero{
+  min-height:100svh;
+  padding-top:120px;
+  background-color:#f8f9fa;
+  background-image:url('IMAGES/FONDO-WEB-LANDING-NADA.png');
+  background-position:center center;
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+/* Se elimina el círculo decorativo de la sección del modelo */
+.risk-section::after{display:none}
 
 @media(max-width:900px){
-  .header{padding:20px 24px}
-  .logo-img{height:54px}
+  .header{padding:9px 24px}
+  .logo-img{height:42px}
 }
 @media(max-width:580px){
-  .header{padding:16px 18px}
-  .logo-img{height:44px}
+  .header{padding:8px 18px}
+  .logo-img{height:38px}
   .nav__controls{gap:14px}
   .nav__link{font-size:11px;letter-spacing:.07em}
-  .hero{min-height:calc(100svh - 76px);padding-top:56px}
+  .hero{
+    min-height:100svh;
+    padding-top:96px;
+    background-image:url('IMAGES/LANDING-MOVIL-NADA.png');
+    background-position:center center;
+  }
 }
 </style>
 </head>
@@ -1554,10 +1581,6 @@ body::before{
 </section>
 
 <section class="section cta-section" id="contactar">
-  <div class="cta-section__logo-bg">
-    <img src="IMAGES/LOGO_.png" alt="" aria-hidden="true" />
-  </div>
-
   <div class="section-inner">
     <h2 class="cta__title reveal" style="transition-delay:0.1s" data-i18n="cta_title">
       Únete a Woofing<br />
@@ -2114,11 +2137,15 @@ const observer = new IntersectionObserver(entries=>{
 
 document.querySelectorAll(".reveal,.benefit-card,.problem-card").forEach(el=>observer.observe(el));
 
-const navEl = document.getElementById("mainNav");
+// Igual que en el index: oculto sobre el hero y visible al avanzar.
+const pageHeader = document.querySelector(".header");
 
-window.addEventListener("scroll",()=>{
-  navEl.style.boxShadow = window.scrollY > 40 ? "0 4px 32px rgba(92,50,119,0.08)" : "none";
-},{passive:true});
+function updateHeaderVisibility(){
+  pageHeader.classList.toggle("header--visible",window.scrollY > 120);
+}
+
+updateHeaderVisibility();
+window.addEventListener("scroll",updateHeaderVisibility,{passive:true});
 
 applyLang(lang);
 </script>
