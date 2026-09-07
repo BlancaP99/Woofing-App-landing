@@ -551,6 +551,126 @@
                 padding-top: 36px;
             }
         }
+
+        /* ── UNIFICACIÓN VISUAL CON EL INDEX DE WOOFING ── */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 10px 44px;
+            background: rgba(248, 249, 250, 0.94);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(92, 50, 119, 0.08);
+            box-shadow: 0 10px 30px rgba(92, 50, 119, 0.07);
+        }
+
+        .header .nav {
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-img {
+            height: 46px;
+        }
+
+        main {
+            padding-top: 150px;
+            background-color: var(--bg);
+            background-image: url('IMAGES/FONDO-WEB-LANDING-NADA.png');
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        main::before,
+        main::after {
+            display: none;
+        }
+
+        .form__submit,
+        .footer__submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 54px;
+            padding: 16px 34px;
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--brand) 0%, var(--brand-light) 100%);
+            color: #fff;
+            font-family: var(--font);
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            box-shadow: 0 14px 38px rgba(92, 50, 119, 0.28);
+            transition: opacity 0.2s, transform 0.18s, box-shadow 0.18s;
+        }
+
+        .form__submit::after,
+        .footer__submit::after {
+            content: '→';
+            font-size: 18px;
+            line-height: 1;
+            transform: translateY(-1px);
+        }
+
+        .form__submit:hover,
+        .footer__submit:hover {
+            opacity: 0.92;
+            transform: translateY(-2px);
+            box-shadow: 0 20px 48px rgba(92, 50, 119, 0.34);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 9px 24px;
+            }
+
+            .logo-img {
+                height: 42px;
+            }
+
+            main {
+                padding-top: 125px;
+            }
+
+            .nav__link {
+                display: block;
+            }
+        }
+
+        @media (max-width: 580px) {
+            .header {
+                padding: 8px 18px;
+            }
+
+            .logo-img {
+                height: 38px;
+            }
+
+            .nav__controls {
+                gap: 14px;
+            }
+
+            .nav__link {
+                font-size: 11px;
+                letter-spacing: 0.07em;
+            }
+
+            main {
+                padding-top: 110px;
+                background-image: url('IMAGES/LANDING-MOVIL-NADA.png');
+                background-position: center center;
+            }
+
+            .footer__submit {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 
