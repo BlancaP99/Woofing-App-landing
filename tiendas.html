@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" href="IMAGES/favicon_circulo.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
 
 <link rel="stylesheet" href="cookies.css" />
 
@@ -1012,34 +1012,203 @@ body::before{
   .analytics-actions button,.analytics-actions a{width:100%}
   .commission-row{flex-direction:column;align-items:flex-start;gap:8px}
 }
+
+/* =========================================================
+   UNIFICACIÓN VISUAL CON EL INDEX DE WOOFING
+   ========================================================= */
+:root{
+  --bg:#F8F9FA;
+  --ink:#5c3277;
+}
+
+/* Header compartido con el index */
+.header{
+  width:100%;
+  padding:24px 56px;
+  background-color:rgba(248,249,250,.92);
+  backdrop-filter:blur(14px);
+  position:relative;
+  z-index:100;
+}
+.header .nav{
+  width:100%;
+  position:static;
+  padding:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
+  background:transparent;
+  backdrop-filter:none;
+  border:0;
+}
+.logo-img{
+  height:68px;
+  width:auto;
+  object-fit:contain;
+  display:block;
+}
+.nav__controls{display:flex;align-items:center;gap:22px}
+.nav__menu{display:flex;align-items:center}
+.nav__link{
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:none;
+  box-shadow:none;
+  font-family:var(--sans);
+  font-size:13px;
+  font-weight:500;
+  line-height:1;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--purple);
+  cursor:pointer;
+  transition:opacity .2s;
+}
+.nav__link:hover{opacity:.55;transform:none}
+.lang-switch__btn.active{font-weight:700}
+
+/* Titulares: misma Playfair, peso y color que “Todo para tu mascota” */
+.hero__title,
+.problem__heading,
+.solution__col-title,
+.analytics-demo-title,
+.benefits__title,
+.risk__heading,
+.cta__title,
+.solution-block__title,
+.benefit-card__title,
+.risk-visual__title,
+.modal__title{
+  font-family:var(--serif);
+  font-weight:500;
+  font-style:normal;
+  letter-spacing:-.035em;
+}
+.hero__title,
+.problem__heading,
+.analytics-demo-title,
+.benefits__title,
+.risk__heading,
+.solution-block__title,
+.benefit-card__title,
+.risk-visual__title,
+.modal__title{color:var(--purple)}
+.hero__title em,
+.problem__heading em,
+.solution__col-title em,
+.analytics-demo-title em,
+.benefits__title em,
+.cta__title em{
+  font:inherit;
+  color:inherit;
+}
+.stat-item__num,
+.benefit-card__num,
+.commission-row__value{font-style:normal;font-weight:500}
+
+/* CTA coherentes con los del index */
+.btn-primary,
+.analytics-actions button,
+.form__submit{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height:54px;
+  padding:16px 34px;
+  border:0;
+  border-radius:999px;
+  background:linear-gradient(135deg,var(--purple) 0%,var(--purple-light) 100%);
+  color:#fff;
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.02em;
+  box-shadow:0 14px 38px rgba(92,50,119,.28);
+  transition:opacity .2s,transform .18s,box-shadow .18s;
+}
+.btn-primary::after,
+.analytics-actions button::after{content:'→';font-size:18px;line-height:1;transform:translateY(-1px)}
+.btn-primary:hover,
+.analytics-actions button:hover,
+.form__submit:hover{
+  opacity:.92;
+  transform:translateY(-2px);
+  box-shadow:0 20px 48px rgba(92,50,119,.34);
+}
+.btn-secondary,
+.analytics-actions a{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:54px;
+  padding:16px 34px;
+  border:1.5px solid rgba(92,50,119,.22);
+  border-radius:999px;
+  background:#fff;
+  color:var(--purple);
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.02em;
+  box-shadow:0 12px 32px rgba(92,50,119,.10);
+}
+.btn-secondary:hover,
+.analytics-actions a:hover{background:rgba(255,255,255,.86);box-shadow:0 18px 40px rgba(92,50,119,.16)}
+.btn-white,.btn-ghost{
+  min-height:54px;
+  border-radius:999px;
+  font-family:var(--sans);
+  font-size:15px;
+  font-weight:700;
+  letter-spacing:.02em;
+}
+.btn-white{padding:16px 34px;box-shadow:0 14px 38px rgba(26,13,46,.22)}
+.btn-ghost{padding:16px 34px}
+
+/* La página empieza después del header, como en el index */
+.hero{min-height:calc(100svh - 116px);padding-top:72px}
+
+@media(max-width:900px){
+  .header{padding:20px 24px}
+  .logo-img{height:54px}
+}
+@media(max-width:580px){
+  .header{padding:16px 18px}
+  .logo-img{height:44px}
+  .nav__controls{gap:14px}
+  .nav__link{font-size:11px;letter-spacing:.07em}
+  .hero{min-height:calc(100svh - 76px);padding-top:56px}
+}
 </style>
 </head>
 
 <body>
 
+<header class="header">
 <nav class="nav" id="mainNav">
-  <a href="index.html" class="nav__logo">
-    <img src="IMAGES/LOGO_HORIZONTAL_PNG.png" alt="Woofing" />
+  <a href="index.html" aria-label="Woofing">
+    <img src="IMAGES/LOGO_HORIZONTAL_PNG.png" alt="Woofing" class="logo-img" />
   </a>
-  <div class="nav__right">
+  <div class="nav__controls">
+    <div class="nav__menu">
+      <button class="nav__link" id="openContactModal" data-i18n="nav_contact">Colaborar</button>
+    </div>
     <div class="lang-switch" aria-label="Selector de idioma">
       <button class="lang-switch__btn active" id="langEs" type="button">ES</button>
       <span class="lang-switch__divider">|</span>
       <button class="lang-switch__btn" id="langEn" type="button">EN</button>
     </div>
-    <button class="nav__pill" id="openContactModal" data-i18n="nav_contact">Colaborar</button>
   </div>
 </nav>
+</header>
 
 <section class="hero">
   <div class="hero__bg-blob hero__bg-blob--1"></div>
   <div class="hero__bg-blob hero__bg-blob--2"></div>
   <div class="hero__bg-blob hero__bg-blob--3"></div>
-
-  <div class="hero__eyebrow">
-    <span class="hero__eyebrow-dot"></span>
-    <span data-i18n="hero_eyebrow">Comercios Pet · Dosier 2026</span>
-  </div>
 
   <h1 class="hero__title" data-i18n="hero_title">
     El cliente adecuado,<br />
@@ -1082,7 +1251,6 @@ body::before{
   <div class="section-inner">
     <div class="problem-layout">
       <div>
-        <div class="section__label reveal" data-i18n="problem_label">El problema</div>
         <h2 class="problem__heading reveal" style="transition-delay:0.1s" data-i18n="problem_heading">
           El sector pet tiene demanda.<br />
           <em>Le falta conexión.</em>
@@ -1123,8 +1291,6 @@ body::before{
 
 <section class="section solution-section">
   <div class="section-inner">
-    <div class="section__label reveal" data-i18n="solution_label">Qué es Woofing</div>
-
     <div class="solution__grid">
       <div>
         <h2 class="solution__col-title reveal" data-i18n="solution_title">
@@ -1159,7 +1325,6 @@ body::before{
   <div class="section-inner">
     <div class="analytics-demo-layout">
       <div class="analytics-demo-copy reveal">
-        <div class="section__label" data-i18n="demo_label">Cómo se vería</div>
         <h2 class="analytics-demo-title" data-i18n="demo_title">
           Un panel que convierte datos reales<br />
           <em>en decisiones comerciales.</em>
@@ -1288,7 +1453,6 @@ body::before{
 
 <section class="section benefits-section" id="beneficios">
   <div class="section-inner">
-    <div class="section__label reveal" style="justify-content:center;display:flex;" data-i18n="benefits_label">Qué ganas</div>
     <h2 class="benefits__title reveal" data-i18n="benefits_title">
       Seis razones para<br />
       <em>colaborar con Woofing</em>
@@ -1344,7 +1508,6 @@ body::before{
   <div class="section-inner">
     <div class="risk-layout">
       <div>
-        <div class="section__label reveal" data-i18n="risk_label">Propuesta de colaboración</div>
         <h2 class="risk__heading reveal" style="transition-delay:0.1s" data-i18n="risk_heading">
           Un modelo<br />sin riesgo
         </h2>
@@ -1396,7 +1559,6 @@ body::before{
   </div>
 
   <div class="section-inner">
-    <div class="section__label cta__label reveal" style="justify-content:center;display:flex;" data-i18n="cta_label">¿Hablamos?</div>
     <h2 class="cta__title reveal" style="transition-delay:0.1s" data-i18n="cta_title">
       Únete a Woofing<br />
       <em>antes del lanzamiento</em>
