@@ -2828,11 +2828,16 @@
             margin: 0 0 28px;
             text-align: center;
             font-family: var(--font-display);
-            font-size: clamp(42px, 6vw, 78px);
-            font-weight: 400;
-            line-height: 1;
-            letter-spacing: -0.045em;
+            font-size: clamp(32px, 3.1vw, 48px);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: -0.035em;
             color: var(--brand);
+        }
+
+        /* Convierte el mapa normal en gris claro sin depender de estilos con API */
+        #woofingDogMap .leaflet-tile-pane {
+            filter: grayscale(1) brightness(1.08) contrast(0.78);
         }
 
         .dogfriendly-map__legend {
@@ -3306,6 +3311,46 @@
                 longitud: -3.67984,
                 tipo: "woofing",
                 enlace: "https://maisonducan.com/"
+            },
+            {
+                nombre: "El Perro y la Galleta",
+                direccion: "C. de Claudio Coello, 1, 28009 Madrid",
+                latitud: 40.41943,
+                longitud: -3.68713,
+                tipo: "dogfriendly",
+                enlace: "https://elperroylagalleta.com/locales/restaurante-en-retiro/"
+            },
+            {
+                nombre: "Rosewood Villa Magna",
+                direccion: "P.º de la Castellana, 22, 28046 Madrid",
+                latitud: 40.43186,
+                longitud: -3.68959,
+                tipo: "dogfriendly",
+                enlace: "https://www.rosewoodhotels.com/es-ES/villa-magna"
+            },
+            {
+                nombre: "La Jauría",
+                direccion: "C. de Colón, 10, Centro, 28004 Madrid",
+                latitud: 40.42470,
+                longitud: -3.70170,
+                tipo: "dogfriendly",
+                enlace: "https://lajauriarestaurant.eatbu.com/?lang=es"
+            },
+            {
+                nombre: "Enlagloria Salad House · López de Hoyos",
+                direccion: "C. de López de Hoyos, 10, 28006 Madrid",
+                latitud: 40.43733,
+                longitud: -3.68321,
+                tipo: "dogfriendly",
+                enlace: "https://enlagloriasaladhouse.com/"
+            },
+            {
+                nombre: "Enlagloria Salad House · Núñez de Balboa",
+                direccion: "C. de Núñez de Balboa, 35, 28001 Madrid",
+                latitud: 40.42833,
+                longitud: -3.68315,
+                tipo: "dogfriendly",
+                enlace: "https://enlagloriasaladhouse.com/"
             }
 
             /* EJEMPLO DE PUNTO QUE NO ESTÁ DENTRO DE WOOFING:
@@ -3325,14 +3370,14 @@
         }).setView([40.4209, -3.6850], 14);
 
         /* Mapa gris claro, sin clave ni API */
-        L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
-            maxZoom: 20,
-            attribution: "&copy; OpenStreetMap contributors &copy; CARTO"
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "&copy; OpenStreetMap contributors"
         }).addTo(woofingDogMap);
 
         const crearIconoMapa = (tipo) => L.divIcon({
             className: "",
-            html: `<img class="woofing-map-marker" src="${tipo === "woofing" ? "IMAGES/PEGATINA-LOGO.png" : "IMAGES/PEGATINA.png"}" alt="" />`,
+            html: `<img class="woofing-map-marker" src="${tipo === "woofing" ? "mapa-assets/PEGATINA-LOGO.png" : "mapa-assets/PEGATINA.png"}" alt="" />`,
             iconSize: [52, 52],
             iconAnchor: [26, 26],
             popupAnchor: [0, -27]
