@@ -12,6 +12,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Oswald:wght@600;700&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
  
     <!-- ✅ COOKIE BANNER CSS -->
     <link rel="stylesheet" href="cookies.css" />
@@ -2811,6 +2812,122 @@
                 width: 205px !important;
             }
         }
+
+        /* ── MAPA DOG FRIENDLY ── */
+        .dogfriendly-map {
+            padding: clamp(72px, 9vw, 120px) 24px;
+            background: #f8f9fa;
+        }
+
+        .dogfriendly-map__inner {
+            width: min(100%, 1180px);
+            margin: 0 auto;
+        }
+
+        .dogfriendly-map__title {
+            margin: 0 0 28px;
+            text-align: center;
+            font-family: var(--font-display);
+            font-size: clamp(32px, 3.1vw, 48px);
+            font-weight: 500;
+            line-height: 1.02;
+            letter-spacing: -0.035em;
+            color: var(--brand);
+        }
+
+        /* Convierte el mapa normal en gris claro sin depender de estilos con API */
+        #woofingDogMap .leaflet-tile-pane {
+            filter: grayscale(1) brightness(1.08) contrast(0.78);
+        }
+
+        .dogfriendly-map__legend {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px 24px;
+            margin-bottom: 28px;
+            color: var(--brand);
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .dogfriendly-map__legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .dogfriendly-map__legend-item img {
+            width: 34px;
+            height: 34px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        #woofingDogMap {
+            width: 100%;
+            height: min(66vh, 650px);
+            min-height: 500px;
+            overflow: hidden;
+            border: 1px solid rgba(92, 50, 119, 0.15);
+            border-radius: 30px;
+            background: #ececf0;
+            box-shadow: 0 24px 70px rgba(92, 50, 119, 0.12);
+        }
+
+        .woofing-map-marker {
+            width: 52px;
+            height: 52px;
+            border: 3px solid #fff;
+            border-radius: 50%;
+            object-fit: cover;
+            background: #fff;
+            box-shadow: 0 8px 22px rgba(50, 25, 67, 0.3);
+        }
+
+        .leaflet-popup-content-wrapper {
+            border-radius: 18px;
+            box-shadow: 0 18px 50px rgba(45, 20, 60, 0.2);
+        }
+
+        .leaflet-popup-content {
+            min-width: 210px;
+            margin: 17px 19px;
+            font-family: var(--font);
+            color: var(--brand);
+        }
+
+        .woofing-map-popup strong {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 16px;
+            line-height: 1.25;
+        }
+
+        .woofing-map-popup span {
+            display: block;
+            font-size: 13px;
+            line-height: 1.45;
+            color: var(--muted);
+        }
+
+        .woofing-map-popup a {
+            display: inline-block;
+            margin-top: 12px;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+            .dogfriendly-map { padding: 64px 16px; }
+            .dogfriendly-map__title { margin-bottom: 22px; }
+            .dogfriendly-map__legend { gap: 10px 16px; margin-bottom: 22px; font-size: 12px; }
+            .dogfriendly-map__legend-item img { width: 30px; height: 30px; }
+            #woofingDogMap { height: 58vh; min-height: 430px; border-radius: 20px; }
+            .woofing-map-marker { width: 46px; height: 46px; }
+        }
     </style>
 </head>
  
@@ -2949,6 +3066,26 @@
                 </p>
                 <a class="btn-cta campaign-strip__cta" href="perros-de-madrid.html" data-i18n="campaign_cta">Presentar a mi perro</a>
             </div>
+        </div>
+    </section>
+
+    <!-- MAPA DOG FRIENDLY -->
+    <section class="dogfriendly-map" aria-labelledby="dogfriendlyMapTitle">
+        <div class="dogfriendly-map__inner">
+            <h2 class="dogfriendly-map__title" id="dogfriendlyMapTitle">Madrid con perro</h2>
+
+            <div class="dogfriendly-map__legend" aria-label="Leyenda del mapa">
+                <span class="dogfriendly-map__legend-item">
+                    <img src="IMAGES/PEGATINA-LOGO.png" alt="" />
+                    Disponible en Woofing
+                </span>
+                <span class="dogfriendly-map__legend-item">
+                    <img src="IMAGES/PEGATINA.png" alt="" />
+                    Punto dog friendly
+                </span>
+            </div>
+
+            <div id="woofingDogMap" aria-label="Mapa de puntos dog friendly de Madrid"></div>
         </div>
     </section>
 
@@ -3141,7 +3278,135 @@
  
     <!-- ✅ COOKIE CONSENT JS (antes del cierre de body) -->
     <script src="cookies.js"></script>
- 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+    <script>
+        /*
+         * PUNTOS DEL MAPA
+         * Para añadir uno: copia un bloque, cambia los datos y conserva las comas.
+         * Para eliminarlo: borra su bloque completo.
+         * tipo: "woofing" usa el logo; tipo: "dogfriendly" usa el distintivo.
+         */
+        const puntosDogFriendly = [
+            {
+                nombre: "Perrísimo Dog Cafe & Bar",
+                direccion: "Av. de Menéndez Pelayo, 25, Retiro, 28009 Madrid",
+                latitud: 40.41605,
+                longitud: -3.67639,
+                tipo: "woofing",
+                enlace: "https://www.perrisimodogcafe.com/"
+            },
+            {
+                nombre: "BDEBRUNO SPA & STORE",
+                direccion: "C. de Monte Esquinza, 40, Chamberí, 28010 Madrid",
+                latitud: 40.43130,
+                longitud: -3.69290,
+                tipo: "woofing",
+                enlace: "https://bdebruno.com/pages/bdebruno-spa-store"
+            },
+            {
+                nombre: "Maison du Can",
+                direccion: "C. de Menorca, 7, Retiro, 28009 Madrid",
+                latitud: 40.41995,
+                longitud: -3.67984,
+                tipo: "woofing",
+                enlace: "https://maisonducan.com/"
+            },
+            {
+                nombre: "El Perro y la Galleta",
+                direccion: "C. de Claudio Coello, 1, 28009 Madrid",
+                latitud: 40.41943,
+                longitud: -3.68713,
+                tipo: "dogfriendly",
+                enlace: "https://elperroylagalleta.com/locales/restaurante-en-retiro/"
+            },
+            {
+                nombre: "Rosewood Villa Magna",
+                direccion: "P.º de la Castellana, 22, 28046 Madrid",
+                latitud: 40.43186,
+                longitud: -3.68959,
+                tipo: "dogfriendly",
+                enlace: "https://www.rosewoodhotels.com/es-ES/villa-magna"
+            },
+            {
+                nombre: "La Jauría",
+                direccion: "C. de Colón, 10, Centro, 28004 Madrid",
+                latitud: 40.42470,
+                longitud: -3.70170,
+                tipo: "dogfriendly",
+                enlace: "https://lajauriarestaurant.eatbu.com/?lang=es"
+            },
+            {
+                nombre: "Enlagloria Salad House · López de Hoyos",
+                direccion: "C. de López de Hoyos, 10, 28006 Madrid",
+                latitud: 40.43733,
+                longitud: -3.68321,
+                tipo: "dogfriendly",
+                enlace: "https://enlagloriasaladhouse.com/"
+            },
+            {
+                nombre: "Enlagloria Salad House · Núñez de Balboa",
+                direccion: "C. de Núñez de Balboa, 35, 28001 Madrid",
+                latitud: 40.42833,
+                longitud: -3.68315,
+                tipo: "dogfriendly",
+                enlace: "https://enlagloriasaladhouse.com/"
+            }
+
+            /* EJEMPLO DE PUNTO QUE NO ESTÁ DENTRO DE WOOFING:
+            ,{
+                nombre: "Nombre del lugar",
+                direccion: "Dirección completa",
+                latitud: 40.4168,
+                longitud: -3.7038,
+                tipo: "dogfriendly",
+                enlace: "https://..."
+            }
+            */
+        ];
+
+        const woofingDogMap = L.map("woofingDogMap", {
+            scrollWheelZoom: false
+        }).setView([40.4209, -3.6850], 14);
+
+        /* Mapa gris claro, sin clave ni API */
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 19,
+            attribution: "&copy; OpenStreetMap contributors"
+        }).addTo(woofingDogMap);
+
+        const crearIconoMapa = (tipo) => L.divIcon({
+            className: "",
+            html: `<img class="woofing-map-marker" src="${tipo === "woofing" ? "IMAGES/PEGATINA-LOGO.png" : "IMAGES/PEGATINA.png"}" alt="" />`,
+            iconSize: [52, 52],
+            iconAnchor: [26, 26],
+            popupAnchor: [0, -27]
+        });
+
+        const limitesMapa = [];
+
+        puntosDogFriendly.forEach((punto) => {
+            const marker = L.marker(
+                [punto.latitud, punto.longitud],
+                { icon: crearIconoMapa(punto.tipo) }
+            ).addTo(woofingDogMap);
+
+            marker.bindPopup(`
+                <div class="woofing-map-popup">
+                    <strong>${punto.nombre}</strong>
+                    <span>${punto.direccion}</span>
+                    ${punto.enlace ? `<a href="${punto.enlace}" target="_blank" rel="noopener noreferrer">Ver sitio</a>` : ""}
+                </div>
+            `);
+
+            limitesMapa.push([punto.latitud, punto.longitud]);
+        });
+
+        if (limitesMapa.length > 1) {
+            woofingDogMap.fitBounds(limitesMapa, { padding: [70, 70], maxZoom: 14 });
+        }
+    </script>
+
     <script>
         const BREVO_ENDPOINT = "/api/brevo-contact";
         const LANG_KEY = "woofing_language";
