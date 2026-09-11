@@ -46,11 +46,10 @@ export default async function handler(request, response) {
     }
 
     const body = request.body || {};
-
     const formType = clean(body.form_type, 50);
 
     /*
-     * Honeypot invisible contra bots.
+     * Campo invisible contra bots.
      */
     if (body.company) {
         return response.status(200).json({
@@ -67,14 +66,8 @@ export default async function handler(request, response) {
         .toLowerCase();
 
     /*
-     * Registro procedente del CTA de la camiseta.
-     *
-     * El contacto ya existe normalmente en Brevo por haber
-     * participado en Perros de Madrid. updateEnabled permite
-     * actualizarlo y añadirlo también a la lista #11.
-     * Esta ruta no necesita volver a enviar nombre, foto ni
-     * consentimientos porque solo registra el interés indicado
-     * al pulsar el botón del email.
+     * Persona que llega desde el email de la campaña.
+     * Su fotografía ya está guardada.
      */
     if (formType === "shirt_interest") {
         if (!isEmail(email)) {
@@ -144,6 +137,271 @@ export default async function handler(request, response) {
         }
     }
 
+    /*
+     * Pedido de camiseta de una persona nueva.
+     * Guarda sus datos y envía la fotografía a Woofing.
+     */
+    if (formType === "shirt_preorder") {
+        const size = clean(body.size, 5);
+        const photo = body.photo || {};
+
+        if (
+            !ownerName ||
+            !petName ||
+            !isEmail(email) ||
+            !["XS", "S", "M", "L", "XL", "XXL"].includes(size)
+        ) {
+            return response.status(400).json({
+                error: "Revisa los datos del pedido."
+            });
+        }
+
+        if (
+            body.imageConsent !== true ||
+            body.privacy !== true
+        ) {
+            return response.status(400).json({
+                error:
+                    "Es necesario aceptar los consentimientos."
+            });
+        }
+
+        if (
+            !photo.content ||
+            photo.mimeType !== "image/jpeg" ||
+            photo.content.length > MAX_BASE64_LENGTH
+        ) {
+            return response.status(400).json({
+                error:
+                    "La fotografía no es válida o es demasiado grande."
+            });
+        }
+
+        if (
+            !process.env.BREVO_API_KEY ||
+            !process.env.BREVO_SENDER_EMAIL ||
+            !process.env.BREVO_RECIPIENT_EMAIL
+        ) {
+            return response.status(503).json({
+                error:
+                    "El formulario todavía no está configurado."
+            });
+        }
+
+        try {
+            /*
+             * Añade al cliente a la lista de camisetas.
+             */
+            const contactResponse = await fetch(
+                BREVO_CONTACTS_ENDPOINT,
+                {
+                    method: "POST",
+                    headers: {
+                        accept: "application/json",
+                        "api-key":
+                            process.env.BREVO_API_KEY,
+                        "content-type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        email,
+                        listIds: [
+                            BREVO_SHIRT_INTEREST_LIST_ID
+                        ],
+                        updateEnabled: true
+                    })
+                }
+            );
+
+            if (!contactResponse.ok) {
+                const details =
+                    await contactResponse.text();
+
+                console.error(
+                    "Brevo shirt contact rejected:",
+                    contactResponse.status,
+                    details.slice(0, 300)
+                );
+
+                return response.status(502).json({
+                    error:
+                        "No hemos podido guardar tus datos. Inténtalo de nuevo."
+                });
+            }
+
+            /*
+             * Envía a Woofing la foto y los datos del pedido.
+             */
+            const mailResponse = await fetch(
+                BREVO_EMAIL_ENDPOINT,
+                {
+                    method: "POST",
+                    headers: {
+                        accept: "application/json",
+                        "api-key":
+                            process.env.BREVO_API_KEY,
+                        "content-type":
+                            "application/json"
+                    },
+                    body: JSON.stringify({
+                        sender: {
+                            name:
+                                process.env
+                                    .BREVO_SENDER_NAME ||
+                                "Woofing App",
+
+                            email:
+                                process.env
+                                    .BREVO_SENDER_EMAIL
+                        },
+
+                        to: [
+                            {
+                                email:
+                                    process.env
+                                        .BREVO_RECIPIENT_EMAIL,
+
+                                name: "Woofing"
+                            }
+                        ],
+
+                        replyTo: {
+                            email,
+                            name: ownerName
+                        },
+
+                        subject:
+                            `👕 Nueva foto para camiseta: ` +
+                            `${petName} · Talla ${size}`,
+
+                        htmlContent: `
+                            <div
+                                style="
+                                    font-family: Arial, sans-serif;
+                                    color: #391d4b;
+                                    max-width: 620px;
+                                    margin: auto;
+                                "
+                            >
+                                <div
+                                    style="
+                                        background: #5c3277;
+                                        color: #ffffff;
+                                        padding: 24px 28px;
+                                        border-radius: 18px 18px 0 0;
+                                    "
+                                >
+                                    <h1
+                                        style="
+                                            margin: 0;
+                                            font-size: 27px;
+                                        "
+                                    >
+                                        Nuevo pre-order de camiseta
+                                    </h1>
+                                </div>
+
+                                <div
+                                    style="
+                                        padding: 26px 28px;
+                                        border: 1px solid #e6ddeb;
+                                        border-top: 0;
+                                        border-radius: 0 0 18px 18px;
+                                    "
+                                >
+                                    <p>
+                                        <strong>Mascota:</strong>
+                                        ${escapeHtml(petName)}
+                                    </p>
+
+                                    <p>
+                                        <strong>Talla:</strong>
+                                        ${escapeHtml(size)}
+                                    </p>
+
+                                    <p>
+                                        <strong>Cliente:</strong>
+                                        ${escapeHtml(ownerName)}
+                                    </p>
+
+                                    <p>
+                                        <strong>Email:</strong>
+                                        ${escapeHtml(email)}
+                                    </p>
+
+                                    <p>
+                                        La fotografía para preparar la
+                                        ilustración está adjunta.
+                                    </p>
+
+                                    <p
+                                        style="
+                                            color: #765d84;
+                                            font-size: 12px;
+                                        "
+                                    >
+                                        El pago se completa a continuación
+                                        mediante Stripe.
+                                    </p>
+                                </div>
+                            </div>
+                        `,
+
+                        attachment: [
+                            {
+                                content: photo.content,
+
+                                name:
+                                    clean(
+                                        photo.fileName,
+                                        100
+                                    ) ||
+                                    `${petName}-camiseta-woofing.jpg`
+                            }
+                        ],
+
+                        tags: [
+                            "camiseta-preorder"
+                        ]
+                    })
+                }
+            );
+
+            if (!mailResponse.ok) {
+                const details =
+                    await mailResponse.text();
+
+                console.error(
+                    "Brevo shirt email rejected:",
+                    mailResponse.status,
+                    details.slice(0, 300)
+                );
+
+                return response.status(502).json({
+                    error:
+                        "No hemos podido guardar la fotografía. Inténtalo de nuevo."
+                });
+            }
+
+            return response.status(200).json({
+                ok: true
+            });
+        } catch (error) {
+            console.error(
+                "Shirt preorder request failed:",
+                error.message
+            );
+
+            return response.status(502).json({
+                error:
+                    "No hemos podido guardar la fotografía. Inténtalo de nuevo."
+            });
+        }
+    }
+
+    /*
+     * Formulario original de Perros de Madrid.
+     */
     const instagram = clean(body.instagram, 60);
 
     const campaignSource =
@@ -151,9 +409,6 @@ export default async function handler(request, response) {
 
     const photo = body.photo || {};
 
-    /*
-     * Validación de los campos obligatorios.
-     */
     if (
         !petName ||
         !neighborhood ||
@@ -165,9 +420,6 @@ export default async function handler(request, response) {
         });
     }
 
-    /*
-     * Los dos consentimientos son obligatorios.
-     */
     if (
         body.imageConsent !== true ||
         body.privacy !== true
@@ -178,9 +430,6 @@ export default async function handler(request, response) {
         });
     }
 
-    /*
-     * Validación de la fotografía ya comprimida.
-     */
     if (
         !photo.content ||
         photo.mimeType !== "image/jpeg" ||
@@ -192,9 +441,6 @@ export default async function handler(request, response) {
         });
     }
 
-    /*
-     * Comprueba que las variables privadas existen en Vercel.
-     */
     if (
         !process.env.BREVO_API_KEY ||
         !process.env.BREVO_SENDER_EMAIL ||
@@ -295,6 +541,7 @@ export default async function handler(request, response) {
 
                 <p>
                     <strong>Email:</strong>
+
                     <a href="mailto:${escapeHtml(email)}">
                         ${escapeHtml(email)}
                     </a>
@@ -302,6 +549,7 @@ export default async function handler(request, response) {
 
                 <p>
                     <strong>Instagram:</strong>
+
                     ${escapeHtml(
                         instagram || "No indicado"
                     )}
@@ -334,7 +582,7 @@ export default async function handler(request, response) {
 
     try {
         /*
-         * Guarda el email del participante en:
+         * Guarda el contacto en:
          *
          * #10 SE BUSCAN PERROS
          * #4 Woofing - Contacto general
@@ -347,8 +595,10 @@ export default async function handler(request, response) {
                     accept: "application/json",
                     "api-key":
                         process.env.BREVO_API_KEY,
-                    "content-type": "application/json"
+                    "content-type":
+                        "application/json"
                 },
+
                 body: JSON.stringify({
                     email,
                     listIds: BREVO_LIST_IDS,
@@ -374,8 +624,7 @@ export default async function handler(request, response) {
         }
 
         /*
-         * Envía a Woofing el correo con todos los datos
-         * y la fotografía adjunta.
+         * Envía a Woofing los datos y la fotografía.
          */
         const brevoResponse = await fetch(
             BREVO_EMAIL_ENDPOINT,
@@ -385,14 +634,17 @@ export default async function handler(request, response) {
                     accept: "application/json",
                     "api-key":
                         process.env.BREVO_API_KEY,
-                    "content-type": "application/json"
+                    "content-type":
+                        "application/json"
                 },
+
                 body: JSON.stringify({
                     sender: {
                         name:
                             process.env
                                 .BREVO_SENDER_NAME ||
                             "Woofing App",
+
                         email:
                             process.env
                                 .BREVO_SENDER_EMAIL
@@ -403,14 +655,11 @@ export default async function handler(request, response) {
                             email:
                                 process.env
                                     .BREVO_RECIPIENT_EMAIL,
+
                             name: "Woofing"
                         }
                     ],
 
-                    /*
-                     * Cuando pulses Responder, contestarás
-                     * directamente al participante.
-                     */
                     replyTo: {
                         email,
                         name: ownerName
@@ -425,6 +674,7 @@ export default async function handler(request, response) {
                     attachment: [
                         {
                             content: photo.content,
+
                             name:
                                 clean(
                                     photo.fileName,
