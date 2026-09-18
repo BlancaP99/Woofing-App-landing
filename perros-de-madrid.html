@@ -566,6 +566,29 @@
             color: var(--muted);
         }
 
+        .footer__links {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 10px 22px;
+            margin-bottom: 16px;
+        }
+
+        .footer__link {
+            color: var(--muted);
+            transition: color 0.2s, opacity 0.2s;
+        }
+
+        .footer__link:hover {
+            color: var(--brand);
+            opacity: 0.72;
+        }
+
+        .footer__copy {
+            margin: 0;
+        }
+
         @media (max-width: 700px) {
             .header {
                 width: calc(100% - 32px);
@@ -1047,10 +1070,15 @@
         </main>
 
         <footer class="footer">
-            © 2026 Woofing App ·
-            <a href="politica-privacidad.html">
-                Política de privacidad
-            </a>
+            <div class="footer__links">
+                <a class="footer__link" href="https://www.instagram.com/woofingapp/" target="_blank" rel="noopener noreferrer">@woofingapp</a>
+                <a class="footer__link" href="politica-privacidad.html">Política de privacidad</a>
+                <a class="footer__link" href="terminos-y-condiciones.html">Términos y condiciones</a>
+                <a class="footer__link" href="cookies.html">Política de cookies</a>
+                <a class="footer__link" href="aviso_legal.html">Aviso legal</a>
+            </div>
+
+            <p class="footer__copy">© 2026 Woofing App. Todos los derechos reservados.</p>
         </footer>
     </div>
 
