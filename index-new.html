@@ -2936,7 +2936,7 @@
             overflow: hidden;
         }
         .woofing-partners__inner {
-            width: min(100% - 48px, 1380px);
+            width: min(calc(100% - 84px), 1320px);
             margin: 0 auto;
         }
         .woofing-partners__heading {
@@ -2946,15 +2946,11 @@
             gap: 24px;
             margin-bottom: 30px;
         }
-        .woofing-partners__eyebrow {
-            display: block;
-            margin-bottom: 12px;
-            font: 600 11px/1.4 var(--font);
-            letter-spacing: .17em;
-            text-transform: uppercase;
-        }
         .woofing-partners__title {
-            font: 400 clamp(36px, 5vw, 62px)/1.08 var(--font-display);
+            font-family: var(--font-display);
+            font-size: clamp(32px, 3.1vw, 48px);
+            line-height: 1.02;
+            font-weight: 500;
             letter-spacing: -.035em;
         }
         .woofing-partners__controls { display: flex; gap: 10px; flex: none; }
@@ -3028,7 +3024,8 @@
             .woofing-partners__card { flex-basis: calc((100% - 18px) / 2); height: 235px; }
         }
         @media (max-width: 600px) {
-            .woofing-partners__inner { width: calc(100% - 36px); }
+            .woofing-partners__inner { width: calc(100% - 40px); }
+            .woofing-partners__title { font-size: clamp(31px, 9vw, 42px); }
             .woofing-partners__heading { margin-bottom: 24px; }
             .woofing-partners__arrow { width: 36px; height: 36px; font-size: 19px; }
             .woofing-partners__track { gap: 12px; }
@@ -3163,7 +3160,6 @@
         <div class="woofing-partners__inner">
             <div class="woofing-partners__heading">
                 <div>
-                    <span class="woofing-partners__eyebrow" data-i18n="partners_eyebrow">Descubre Woofing</span>
                     <h2 class="woofing-partners__title" id="woofingPartnersTitle" data-i18n="partners_title">Quién está en Woofing</h2>
                 </div>
                 <div class="woofing-partners__controls">
@@ -3601,7 +3597,6 @@
                 profile_label: "Un perfil por mascota",
                 profile_title: "Gestiona su perfil",
                 profile_text: "Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.",
-                partners_eyebrow: "Descubre Woofing",
                 partners_title: "Quién está en Woofing",
                 campaign_eyebrow: "Casting abierto · Madrid",
                 campaign_title_1: "Se buscan",
@@ -3700,7 +3695,6 @@
                 profile_label: "One profile per pet",
                 profile_title: "Manage their profile",
                 profile_text: "Keep their information, needs and important details in a profile designed to have everything close at hand.",
-                partners_eyebrow: "Discover Woofing",
                 partners_title: "Who’s on Woofing",
                 campaign_eyebrow: "Open casting · Madrid",
                 campaign_title_1: "Calling all",
