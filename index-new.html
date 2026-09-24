@@ -2928,6 +2928,117 @@
             #woofingDogMap { height: 58vh; min-height: 430px; border-radius: 20px; }
             .woofing-map-marker { width: 46px; height: 46px; }
         }
+
+        /* ── NEGOCIOS EN WOOFING ── */
+        .woofing-partners {
+            background: #fff;
+            padding: clamp(72px, 8vw, 120px) 0;
+            overflow: hidden;
+        }
+        .woofing-partners__inner {
+            width: min(100% - 48px, 1380px);
+            margin: 0 auto;
+        }
+        .woofing-partners__heading {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 30px;
+        }
+        .woofing-partners__eyebrow {
+            display: block;
+            margin-bottom: 12px;
+            font: 600 11px/1.4 var(--font);
+            letter-spacing: .17em;
+            text-transform: uppercase;
+        }
+        .woofing-partners__title {
+            font: 400 clamp(36px, 5vw, 62px)/1.08 var(--font-display);
+            letter-spacing: -.035em;
+        }
+        .woofing-partners__controls { display: flex; gap: 10px; flex: none; }
+        .woofing-partners__arrow {
+            width: 44px;
+            height: 44px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--line);
+            border-radius: 50%;
+            background: #fff;
+            color: var(--brand);
+            font: 24px/1 var(--font);
+            cursor: pointer;
+            transition: background .2s, color .2s;
+        }
+        .woofing-partners__arrow:hover { background: var(--brand); color: #fff; }
+        .woofing-partners__arrow:focus-visible,
+        .woofing-partners__track:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+        .woofing-partners__track {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+        .woofing-partners__track::-webkit-scrollbar { display: none; }
+        .woofing-partners__card {
+            position: relative;
+            flex: 0 0 calc((100% - 36px) / 3);
+            height: clamp(195px, 20vw, 255px);
+            overflow: hidden;
+            border-radius: 24px;
+            background: #eee8f2;
+            scroll-snap-align: start;
+            isolation: isolate;
+        }
+        .woofing-partners__card img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform .35s ease;
+        }
+        .woofing-partners__card::after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.19) 45%, rgba(0,0,0,.5));
+            pointer-events: none;
+        }
+        .woofing-partners__card h3 {
+            position: absolute;
+            z-index: 2;
+            top: 50%;
+            left: 18px;
+            right: 18px;
+            transform: translateY(-50%);
+            color: #fff;
+            text-align: center;
+            font: 700 clamp(20px, 2.2vw, 29px)/1.1 var(--font);
+            letter-spacing: .045em;
+            text-shadow: 0 1px 9px rgba(0,0,0,.18);
+        }
+        @media (hover: hover) {
+            .woofing-partners__card:hover img { transform: scale(1.04); }
+        }
+        @media (max-width: 900px) {
+            .woofing-partners__card { flex-basis: calc((100% - 18px) / 2); height: 235px; }
+        }
+        @media (max-width: 600px) {
+            .woofing-partners__inner { width: calc(100% - 36px); }
+            .woofing-partners__heading { margin-bottom: 24px; }
+            .woofing-partners__arrow { width: 36px; height: 36px; font-size: 19px; }
+            .woofing-partners__track { gap: 12px; }
+            .woofing-partners__card { flex-basis: 84%; height: 205px; border-radius: 20px; }
+            .woofing-partners__card h3 { font-size: 23px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .woofing-partners__track { scroll-behavior: auto; }
+            .woofing-partners__card img { transition: none; }
+        }
     </style>
 </head>
  
@@ -3044,6 +3155,48 @@
                     </div>
                 </div>
             </article>
+        </div>
+    </section>
+
+    <!-- NEGOCIOS Y MARCAS EN WOOFING -->
+    <section class="woofing-partners" aria-labelledby="woofingPartnersTitle">
+        <div class="woofing-partners__inner">
+            <div class="woofing-partners__heading">
+                <div>
+                    <span class="woofing-partners__eyebrow" data-i18n="partners_eyebrow">Descubre Woofing</span>
+                    <h2 class="woofing-partners__title" id="woofingPartnersTitle" data-i18n="partners_title">Quién está en Woofing</h2>
+                </div>
+                <div class="woofing-partners__controls">
+                    <button class="woofing-partners__arrow" type="button" data-partner-scroll="-1" aria-label="Ver tarjetas anteriores">←</button>
+                    <button class="woofing-partners__arrow" type="button" data-partner-scroll="1" aria-label="Ver tarjetas siguientes">→</button>
+                </div>
+            </div>
+            <div class="woofing-partners__track" tabindex="0" aria-label="Negocios y marcas en Woofing">
+                <article class="woofing-partners__card">
+                    <img src="COLLABS/MAISONDUCAN.png" alt="" loading="lazy" />
+                    <h3>MAISON DU CAN</h3>
+                </article>
+                <article class="woofing-partners__card">
+                    <img src="COLLABS/PASEADOGS.jpg" alt="" loading="lazy" />
+                    <h3>PASEADOGS</h3>
+                </article>
+                <article class="woofing-partners__card">
+                    <img src="COLLABS/NATUKA.jpg" alt="" loading="lazy" />
+                    <h3>NATUKA BARF</h3>
+                </article>
+                <article class="woofing-partners__card">
+                    <img src="COLLABS/BDEBRUNO.jpg" alt="" loading="lazy" />
+                    <h3>B DE BRUNO</h3>
+                </article>
+                <article class="woofing-partners__card">
+                    <img src="COLLABS/FOODFORJOE.jpg" alt="" loading="lazy" />
+                    <h3>FOOD FOR JOE</h3>
+                </article>
+                <article class="woofing-partners__card">
+                    <img src="COLLABS/DIETAYUM.jpg" alt="" loading="lazy" />
+                    <h3>DIETA YUM</h3>
+                </article>
+            </div>
         </div>
     </section>
 
@@ -3448,6 +3601,8 @@
                 profile_label: "Un perfil por mascota",
                 profile_title: "Gestiona su perfil",
                 profile_text: "Guarda su información, necesidades y datos importantes en un perfil pensado para tener todo siempre a mano.",
+                partners_eyebrow: "Descubre Woofing",
+                partners_title: "Quién está en Woofing",
                 campaign_eyebrow: "Casting abierto · Madrid",
                 campaign_title_1: "Se buscan",
                 campaign_title_2: "los perros",
@@ -3545,6 +3700,8 @@
                 profile_label: "One profile per pet",
                 profile_title: "Manage their profile",
                 profile_text: "Keep their information, needs and important details in a profile designed to have everything close at hand.",
+                partners_eyebrow: "Discover Woofing",
+                partners_title: "Who’s on Woofing",
                 campaign_eyebrow: "Open casting · Madrid",
                 campaign_title_1: "Calling all",
                 campaign_title_2: "the dogs",
@@ -3657,6 +3814,11 @@
                 }
             });
  
+            const partnersSection = document.querySelector(".woofing-partners");
+            partnersSection.querySelector(".woofing-partners__track").setAttribute("aria-label", lang === "en" ? "Businesses and brands on Woofing" : "Negocios y marcas en Woofing");
+            partnersSection.querySelector('[data-partner-scroll="-1"]').setAttribute("aria-label", lang === "en" ? "View previous cards" : "Ver tarjetas anteriores");
+            partnersSection.querySelector('[data-partner-scroll="1"]').setAttribute("aria-label", lang === "en" ? "View next cards" : "Ver tarjetas siguientes");
+
             document.getElementById("langEs").classList.toggle("active", lang === "es");
             document.getElementById("langEn").classList.toggle("active", lang === "en");
  
@@ -3961,6 +4123,20 @@
 
         updateHeaderVisibility();
         window.addEventListener("scroll", updateHeaderVisibility, { passive: true });
+
+        // Desplazamiento de las tarjetas, integrado con el selector ES/EN existente.
+        const partnersTrack = document.querySelector(".woofing-partners__track");
+        document.querySelectorAll("[data-partner-scroll]").forEach(button => {
+            button.addEventListener("click", () => {
+                const card = partnersTrack.querySelector(".woofing-partners__card");
+                if (!card) return;
+                const gap = parseFloat(getComputedStyle(partnersTrack).gap) || 0;
+                partnersTrack.scrollBy({
+                    left: Number(button.dataset.partnerScroll) * (card.getBoundingClientRect().width + gap),
+                    behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth"
+                });
+            });
+        });
 
         setLanguage(currentLang);
     </script>
